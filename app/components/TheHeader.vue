@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { Icon } from '@iconify/vue'
-
 import LanguageToggle from '@/components/LanguageToggle.vue'
 
 const { t } = useI18n()
@@ -19,9 +17,7 @@ const navigation = computed(() => [
         <div class="container mx-auto px-4">
             <div class="flex h-16 items-center justify-between">
                 <NuxtLink :to="localePath('/')" class="flex items-center space-x-3 hover:opacity-80 transition-opacity">
-                    <div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-                        <Icon icon="radix-icons:component-2" class="w-5 h-5 text-primary-foreground" />
-                    </div>
+                    <Icon name="prop:logo" :size="48" />
                     <div class="flex flex-col">
                         <span class="text-lg font-bold leading-none">PropShow Kit</span>
                         <span class="text-xs text-muted-foreground">{{ $t('home.subtitle') }}</span>
@@ -46,7 +42,7 @@ const navigation = computed(() => [
 
                     <UiButton size="icon" variant="ghost" as-child class="hidden sm:inline-flex">
                         <NuxtLink :to="appConfig.socialMedia.github" target="_blank" rel="noopener" aria-label="GitHub">
-                            <Icon icon="radix-icons:github-logo" class="w-5 h-5" />
+                            <Icon name="radix-icons:github-logo" class="w-5 h-5" />
                         </NuxtLink>
                     </UiButton>
                 </div>

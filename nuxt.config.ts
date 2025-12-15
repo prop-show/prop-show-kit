@@ -16,7 +16,7 @@ export default defineNuxtConfig({
         componentDir: '@/components/ui',
     },
 
-    modules: ['shadcn-nuxt', '@nuxt/content', '@nuxtjs/color-mode', '@nuxt/eslint', '@nuxtjs/mdc', '@nuxtjs/i18n', '@nuxtjs/seo'],
+    modules: ['shadcn-nuxt', '@nuxt/content', '@nuxtjs/color-mode', '@nuxt/eslint', '@nuxtjs/mdc', '@nuxtjs/i18n', '@nuxtjs/seo', '@nuxt/icon'],
 
     site: {
         url: 'https://kit.prop.show',
@@ -29,6 +29,10 @@ export default defineNuxtConfig({
         head: {
             charset: 'utf-8',
             viewport: 'width=device-width, initial-scale=1',
+            link: [
+                { rel: 'icon', href: '/favicon.svg' },
+                { rel: 'canonical', href: 'https://kit.prop.show' },
+            ],
         },
     },
 
@@ -79,5 +83,14 @@ export default defineNuxtConfig({
                 },
             },
         },
+    },
+
+    icon: {
+        customCollections: [
+            {
+                prefix: 'prop',
+                dir: './app/assets/icons',
+            },
+        ],
     },
 })

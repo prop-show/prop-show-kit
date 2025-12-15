@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { Icon } from '@iconify/vue'
 import { version } from '~~/package.json'
 
 import type { SidebarProps } from '@/components/ui/sidebar'
@@ -60,14 +59,7 @@ function isActive(menu: Menu): boolean {
                 <SidebarMenuItem>
                     <SidebarMenuButton size="lg" as-child>
                         <NuxtLink :to="localePath('/')">
-                            <!-- <div
-                                class="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground"
-                            >
-                                <GalleryVerticalEndIcon class="size-4" />
-                            </div> -->
-                            <div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-                                <Icon icon="radix-icons:component-2" class="w-5 h-5 text-primary-foreground" />
-                            </div>
+                            <Icon name="prop:logo" size="48" />
                             <div class="flex flex-col gap-0.5 leading-none">
                                 <span class="font-medium">Documentation</span>
                                 <span class="">v{{ version }}</span>
