@@ -43,7 +43,7 @@ const sourceFiles = computed(() => {
         return []
 
     const mainPath = target.path
-    const files: { name: string, content: string, language: string }[] = []
+    const files: { name: string, content: string, language: string, icon: string }[] = []
 
     // If it's in prop-ui, we want to show all files in the same directory
     if (mainPath.includes('/prop-ui/')) {
@@ -55,6 +55,7 @@ const sourceFiles = computed(() => {
                     name: fileName,
                     content: rawModules[path] as string,
                     language: fileName.endsWith('.vue') ? 'vue' : 'ts',
+                    icon: fileName.endsWith('.vue') ? 'i-catppuccin-vue' : 'i-catppuccin-typescript',
                 })
             }
         }
@@ -70,6 +71,7 @@ const sourceFiles = computed(() => {
                 name: fileName,
                 content: rawModules[mainPath] as string,
                 language: fileName.endsWith('.vue') ? 'vue' : 'ts',
+                icon: fileName.endsWith('.vue') ? 'i-catppuccin-vue' : 'i-catppuccin-typescript',
             })
         }
     }
@@ -89,24 +91,18 @@ const sourceFiles = computed(() => {
 
 <template>
     <div class="my-6 border rounded-lg">
-        <Tabs v-if="showPreview" v-model="currentTab" class="relative mr-auto w-full">
-            <div class="flex items-center justify-between pb-3 pt-3 px-4 border-b">
-                <TabsList class="w-full justify-start rounded-none border-b-0 bg-transparent p-0">
-                    <TabsTrigger
-                        value="preview"
-                        class="relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold text-muted-foreground shadow-none transition-none data-[state=active]:border-b-primary data-[state=active]:text-foreground data-[state=active]:shadow-none"
-                    >
+        <Tabs v-if="showPreview" v-model="currentTab" class="w-full">
+            <div class="flex items-center justify-between border-b bg-muted/50 p-2">
+                <TabsList>
+                    <TabsTrigger value="preview">
                         Preview
                     </TabsTrigger>
-                    <TabsTrigger
-                        value="code"
-                        class="relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold text-muted-foreground shadow-none transition-none data-[state=active]:border-b-primary data-[state=active]:text-foreground data-[state=active]:shadow-none"
-                    >
+                    <TabsTrigger value="code">
                         Code
                     </TabsTrigger>
                 </TabsList>
             </div>
-            <TabsContent value="preview" class="relative rounded-md border-none p-0 data-[state=active]:block data-[state=inactive]:hidden">
+            <TabsContent value="preview" class="data-[state=active]:block data-[state=inactive]:hidden">
                 <div class="flex items-center justify-center p-10 min-h-50">
                     <component :is="targetComponent?.component" v-if="targetComponent" />
                     <div v-else class="text-red-500">

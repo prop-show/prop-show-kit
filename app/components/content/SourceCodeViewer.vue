@@ -7,7 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { useShiki } from '~/composables/use-shiki'
 
 const props = defineProps<{
-    files: { name: string, content: string, language: string }[]
+    files: { name: string, content: string, language: string, icon: string }[]
 }>()
 
 const activeTab = ref<string | undefined>(undefined)
@@ -42,7 +42,7 @@ watch(() => props.files, async (newFiles) => {
             <Skeleton class="h-4 w-50 " />
             <Skeleton class="h-4 w-75 " />
         </div>
-        <div v-else-if="files.length === 1" class="rounded-b-lg overflow-hidden relative group bg-black   w-[calc(100vw-3rem)] md:w-full ">
+        <div v-else-if="files.length === 1" class="group w-[calc(100vw-3rem)] md:w-full">
             <Copy
                 :content="files?.[0]?.content || ''"
                 :copy-tooltip-text="$t('common.copy')"
@@ -51,16 +51,16 @@ watch(() => props.files, async (newFiles) => {
             />
             <div class="prose dark:prose-invert mx-auto " v-html="highlightedContent[files[0]!.name]" />
         </div>
-        <div v-else-if="files.length > 1" class="bg-muted/50 rounded-b-lg   w-[calc(100vw-3rem)] md:w-full ">
-            <Tabs v-model="activeTab" class="w-full">
-                <div class="flex items-center px-4 bg-muted/50 border-b">
-                    <TabsList class="bg-transparent p-0 h-auto">
+        <div v-else-if="files.length > 1" class="w-[calc(100vw-3rem)] md:w-full ">
+            <Tabs v-model="activeTab">
+                <div class="flex items-center justify-between border-b bg-muted/50 p-2">
+                    <TabsList>
                         <TabsTrigger
                             v-for="file in files"
                             :key="file.name"
                             :value="file.name"
-                            class="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent px-4 py-2"
                         >
+                            <Icon :name="file.icon" class="size-4 mr-2" />
                             {{ file.name }}
                         </TabsTrigger>
                     </TabsList>
@@ -69,7 +69,7 @@ watch(() => props.files, async (newFiles) => {
                     v-for="file in files"
                     :key="file.name"
                     :value="file.name"
-                    class="relative group bg-black   w-[calc(100vw-3rem)] md:w-full "
+                    class="relative group w-[calc(100vw-3rem)] md:w-full "
                     :class="{ hidden: activeTab !== file.name }"
                     :force-mount="true"
                 >

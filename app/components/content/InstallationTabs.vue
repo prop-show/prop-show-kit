@@ -66,13 +66,12 @@ watch(() => commands.value, async () => {
     <ClientOnly>
         <div class="mt-6 overflow-hidden rounded-lg border bg-background">
             <Tabs v-model="activeTab" class="w-full">
-                <div class="flex items-center justify-between border-b bg-muted/50 px-4">
-                    <TabsList class="h-auto bg-transparent p-0">
+                <div class="flex items-center justify-between border-b bg-muted/50 p-2">
+                    <TabsList>
                         <TabsTrigger
                             v-for="tab in tabs"
                             :key="tab.name"
                             :value="tab.name"
-                            class="rounded-none border-b-2 border-transparent px-4 py-2 data-[state=active]:border-primary data-[state=active]:bg-transparent flex items-center gap-2"
                         >
                             <Icon :name="tab.icon" class="size-4" />
                             {{ tab.name }}
@@ -99,7 +98,7 @@ watch(() => commands.value, async () => {
                             :copied-tooltip-text="$t('common.copied')"
                             class="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity z-10"
                         />
-                        <div class="prose dark:prose-invert max-w-none prose-code:bg-transparent prose-pre:bg-transparent prose-pre:m-0 prose-pre:p-0" v-html="highlightedContent[tab.name]" />
+                        <div class="prose dark:prose-invert" v-html="highlightedContent[tab.name]" />
                     </div>
                 </TabsContent>
             </Tabs>
