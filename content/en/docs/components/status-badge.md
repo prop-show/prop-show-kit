@@ -15,8 +15,8 @@ description: Status Badge
 
 ### Props
 
-## ::props-table
-
+::props-table
+---
 data:
 
 - name: variant
@@ -34,7 +34,5 @@ data:
   default: -
   required: false
   description: Status dot color
-
 ---
-
 ::

@@ -15,8 +15,8 @@ description: 状态展示
 
 ### Props
 
-## ::props-table
-
+::props-table
+---
 data:
 
 - name: variant
@@ -34,7 +34,5 @@ data:
   default: -
   required: false
   description: 状态点颜色
-
 ---
-
 ::

@@ -15,8 +15,8 @@ description: 行内提示组件，用于展示不同类型的提示信息。
 
 ### Props
 
-## ::props-table
-
+::props-table
+---
 data:
 
 - name: label
@@ -29,9 +29,7 @@ data:
   default: info
   required: false
   description: 提示类型变体
-
 ---
-
 ::
 
 ### Slots

@@ -15,8 +15,8 @@ description: 复制按钮组件，支持自定义样式和提示文本。
 
 ### Props
 
-## ::props-table
-
+::props-table
+---
 data:
 
 - name: content
@@ -44,7 +44,5 @@ data:
   default: Copied
   required: false
   description: 复制后的提示文本
-
 ---
-
 ::
