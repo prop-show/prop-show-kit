@@ -1,0 +1,19 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "status-badge",
+  "type": "registry:component",
+  "title": "Status Badge",
+  "description": "A simple status badge component.",
+  "files": [
+    {
+      "path": "app/components/prop-ui/status-badge/StatusBadge.vue",
+      "content": "<script lang=\"ts\" setup>\nimport type { HTMLAttributes } from 'vue'\n\nimport type { BadgeVariants } from '@/components/ui/badge'\n\nimport { badgeVariants } from '@/components/ui/badge'\nimport { cn } from '@/lib/utils'\n\nimport type { StatusVariants } from '.'\n\nimport Status from './Status.vue'\n\nconst props = defineProps<{\n    variant?: BadgeVariants['variant']\n    rounded?: StatusVariants['rounded']\n    class?: HTMLAttributes['class']\n    color?: StatusVariants['color']\n}>()\n</script>\n\n<template>\n    <div :class=\"cn(badgeVariants({ variant }), props.class)\">\n        <Status :color=\"props.color\" :rounded=\"props.rounded\" />\n        <slot />\n    </div>\n</template>\n",
+      "type": "registry:component"
+    },
+    {
+      "path": "app/components/prop-ui/status-badge/index.ts",
+      "content": "import type { VariantProps } from 'class-variance-authority'\n\nimport { cva } from 'class-variance-authority'\n\nexport { default as Status } from './Status.vue'\nexport { default as StatusBadge } from './StatusBadge.vue'\n\nexport const statusVariants = cva(\n    'relative flex size-2',\n    {\n        variants: {\n            rounded: {\n                default: 'rounded-full',\n                xs: 'rounded-xs',\n            },\n            color: {\n                green: 'bg-green-500',\n                red: 'bg-rose-500',\n                blue: 'bg-blue-500',\n                orange: 'bg-orange-500',\n                purple: 'bg-purple-500',\n                gray: 'bg-gray-300',\n            },\n            size: {\n\n            },\n        },\n        defaultVariants: {\n            color: 'green',\n            rounded: 'default',\n        },\n    },\n)\n\nexport type StatusVariants = VariantProps<typeof statusVariants>\n",
+      "type": "registry:component"
+    }
+  ]
+}

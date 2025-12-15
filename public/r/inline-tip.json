@@ -1,0 +1,19 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "inline-tip",
+  "type": "registry:component",
+  "title": "Inline Tip",
+  "description": "A simple inline tip component.",
+  "files": [
+    {
+      "path": "app/components/prop-ui/inline-tip/InlineTip.vue",
+      "content": "<script lang=\"ts\" setup>\nimport type { HTMLAttributes } from 'vue'\n\nimport { cn } from '@/lib/utils'\n\nimport type { InlineTipVariants } from '.'\n\nimport { inlineTipVariants } from '.'\n\ninterface Props {\n    label: string\n    variant?: InlineTipVariants['variant']\n    class?: HTMLAttributes['class']\n}\n\nconst props = withDefaults(defineProps<Props>(), {\n    variant: 'info',\n})\n</script>\n\n<template>\n    <div\n        :class=\"cn(\n            'bg-secondary text-secondary-foreground text-sm inline-grid grid-cols-[4px_1fr] items-start gap-3 rounded-md border p-3',\n            props.class,\n        )\"\n    >\n        <div\n            :class=\"cn(\n                'h-full w-1 rounded-full',\n                inlineTipVariants({ variant: props.variant }))\"\n        />\n\n        <div class=\"text-muted-foreground\">\n            <strong class=\"text-sm font-semibold text-foreground mr-2\">{{ props.label }}:</strong>\n            <slot />\n        </div>\n    </div>\n</template>\n",
+      "type": "registry:component"
+    },
+    {
+      "path": "app/components/prop-ui/inline-tip/index.ts",
+      "content": "import type { VariantProps } from 'class-variance-authority'\n\nimport { cva } from 'class-variance-authority'\n\nexport { default as InlineTip } from './InlineTip.vue'\n\nexport const inlineTipVariants = cva(\n    '',\n    {\n        variants: {\n            variant: {\n                info: 'bg-stone-400 dark:bg-stone-600',\n                warning: 'bg-yellow-400 dark:bg-yellow-600',\n                success: 'bg-green-400 dark:bg-green-600',\n                error: 'bg-rose-400 dark:bg-rose-600',\n            },\n        },\n        defaultVariants: {\n            variant: 'info',\n        },\n    },\n)\n\nexport type InlineTipVariants = VariantProps<typeof inlineTipVariants>\n",
+      "type": "registry:component"
+    }
+  ]
+}

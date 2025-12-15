@@ -1,0 +1,55 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry.json",
+  "name": "prop-show-kit",
+  "homepage": "https://kit.prop.show",
+  "items": [
+    {
+      "name": "inline-tip",
+      "type": "registry:component",
+      "title": "Inline Tip",
+      "description": "A simple inline tip component.",
+      "files": [
+        {
+          "path": "app/components/prop-ui/inline-tip/InlineTip.vue",
+          "type": "registry:component"
+        },
+        {
+          "path": "app/components/prop-ui/inline-tip/index.ts",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "copy",
+      "type": "registry:component",
+      "title": "Copy",
+      "description": "A simple copy component.",
+      "files": [
+        {
+          "path": "app/components/prop-ui/copy/Copy.vue",
+          "type": "registry:component"
+        },
+        {
+          "path": "app/components/prop-ui/copy/index.ts",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "status-badge",
+      "type": "registry:component",
+      "title": "Status Badge",
+      "description": "A simple status badge component.",
+      "files": [
+        {
+          "path": "app/components/prop-ui/status-badge/StatusBadge.vue",
+          "type": "registry:component"
+        },
+        {
+          "path": "app/components/prop-ui/status-badge/index.ts",
+          "type": "registry:component"
+        }
+      ]
+    }
+  ]
+}

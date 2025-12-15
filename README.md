@@ -6,7 +6,7 @@
 
 ## English
 
-**PropShow Kit** is a collection of documentation components built with **Nuxt**, designed to extend **shadcn-vue**. It follows a **copy-and-paste** philosophy, allowing you to directly copy the component code into your project to showcase Vue components, their properties, and source code.
+**PropShow Kit** is a collection of documentation components built with **Nuxt**, designed to extend **shadcn-vue**. It follows a **copy-and-paste** philosophy, allowing you to directly copy the component code into your project.
 
 ### Features
 
@@ -24,7 +24,7 @@
 
 ## 中文
 
-**PropShow Kit** 是一个基于 **Nuxt** 构建的文档组件集合，旨在扩展 **shadcn-vue**。它遵循 **复制即用** 的理念，你可以直接将组件代码复制到你的项目中，用于展示 Vue 组件、其属性和源代码。
+**PropShow Kit** 是一个基于 **Nuxt** 构建的文档组件集合，旨在扩展 **shadcn-vue**。它遵循 **复制即用** 的理念，你可以直接将组件代码复制到你的项目中.
 
 ### 特性
 

@@ -6,6 +6,7 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
+    "registry:build": "shadcn-vue build",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "simple-git-hooks && nuxt prepare",
@@ -28,6 +29,7 @@
     "nuxt": "^4.2.2",
     "reka-ui": "^2.6.1",
     "shadcn-nuxt": "2.4.3",
+    "shadcn-vue": "^2.4.3",
     "tailwind-merge": "^3.4.0",
     "vaul-vue": "^0.4.1",
     "vee-validate": "^4.15.1",
