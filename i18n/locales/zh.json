@@ -1,0 +1,93 @@
+{
+  "nav": {
+    "getting_started": "开始使用",
+    "components": "组件",
+    "community": "社区",
+    "introduction": "介绍",
+    "installation": "安装",
+    "quick_start": "快速开始",
+    "contribution_guide": "贡献指南"
+  },
+  "common": {
+    "documentation": "文档",
+    "on_this_page": "本页目录",
+    "copy": "复制",
+    "copied": "已复制"
+  },
+  "home": {
+    "subtitle": "shadcn-vue 扩展组件",
+    "hero_badge": "基于 shadcn-vue 构建",
+    "hero_title": "PropShow Kit",
+    "hero_description": "精心设计的 shadcn-vue 扩展组件集合\n复制源码，即刻使用",
+    "get_started": "开始使用",
+    "view_source": "查看源码",
+    "why_title": "为什么选择 PropShow Kit？",
+    "why_description": "专为现代 Vue 应用设计的组件库，让开发更高效",
+    "features": {
+      "rich_components": {
+        "title": "丰富组件",
+        "description": "基于 shadcn-vue 扩展的高质量组件库，开箱即用"
+      },
+      "source_visible": {
+        "title": "源码可见",
+        "description": "所有组件源码完全开放，可直接复制到项目中使用"
+      },
+      "responsive": {
+        "title": "响应式设计",
+        "description": "完美适配各种屏幕尺寸，提供优秀的移动端体验"
+      },
+      "accessibility": {
+        "title": "无障碍支持",
+        "description": "遵循 WAI-ARIA 标准，确保所有用户都能使用"
+      },
+      "theme_toggle": {
+        "title": "主题切换",
+        "description": "内置深色模式支持，随心切换主题风格"
+      },
+      "typescript": {
+        "title": "TypeScript",
+        "description": "完整的类型定义，提供更好的开发体验"
+      }
+    },
+    "quick_start": {
+      "title": "快速开始",
+      "description": "三步即可将组件集成到你的项目中",
+      "steps": {
+        "1": {
+          "title": "浏览组件",
+          "description": "在组件库中找到你需要的组件"
+        },
+        "2": {
+          "title": "复制代码",
+          "description": "直接复制组件源码到你的项目中"
+        },
+        "3": {
+          "title": "开始使用",
+          "description": "根据需要自由定制和使用组件"
+        }
+      }
+    }
+  },
+  "footer": {
+    "description": "为现代 Vue 应用打造的\nshadcn-vue 扩展组件库",
+    "resources": {
+      "title": "资源",
+      "components": "组件",
+      "documentation": "文档",
+      "examples": "示例"
+    },
+    "community": {
+      "title": "社区",
+      "github": "GitHub",
+      "discord": "Discord",
+      "twitter": "Twitter"
+    },
+    "about": {
+      "title": "关于",
+      "blog": "博客",
+      "changelog": "更新日志",
+      "contribution": "贡献指南"
+    },
+    "copyright": "基于 Nuxt & shadcn-vue 构建。使用 MIT 许可证。源代码可在 GitHub 上获取。"
+  }
+}

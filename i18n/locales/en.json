@@ -1,0 +1,93 @@
+{
+  "nav": {
+    "getting_started": "Getting Started",
+    "components": "Components",
+    "community": "Community",
+    "introduction": "Introduction",
+    "installation": "Installation",
+    "quick_start": "Quick Start",
+    "contribution_guide": "Contribution Guide"
+  },
+  "common": {
+    "documentation": "Documentation",
+    "on_this_page": "On This Page",
+    "copy": "Copy",
+    "copied": "Copied"
+  },
+  "home": {
+    "subtitle": "Extended components for shadcn-vue",
+    "hero_badge": "Built with shadcn-vue",
+    "hero_title": "PropShow Kit",
+    "hero_description": "A collection of extended components for shadcn-vue.\nCopy the code and use it immediately.",
+    "get_started": "Get Started",
+    "view_source": "View Source",
+    "why_title": "Why PropShow Kit?",
+    "why_description": "Designed for modern Vue applications to make development more efficient.",
+    "features": {
+      "rich_components": {
+        "title": "Rich Components",
+        "description": "High-quality component library based on shadcn-vue extensions, ready to use out of the box."
+      },
+      "source_visible": {
+        "title": "Source Visible",
+        "description": "All component source code is completely open and can be directly copied into the project for use."
+      },
+      "responsive": {
+        "title": "Responsive Design",
+        "description": "Perfectly adapted to various screen sizes, providing an excellent mobile experience."
+      },
+      "accessibility": {
+        "title": "Accessibility",
+        "description": "Follows WAI-ARIA standards to ensure all users can use it."
+      },
+      "theme_toggle": {
+        "title": "Theme Toggle",
+        "description": "Built-in dark mode support, switch theme styles as you like."
+      },
+      "typescript": {
+        "title": "TypeScript",
+        "description": "Complete type definitions provide a better development experience."
+      }
+    },
+    "quick_start": {
+      "title": "Quick Start",
+      "description": "Integrate components into your project in three steps",
+      "steps": {
+        "1": {
+          "title": "Browse Components",
+          "description": "Find the components you need in the library"
+        },
+        "2": {
+          "title": "Copy Code",
+          "description": "Copy the component source code directly into your project"
+        },
+        "3": {
+          "title": "Start Using",
+          "description": "Customize and use components as needed"
+        }
+      }
+    }
+  },
+  "footer": {
+    "description": "Extended component library for shadcn-vue\nBuilt for modern Vue applications",
+    "resources": {
+      "title": "Resources",
+      "components": "Components",
+      "documentation": "Documentation",
+      "examples": "Examples"
+    },
+    "community": {
+      "title": "Community",
+      "github": "GitHub",
+      "discord": "Discord",
+      "twitter": "Twitter"
+    },
+    "about": {
+      "title": "About",
+      "blog": "Blog",
+      "changelog": "Changelog",
+      "contribution": "Contribution"
+    },
+    "copyright": "Built with Nuxt & shadcn-vue. Use MIT License. Source code available on GitHub."
+  }
+}
