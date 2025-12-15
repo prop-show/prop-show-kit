@@ -1,75 +1,39 @@
-# Nuxt Minimal Starter
+# PropShow Kit
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+[English](#english) | [中文](#chinese)
 
-## Setup
+<a name="english"></a>
 
-Make sure to install dependencies:
+## English
 
-```bash
-# npm
-npm install
+**PropShow Kit** is a collection of documentation components built with **Nuxt**, designed to extend **shadcn-vue**. It follows a **copy-and-paste** philosophy, allowing you to directly copy the component code into your project to showcase Vue components, their properties, and source code.
 
-# pnpm
-pnpm install
+### Features
 
-# yarn
-yarn install
+- 🚀 **Nuxt** - Built on the modern Vue framework.
+- 🎨 **Shadcn UI** - Integrated with `shadcn-nuxt` and `reka-ui` for accessible and customizable components.
+- 📝 **Nuxt Content** - Powered by `@nuxt/content` for writing documentation in Markdown/MDC.
+- 🌍 **i18n Ready** - Pre-configured with `@nuxtjs/i18n` for English and Chinese support.
+- 💅 **Tailwind CSS v4** - Styled with the latest Tailwind CSS.
+- 🧩 **Documentation Components** - Includes specialized components for documentation:
+  - `ComponentPanel`: Interactive component preview.
+  - `PropsTable`: Auto-generated property tables.
+  - `SourceCodeViewer`: Code highlighting and display.
 
-# bun
-bun install
-```
+<a name="chinese"></a>
 
-## Development Server
+## 中文
 
-Start the development server on `http://localhost:3000`:
+**PropShow Kit** 是一个基于 **Nuxt** 构建的文档组件集合，旨在扩展 **shadcn-vue**。它遵循 **复制即用** 的理念，你可以直接将组件代码复制到你的项目中，用于展示 Vue 组件、其属性和源代码。
 
-```bash
-# npm
-npm run dev
+### 特性
 
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+- 🚀 **Nuxt** - 基于现代 Vue 框架构建。
+- 🎨 **Shadcn UI** - 集成 `shadcn-nuxt` 和 `reka-ui`，提供无障碍且可定制的组件。
+- 📝 **Nuxt Content** - 由 `@nuxt/content` 驱动，支持使用 Markdown/MDC 编写文档。
+- 🌍 **i18n 支持** - 预配置 `@nuxtjs/i18n`，支持英语和中文。
+- 💅 **Tailwind CSS v4** - 使用最新的 Tailwind CSS 进行样式设计。
+- 🧩 **文档组件** - 包含专为文档设计的组件：
+  - `ComponentPanel`: 交互式组件预览。
+  - `PropsTable`: 自动生成的属性表。
+  - `SourceCodeViewer`: 代码高亮和展示。
