@@ -8,6 +8,11 @@ description: Status Badge
 ::component-panel{component="StatusBadgeExample"}
 ::
 
+## Install using CLI
+
+::installation-tabs{componentName="status-badge"}
+::
+
 ## Component Source
 
 ::component-panel{component="StatusBadge" :show-preview="false"}

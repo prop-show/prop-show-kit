@@ -59,9 +59,9 @@ export default defineNuxtConfig({
     mdc: {
         highlight: {
             theme: {
-                default: 'vitesse-light',
-                dark: 'vitesse-black',
-                sepia: 'vitesse-light',
+                default: 'vesper',
+                dark: 'vesper',
+                sepia: 'vesper',
             },
             preload: ['vue', 'ts', 'tsx', 'js', 'json'],
         },
@@ -75,9 +75,9 @@ export default defineNuxtConfig({
                 },
                 highlight: {
                     theme: {
-                        default: 'vitesse-black',
-                        dark: 'vitesse-black',
-                        sepia: 'vitesse-light',
+                        default: 'vesper',
+                        dark: 'vesper',
+                        sepia: 'vesper',
                     },
                     preload: ['vue', 'ts', 'tsx', 'js', 'json'],
                 },

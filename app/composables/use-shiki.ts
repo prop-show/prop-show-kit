@@ -8,8 +8,8 @@ export function useShiki() {
     const initHighlighter = async () => {
         if (!highlighter) {
             highlighter = await createHighlighter({
-                themes: ['vitesse-light', 'vitesse-black'],
-                langs: ['vue', 'ts', 'tsx', 'js', 'json'],
+                themes: ['vesper'],
+                langs: ['vue', 'ts', 'tsx', 'js', 'json', 'bash'],
             })
         }
         return highlighter

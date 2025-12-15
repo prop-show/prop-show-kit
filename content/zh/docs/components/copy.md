@@ -8,6 +8,11 @@ description: 复制按钮组件，支持自定义样式和提示文本。
 ::component-panel{component="CopyExample"}
 ::
 
+## 使用命令安装组件
+
+::installation-tabs{componentName="copy"}
+::
+
 ## 组件源码
 
 ::component-panel{component="Copy" :show-preview="false"}

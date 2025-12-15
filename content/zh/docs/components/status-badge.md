@@ -8,6 +8,11 @@ description: 状态展示
 ::component-panel{component="StatusBadgeExample"}
 ::
 
+## 使用命令安装组件
+
+::installation-tabs{componentName="status-badge"}
+::
+
 ## 组件源码
 
 ::component-panel{component="StatusBadge" :show-preview="false"}

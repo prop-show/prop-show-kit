@@ -8,6 +8,11 @@ description: 行内提示组件，用于展示不同类型的提示信息。
 ::component-panel{component="InlineTipExample"}
 ::
 
+## 使用命令安装组件
+
+::installation-tabs{componentName="inline-tip"}
+::
+
 ## 组件源码
 
 ::component-panel{component="InlineTip" :show-preview="false"}

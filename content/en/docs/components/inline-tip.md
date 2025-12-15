@@ -8,6 +8,11 @@ description: Inline tip component, used to display different types of tip inform
 ::component-panel{component="InlineTipExample"}
 ::
 
+## Install using CLI
+
+::installation-tabs{componentName="inline-tip"}
+::
+
 ## Component Source
 
 ::component-panel{component="InlineTip" :show-preview="false"}

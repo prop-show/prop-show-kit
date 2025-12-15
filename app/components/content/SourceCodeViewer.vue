@@ -27,7 +27,7 @@ watch(() => props.files, async (newFiles) => {
         for (const file of newFiles) {
             highlightedContent.value[file.name] = highlighter.codeToHtml(file.content, {
                 lang: file.language,
-                theme: 'vitesse-black',
+                theme: 'vesper',
             })
         }
     }
@@ -49,7 +49,7 @@ watch(() => props.files, async (newFiles) => {
                 :copied-tooltip-text="$t('common.copied')"
                 class="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity"
             />
-            <div class="prose dark:prose-invert mx-auto prose-code:text-base" v-html="highlightedContent[files[0]!.name]" />
+            <div class="prose dark:prose-invert mx-auto " v-html="highlightedContent[files[0]!.name]" />
         </div>
         <div v-else-if="files.length > 1" class="bg-muted/50 rounded-b-lg   w-[calc(100vw-3rem)] md:w-full ">
             <Tabs v-model="activeTab" class="w-full">
@@ -79,7 +79,7 @@ watch(() => props.files, async (newFiles) => {
                         :copied-tooltip-text="$t('common.copied')"
                         class="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity"
                     />
-                    <div class="prose dark:prose-invert mx-auto prose-code:text-base" v-html="highlightedContent[file.name]" />
+                    <div class="prose dark:prose-invert mx-auto " v-html="highlightedContent[file.name]" />
                 </TabsContent>
             </Tabs>
         </div>

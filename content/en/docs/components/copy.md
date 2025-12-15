@@ -8,6 +8,11 @@ description: Copy button component, supports custom styles and tooltip text.
 ::component-panel{component="CopyExample"}
 ::
 
+## Install using CLI
+
+::installation-tabs{componentName="copy"}
+::
+
 ## Component Source
 
 ::component-panel{component="Copy" :show-preview="false"}
