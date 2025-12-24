@@ -39,6 +39,7 @@ const navMain = computed(() => [
             { title: 'Copy', url: localePath('/docs/components/copy') },
             { title: 'Inline Tip', url: localePath('/docs/components/inline-tip') },
             { title: 'Status Badge', url: localePath('/docs/components/status-badge') },
+            { title: 'FullScreenDialog', url: localePath('/docs/components/full-screen-dialog') },
         ],
     },
 ])
