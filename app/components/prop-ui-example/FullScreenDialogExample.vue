@@ -29,9 +29,9 @@ import { ScrollArea } from '@/components/ui/scroll-area'
                         Product Information
                     </DialogTitle>
                     <DialogDescription as-child>
-                        <div className="p-6">
-                            <div className="[&_strong]:text-foreground space-y-4 [&_strong]:font-semibold">
-                                <div className="space-y-1">
+                        <div class="p-6">
+                            <div class="[&_strong]:text-foreground space-y-4 [&_strong]:font-semibold">
+                                <div class="space-y-1">
                                     <p>
                                         <strong>Product Name:</strong> SuperTech 2000
                                     </p>
@@ -40,7 +40,7 @@ import { ScrollArea } from '@/components/ui/scroll-area'
                                         alike, offering superior functionality and innovative features.
                                     </p>
                                 </div>
-                                <div className="space-y-1">
+                                <div class="space-y-1">
                                     <p>
                                         <strong>Specifications:</strong>
                                     </p>
@@ -53,7 +53,7 @@ import { ScrollArea } from '@/components/ui/scroll-area'
                                         <li>Weight: 2.1kg</li>
                                     </ul>
                                 </div>
-                                <div className="space-y-1">
+                                <div class="space-y-1">
                                     <p>
                                         <strong>Key Features:</strong>
                                     </p>
@@ -65,13 +65,13 @@ import { ScrollArea } from '@/components/ui/scroll-area'
                                         <li>Excellent build quality for durability</li>
                                     </ul>
                                 </div>
-                                <div className="space-y-1">
+                                <div class="space-y-1">
                                     <p>
                                         <strong>Price:</strong>
                                     </p>
                                     <p>$2,499.99 (Includes 1-year warranty)</p>
                                 </div>
-                                <div className="space-y-1">
+                                <div class="space-y-1">
                                     <p>
                                         <strong>Customer Reviews:</strong>
                                     </p>
@@ -88,7 +88,7 @@ import { ScrollArea } from '@/components/ui/scroll-area'
                                         W.
                                     </p>
                                 </div>
-                                <div className="space-y-1">
+                                <div class="space-y-1">
                                     <p>
                                         <strong>Return Policy:</strong>
                                     </p>
@@ -97,7 +97,7 @@ import { ScrollArea } from '@/components/ui/scroll-area'
                                         product within 30 days of purchase for a full refund.
                                     </p>
                                 </div>
-                                <div className="space-y-1">
+                                <div class="space-y-1">
                                     <p>
                                         <strong>Warranty:</strong>
                                     </p>
