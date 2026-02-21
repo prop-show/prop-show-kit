@@ -3,7 +3,7 @@ title: Installation
 description: How to use PropShow Kit components in your project.
 ---
 
-# Installation
+<!-- # Installation -->
 
 PropShow Kit is not an npm package, so you don't need to install it. Instead, you need to copy the component source code into your project.
 
