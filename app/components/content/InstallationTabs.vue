@@ -45,7 +45,11 @@ watch(() => commands.value, async () => {
         for (const tab of tabs.value) {
             highlightedContent.value[tab.name] = highlighter.codeToHtml(tab.content, {
                 lang: 'bash',
-                theme: 'vesper',
+                themes: {
+                    light: 'github-light',
+                    dark: 'vesper',
+                },
+                defaultColor: 'light-dark()',
             })
         }
     }
@@ -91,7 +95,7 @@ watch(() => commands.value, async () => {
                     :value="tab.name"
                     class="relative group mt-0"
                 >
-                    <div class="relative bg-black p-4">
+                    <div class="relative  p-4">
                         <Copy
                             :content="tab.content"
                             :copy-tooltip-text="$t('common.copy')"

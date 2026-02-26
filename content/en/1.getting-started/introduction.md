@@ -3,7 +3,7 @@ title: Introduction
 description: PropShow Kit - A collection of extended components for Shadcn Vue.
 ---
 
-# Introduction
+<!-- # Introduction -->
 
 PropShow Kit is a collection of extended components specifically built for **[Shadcn Vue](https://www.shadcn-vue.com/)**. It provides a series of UI components that are not yet included in the official Shadcn Vue library but are very practical in actual business development.
 

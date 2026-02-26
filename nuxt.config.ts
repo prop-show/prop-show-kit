@@ -7,8 +7,14 @@ export default defineNuxtConfig({
         '~/assets/css/tailwind.css',
     ],
 
+    extends: ['docus'],
+
     vite: {
         plugins: [tailwindcss()],
+    },
+
+    fonts: {
+        preload: false,
     },
 
     shadcn: {
@@ -16,7 +22,7 @@ export default defineNuxtConfig({
         componentDir: '@/components/ui',
     },
 
-    modules: ['shadcn-nuxt', '@nuxt/content', '@nuxtjs/color-mode', '@nuxt/eslint', '@nuxtjs/mdc', '@nuxtjs/i18n', '@nuxtjs/seo', '@nuxt/icon'],
+    modules: ['shadcn-nuxt', '@nuxt/content', '@nuxt/ui', '@nuxtjs/color-mode', '@nuxt/eslint', '@nuxtjs/mdc', '@nuxtjs/i18n', '@nuxtjs/seo', '@nuxt/icon'],
 
     site: {
         url: 'https://kit.prop.show',
@@ -37,17 +43,11 @@ export default defineNuxtConfig({
     },
 
     i18n: {
-        baseUrl: 'https://kit.prop.show',
-        locales: [
-            { code: 'en', file: 'en.json', name: 'English' },
-            { code: 'zh', file: 'zh.json', name: '中文' },
-        ],
         defaultLocale: 'en',
-        strategy: 'prefix_except_default',
-    },
-
-    colorMode: {
-        classSuffix: '',
+        locales: [{
+            code: 'en',
+            name: 'English',
+        }],
     },
 
     eslint: {
@@ -56,34 +56,35 @@ export default defineNuxtConfig({
         },
     },
 
-    mdc: {
-        highlight: {
-            theme: {
-                default: 'vesper',
-                dark: 'vesper',
-                sepia: 'vesper',
-            },
-            preload: ['vue', 'ts', 'tsx', 'js', 'json'],
-        },
-    },
+    // mdc: {
+    //     highlight: {
+    //         theme: {
+    //             default: 'vesper',
+    //             dark: 'vesper',
+    //             sepia: 'vesper',
+    //         },
+    //         preload: ['vue', 'ts', 'tsx', 'js', 'json'],
+    //     },
+    // },
 
-    content: {
-        build: {
-            markdown: {
-                toc: {
-                    depth: 3,
-                },
-                highlight: {
-                    theme: {
-                        default: 'vesper',
-                        dark: 'vesper',
-                        sepia: 'vesper',
-                    },
-                    preload: ['vue', 'ts', 'tsx', 'js', 'json'],
-                },
-            },
-        },
-    },
+    // content: {
+    //     build: {
+    //         markdown: {
+    //             toc: {
+    //                 depth: 3,
+    //             },
+    //             highlight: {
+    //                 theme: {
+    //                     default: 'vesper',
+    //                     dark: 'vesper',
+    //                     sepia: 'vesper',
+    //                     light: 'github-light',
+    //                 },
+    //                 preload: ['vue', 'ts', 'tsx', 'js', 'json'],
+    //             },
+    //         },
+    //     },
+    // },
 
     icon: {
         customCollections: [
