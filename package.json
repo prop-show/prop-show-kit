@@ -21,6 +21,7 @@
     "@nuxtjs/mdc": "0.19.1",
     "@tanstack/vue-table": "^8.21.3",
     "@vee-validate/zod": "^4.15.1",
+    "@vercel/analytics": "^2.0.0",
     "@vueuse/core": "^14.2.1",
     "better-sqlite3": "^12.6.2",
     "class-variance-authority": "^0.7.1",

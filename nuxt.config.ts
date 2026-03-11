@@ -22,7 +22,7 @@ export default defineNuxtConfig({
         componentDir: '@/components/ui',
     },
 
-    modules: ['shadcn-nuxt', '@nuxt/content', '@nuxt/ui', '@nuxtjs/color-mode', '@nuxt/eslint', '@nuxtjs/mdc', '@nuxtjs/i18n', '@nuxtjs/seo', '@nuxt/icon'],
+    modules: ['shadcn-nuxt', '@nuxt/content', '@nuxt/ui', '@nuxtjs/color-mode', '@nuxt/eslint', '@nuxtjs/mdc', '@nuxtjs/i18n', '@nuxtjs/seo', '@nuxt/icon', '@vercel/analytics'],
 
     site: {
         url: 'https://kit.prop.show',
