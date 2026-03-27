@@ -14,6 +14,7 @@
     "lint:fix": "eslint . --fix"
   },
   "dependencies": {
+    "@lucide/vue": "^1.7.0",
     "@nuxt/content": "^3.12.0",
     "@nuxt/icon": "2.1.1",
     "@nuxt/ui": "^4.6.0",
@@ -28,7 +29,6 @@
     "clsx": "^2.1.1",
     "docus": "^5.8.1",
     "embla-carousel-vue": "^8.6.0",
-    "lucide-vue-next": "^0.561.0",
     "nuxt": "^4.4.2",
     "reka-ui": "^2.9.2",
     "shadcn-nuxt": "2.4.3",

@@ -17,7 +17,7 @@ Your project should have the following dependencies installed:
 - `class-variance-authority`
 - `clsx`
 - `tailwind-merge`
-- `lucide-vue-next` (or other icon libraries)
+- `@lucide/vue` (or other icon libraries)
 
 ## Configure Utility Function
 
