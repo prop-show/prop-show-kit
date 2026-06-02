@@ -6,9 +6,10 @@ export default defineAppConfig({
     header: {
         title: 'PropShow Kit',
         logo: {
-            light: '/logo.svg',
+            light: '/prop-light.svg',
+            dark: '/prop-dark.svg',
             alt: 'PropShow Kit Logo',
         },
-        favicon: '/favicon.svg',
+        favicon: '/prop-light.svg',
     },
 })

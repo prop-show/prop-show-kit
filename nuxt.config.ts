@@ -36,7 +36,8 @@ export default defineNuxtConfig({
             charset: 'utf-8',
             viewport: 'width=device-width, initial-scale=1',
             link: [
-                { rel: 'icon', href: '/favicon.svg' },
+                { rel: 'icon', type: 'image/svg+xml', href: '/prop-dark.svg', media: '(prefers-color-scheme: dark)' },
+                { rel: 'icon', type: 'image/svg+xml', href: '/prop-light.svg', media: '(prefers-color-scheme: light)' },
                 { rel: 'canonical', href: 'https://kit.prop.show' },
             ],
         },
@@ -55,36 +56,6 @@ export default defineNuxtConfig({
             standalone: false,
         },
     },
-
-    // mdc: {
-    //     highlight: {
-    //         theme: {
-    //             default: 'vesper',
-    //             dark: 'vesper',
-    //             sepia: 'vesper',
-    //         },
-    //         preload: ['vue', 'ts', 'tsx', 'js', 'json'],
-    //     },
-    // },
-
-    // content: {
-    //     build: {
-    //         markdown: {
-    //             toc: {
-    //                 depth: 3,
-    //             },
-    //             highlight: {
-    //                 theme: {
-    //                     default: 'vesper',
-    //                     dark: 'vesper',
-    //                     sepia: 'vesper',
-    //                     light: 'github-light',
-    //                 },
-    //                 preload: ['vue', 'ts', 'tsx', 'js', 'json'],
-    //             },
-    //         },
-    //     },
-    // },
 
     icon: {
         customCollections: [
