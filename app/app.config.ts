@@ -4,11 +4,12 @@ export default defineAppConfig({
         github: 'https://github.com/prop-show/prop-show-kit',
     },
     header: {
-        title: 'PropShow Kit',
+        title: 'PROP/SHOW KIT',
         logo: {
             light: '/prop-light.svg',
             dark: '/prop-dark.svg',
             alt: 'PropShow Kit Logo',
+            class: 'prop-header-logo',
         },
         favicon: '/prop-light.svg',
     },
