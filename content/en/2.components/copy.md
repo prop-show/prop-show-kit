@@ -22,6 +22,7 @@ description: Copy button component, supports custom styles and tooltip text.
 
 ::props-table
 ---
+
 data:
 
 - name: content
@@ -49,5 +50,7 @@ data:
   default: Copied
   required: false
   description: Tooltip text after copying
+
 ---
+
 ::

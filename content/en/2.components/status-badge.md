@@ -22,6 +22,7 @@ description: Status Badge
 
 ::props-table
 ---
+
 data:
 
 - name: variant
@@ -39,5 +40,7 @@ data:
   default: -
   required: false
   description: Status dot color
+
 ---
+
 ::

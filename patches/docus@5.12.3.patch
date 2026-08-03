@@ -1,0 +1,299 @@
+diff --git a/app/app.vue b/app/app.vue
+index c1126ba1d1253277344157376509f44d9a11b26f..6f8beeda5fa147bf40ca269ee7952a384463ef2b 100644
+--- a/app/app.vue
++++ b/app/app.vue
+@@ -8,14 +8,16 @@ import { useSubNavigation } from './composables/useSubNavigation'
+ const appConfig = useAppConfig()
+ const { seo } = appConfig
+ useDocusShortcuts()
++const route = useRoute()
+ const site = useSiteConfig()
+ const { locale, locales, isEnabled, switchLocalePath } = useDocusI18n()
+ const { isEnabled: isAssistantEnabled } = useAssistant()
+ 
+-const nuxtUiLocale = computed(() => nuxtUiLocales[locale.value as keyof typeof nuxtUiLocales] || nuxtUiLocales.en)
++const routeLocale = computed(() => route.path.split('/')[1] || locale.value)
++const nuxtUiLocale = computed(() => nuxtUiLocales[routeLocale.value.replace('-', '_').toLowerCase() as keyof typeof nuxtUiLocales] || nuxtUiLocales.en)
+ const lang = computed(() => nuxtUiLocale.value.code)
+ const dir = computed(() => nuxtUiLocale.value.dir)
+-const collectionName = computed(() => isEnabled.value ? `docs_${locale.value}` : 'docs')
++const collectionName = computed(() => isEnabled.value ? `docs_${locale.value.replace('-', '_')}` : 'docs')
+ 
+ useHead({
+   meta: [
+@@ -39,11 +41,10 @@ useSeoMeta({
+ })
+ 
+ if (isEnabled.value) {
+-  const route = useRoute()
+   const defaultLocale = useRuntimeConfig().public.i18n.defaultLocale!
+   onMounted(() => {
+     const currentLocale = route.path.split('/')[1]
+-    if (!locales.some(locale => locale.code === currentLocale)) {
++    if (!locales.some(locale => locale.code.toLowerCase() === currentLocale.toLowerCase())) {
+       return navigateTo(switchLocalePath(defaultLocale) as string)
+     }
+   })
+diff --git a/app/components/app/AppSearch.vue b/app/components/app/AppSearch.vue
+index 0e744c95f62c1d800920f21d2bf5c41197417d0d..88951b49809be747912c6885b6c9d14496c3bb33 100644
+--- a/app/components/app/AppSearch.vue
++++ b/app/components/app/AppSearch.vue
+@@ -9,7 +9,7 @@ const appConfig = useAppConfig()
+ const { forced: forcedColorMode } = useDocusColorMode()
+ const { locale, isEnabled } = useDocusI18n()
+ 
+-const collectionName = computed(() => (isEnabled.value ? `docs_${locale.value}` : 'docs') as keyof PageCollections)
++const collectionName = computed(() => (isEnabled.value ? `docs_${locale.value.replace('-', '_')}` : 'docs') as keyof PageCollections)
+ const useFts = appConfig.search.fts
+ 
+ const { data: files } = useFts
+diff --git a/app/composables/useSubNavigation.ts b/app/composables/useSubNavigation.ts
+index c875a85f68d62fe6dd99d6969b3d572c7ab26ac6..5a499448c4e76a07ba7a2ba115cfef54c699954e 100644
+--- a/app/composables/useSubNavigation.ts
++++ b/app/composables/useSubNavigation.ts
+@@ -22,20 +22,22 @@ export function useSubNavigation(providedNavigation?: Ref<ContentNavigationItem[
+ 
+   const currentSection = computed(() => {
+     if (!subNavigationMode.value || !navigation?.value) return undefined
++    const currentPath = route.path.toLowerCase()
+     return navigation.value.find(item =>
+-      route.path === item.path || route.path.startsWith(item.path + '/'),
++      currentPath === item.path || currentPath.startsWith(item.path + '/'),
+     )
+   })
+ 
+   const sections = computed(() => {
+     if (!subNavigationMode.value || !navigation?.value) return []
++    const currentPath = route.path.toLowerCase()
+     return navigation.value
+       .filter(item => item.children?.length)
+       .map(item => ({
+         label: item.title,
+         icon: item.icon as string | undefined,
+         to: getFirstPagePath(item),
+-        active: route.path === item.path || route.path.startsWith(item.path + '/'),
++        active: currentPath === item.path || currentPath.startsWith(item.path + '/'),
+       }))
+   })
+ 
+diff --git a/app/error.vue b/app/error.vue
+index d713055c1af647be36b9b1ca69ef5ec106f7bcc0..0784962aaa6f622834e55ccb0ab37654d55ab166 100644
+--- a/app/error.vue
++++ b/app/error.vue
+@@ -8,9 +8,11 @@ const props = defineProps<{
+   error: NuxtError
+ }>()
+ 
++const route = useRoute()
+ const { locale, locales, isEnabled, t, switchLocalePath } = useDocusI18n()
+ 
+-const nuxtUiLocale = computed(() => nuxtUiLocales[locale.value as keyof typeof nuxtUiLocales] || nuxtUiLocales.en)
++const routeLocale = computed(() => route.path.split('/')[1] || locale.value)
++const nuxtUiLocale = computed(() => nuxtUiLocales[routeLocale.value.replace('-', '_').toLowerCase() as keyof typeof nuxtUiLocales] || nuxtUiLocales.en)
+ const lang = computed(() => nuxtUiLocale.value.code)
+ const dir = computed(() => nuxtUiLocale.value.dir)
+ 
+@@ -35,17 +37,16 @@ useSeoMeta({
+ })
+ 
+ if (isEnabled.value) {
+-  const route = useRoute()
+   const defaultLocale = useRuntimeConfig().public.i18n.defaultLocale!
+   onMounted(() => {
+     const currentLocale = route.path.split('/')[1]
+-    if (!locales.some(locale => locale.code === currentLocale)) {
++    if (!locales.some(locale => locale.code.toLowerCase() === currentLocale.toLowerCase())) {
+       return navigateTo(switchLocalePath(defaultLocale) as string)
+     }
+   })
+ }
+ 
+-const collectionName = computed(() => isEnabled.value ? `docs_${locale.value}` : 'docs')
++const collectionName = computed(() => isEnabled.value ? `docs_${locale.value.replace('-', '_')}` : 'docs')
+ 
+ const { data: navigation } = await useAsyncData(`navigation_${collectionName.value}`, () => queryCollectionNavigation(collectionName.value as keyof PageCollections), {
+   transform: (data: ContentNavigationItem[]) => transformNavigation(data, isEnabled.value, locale.value),
+diff --git a/app/pages/[[lang]]/[...slug].vue b/app/pages/[[lang]]/[...slug].vue
+index 5f18d5a37965e9c9ac6a7da0ac6a550c2ce64c30..c6246c41f06332d525e4f597b6520bbb95f42c94 100644
+--- a/app/pages/[[lang]]/[...slug].vue
++++ b/app/pages/[[lang]]/[...slug].vue
+@@ -12,14 +12,17 @@ const { locale, isEnabled, t } = useDocusI18n()
+ const { isOpen } = useAssistant()
+ const appConfig = useAppConfig()
+ const navigation = inject<Ref<ContentNavigationItem[]>>('navigation')
+-const collectionName = computed(() => isEnabled.value ? `docs_${locale.value}` : 'docs')
++const collectionName = computed(() => isEnabled.value ? `docs_${locale.value.replace('-', '_')}` : 'docs')
++const contentPath = computed(() => route.path.toLowerCase())
+ 
+ const [{ data: page }, { data: surround }] = await Promise.all([
+-  useAsyncData(kebabCase(route.path), () => queryCollection(collectionName.value as keyof Collections).path(route.path).first() as Promise<DocsCollectionItem>),
++  useAsyncData(kebabCase(route.path), () => queryCollection(collectionName.value as keyof Collections).path(contentPath.value).first() as Promise<DocsCollectionItem>),
+   useAsyncData(`${kebabCase(route.path)}-surround`, () => {
+-    return queryCollectionItemSurroundings(collectionName.value as keyof Collections, route.path, {
++    return queryCollectionItemSurroundings(collectionName.value as keyof Collections, contentPath.value, {
+       fields: ['description'],
+-    })
++    }).then(items => items.map(item => item
++      ? { ...item, path: item.path.replace(`/${locale.value.toLowerCase()}`, `/${locale.value}`) }
++      : item))
+   }),
+ ])
+ 
+@@ -30,8 +33,8 @@ if (!page.value) {
+ const title = page.value.seo?.title || page.value.title
+ const description = page.value.seo?.description || page.value.description
+ 
+-const headline = ref(findPageHeadline(navigation?.value, page.value?.path))
+-const breadcrumbs = computed(() => findPageBreadcrumbs(navigation?.value, page.value?.path || ''))
++const headline = ref(findPageHeadline(navigation?.value, route.path))
++const breadcrumbs = computed(() => findPageBreadcrumbs(navigation?.value, route.path))
+ 
+ useSeo({
+   title,
+@@ -41,7 +44,7 @@ useSeo({
+   breadcrumbs,
+ })
+ watch(() => navigation?.value, () => {
+-  headline.value = findPageHeadline(navigation?.value, page.value?.path) || headline.value
++  headline.value = findPageHeadline(navigation?.value, route.path) || headline.value
+ })
+ 
+ defineOgImage('Docs', {
+diff --git a/app/templates/landing.vue b/app/templates/landing.vue
+index 160ee000099448105fe396eff1140d53b6ae1982..b9de8f9d9605d52361150f508f0bfe178723ad74 100644
+--- a/app/templates/landing.vue
++++ b/app/templates/landing.vue
+@@ -5,9 +5,9 @@ const route = useRoute()
+ const { locale, isEnabled } = useDocusI18n()
+ 
+ // Dynamic collection name based on i18n status
+-const collectionName = computed(() => isEnabled.value ? `landing_${locale.value}` : 'landing')
++const collectionName = computed(() => isEnabled.value ? `landing_${locale.value.replace('-', '_')}` : 'landing')
+ 
+-const { data: page } = await useAsyncData(collectionName.value, () => queryCollection(collectionName.value as keyof Collections).path(route.path).first())
++const { data: page } = await useAsyncData(collectionName.value, () => queryCollection(collectionName.value as keyof Collections).path(route.path.toLowerCase()).first())
+ if (!page.value) {
+   throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
+ }
+diff --git a/app/utils/navigation.ts b/app/utils/navigation.ts
+index fde5a4c2930c736351adc6a316acb16577714d1a..e7096603b88e5c7761b9bd96e9f2f62938138038 100644
+--- a/app/utils/navigation.ts
++++ b/app/utils/navigation.ts
+@@ -1,5 +1,16 @@
+ import type { ContentNavigationItem } from '@nuxt/content'
+ 
++function normalizeNavigationPaths(data: ContentNavigationItem[], locale: string): ContentNavigationItem[] {
++  const contentPrefix = `/${locale.toLowerCase()}`
++  const routePrefix = `/${locale}`
++
++  return data.map(item => ({
++    ...item,
++    path: item.path.startsWith(contentPrefix) ? `${routePrefix}${item.path.slice(contentPrefix.length)}` : item.path,
++    children: item.children ? normalizeNavigationPaths(item.children, locale) : undefined,
++  }))
++}
++
+ export const flattenNavigation = (items?: ContentNavigationItem[]): ContentNavigationItem[] => items?.flatMap(
+   item => item.children
+     ? flattenNavigation(item.children)
+@@ -15,9 +26,11 @@ export function transformNavigation(
+   locale?: string,
+ ): ContentNavigationItem[] {
+   if (isI18nEnabled && locale) {
++    const localePath = `/${locale.toLowerCase()}`
+     // i18n: first strip locale level, then check for docs level
+-    const localeResult = data.find(item => item.path === `/${locale}`)?.children || data
+-    return localeResult.find(item => item.path === `/${locale}/docs`)?.children || localeResult
++    const localeResult = data.find(item => item.path === localePath)?.children || data
++    const result = localeResult.find(item => item.path === `${localePath}/docs`)?.children || localeResult
++    return normalizeNavigationPaths(result, locale)
+   }
+   else {
+     // non-i18n: strip docs level if exists
+diff --git a/content.config.ts b/content.config.ts
+index b6a9890583c0c6284e8b0ba75f723ec241ab5ab7..bd982d7858aed41113d6ee1c2fe9295068a19152 100644
+--- a/content.config.ts
++++ b/content.config.ts
+@@ -25,26 +25,27 @@ let collections: Record<string, DefinedCollection>
+ if (locales && Array.isArray(locales)) {
+   collections = {}
+   for (const locale of locales) {
+-    const code = (typeof locale === 'string' ? locale : locale.code).replace('-', '_')
+-    const hasLocaleDocs = docsFolderExists(options.rootDir, code)
++    const localeCode = typeof locale === 'string' ? locale : locale.code
++    const collectionCode = localeCode.replace('-', '_')
++    const hasLocaleDocs = docsFolderExists(options.rootDir, localeCode)
+ 
+     if (!hasLandingPage) {
+-      collections[`landing_${code}`] = defineCollection({
++      collections[`landing_${collectionCode}`] = defineCollection({
+         type: 'page',
+         source: {
+           cwd,
+-          include: `${code}/index.md`,
++          include: `${localeCode}/index.md`,
+         },
+       })
+     }
+ 
+-    collections[`docs_${code}`] = defineCollection({
++    collections[`docs_${collectionCode}`] = defineCollection({
+       type: 'page',
+       source: {
+         cwd,
+-        include: hasLocaleDocs ? `${code}/docs/**` : `${code}/**/*`,
+-        prefix: hasLocaleDocs ? `/${code}/docs` : `/${code}`,
+-        exclude: [`${code}/index.md`],
++        include: hasLocaleDocs ? `${localeCode}/docs/**` : `${localeCode}/**/*`,
++        prefix: hasLocaleDocs ? `/${localeCode}/docs` : `/${localeCode}`,
++        exclude: [`${localeCode}/index.md`],
+       },
+       schema: createDocsSchema(),
+     })
+diff --git a/server/routes/sitemap.xml.ts b/server/routes/sitemap.xml.ts
+index 6d63a1c5f17f54951a07fd119c0cdd29eb96ae7b..628815d43bcee1c88aabefc1ac830ef88ed2f34c 100644
+--- a/server/routes/sitemap.xml.ts
++++ b/server/routes/sitemap.xml.ts
+@@ -16,7 +16,7 @@ export default defineEventHandler(async (event) => {
+ 
+   if (availableLocales.length > 0) {
+     for (const locale of availableLocales) {
+-      collections.push(`landing_${locale}`)
++      collections.push(`landing_${locale.replace('-', '_')}`)
+     }
+   }
+   else {
+diff --git a/server/utils/content.ts b/server/utils/content.ts
+index c741481062ebe50dc6accc54777d2af300b217d8..d96ea5472f1dc970d1e0f3e9f75b9153e79149d6 100644
+--- a/server/utils/content.ts
++++ b/server/utils/content.ts
+@@ -16,12 +16,13 @@ export function getAvailableLocales(config: ConfigWithLocales): string[] {
+ }
+ 
+ export function getCollectionsToQuery(locale: string | undefined, availableLocales: string[]): string[] {
+-  if (locale && availableLocales.includes(locale)) {
+-    return [`docs_${locale}`]
++  const matchedLocale = locale && availableLocales.find(availableLocale => availableLocale.toLowerCase() === locale.toLowerCase())
++  if (matchedLocale) {
++    return [`docs_${matchedLocale.replace('-', '_')}`]
+   }
+ 
+   return availableLocales.length > 0
+-    ? availableLocales.map(l => `docs_${l}`)
++    ? availableLocales.map(l => `docs_${l.replace('-', '_')}`)
+     : ['docs']
+ }
+ 
+@@ -32,9 +33,10 @@ export function isNavigationPath(path: string): boolean {
+ export function getCollectionFromPath(path: string, availableLocales: string[]): string {
+   const pathSegments = path.split('/').filter(Boolean)
+   const firstSegment = pathSegments[0]
++  const matchedLocale = firstSegment && availableLocales.find(locale => locale.toLowerCase() === firstSegment.toLowerCase())
+ 
+-  if (firstSegment && availableLocales.includes(firstSegment)) {
+-    return `docs_${firstSegment}`
++  if (matchedLocale) {
++    return `docs_${matchedLocale.replace('-', '_')}`
+   }
+ 
+   return 'docs'

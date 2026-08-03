@@ -30,7 +30,7 @@ import { clsx } from 'clsx'
 import { twMerge } from 'tailwind-merge'
 
 export function cn(...inputs: ClassValue[]) {
-    return twMerge(clsx(inputs))
+  return twMerge(clsx(inputs))
 }
 ```
 
@@ -58,8 +58,8 @@ import StatusBadge from '@/components/ui/status-badge/StatusBadge.vue'
 </script>
 
 <template>
-    <StatusBadge variant="default" status="success">
-        Online
-    </StatusBadge>
+  <StatusBadge variant="default" status="success">
+    Online
+  </StatusBadge>
 </template>
 ```

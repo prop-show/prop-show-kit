@@ -4,32 +4,38 @@ import antfu from '@antfu/eslint-config'
 import withNuxt from './.nuxt/eslint.config.mjs'
 
 export default withNuxt(
-    antfu({
-        formatters: {
-            css: true,
-            html: true,
-        },
-        vue: true,
-        typescript: true,
-        stylistic: {
-            indent: 4,
-        },
+  antfu({
+    type: 'app',
+    formatters: {
+      css: true,
+      html: true,
+      markdown: 'prettier',
+    },
 
-        ignores: [
-            '**/build/**',
-            '**/components/ui/**',
-        ],
+    typescript: true,
 
-        rules: {
-            'perfectionist/sort-imports': ['error', {
-                tsconfigRootDir: '.',
-            }],
-            'yaml/indent': ['error', 2],
-            'jsonc/indent': ['error', 2],
-            'vue/block-lang': ['warn', {
-                script: { lang: ['ts', 'tsx'] },
-            }],
-        },
-    }),
-
+    ignores: [
+      '**/build/**',
+      '**/components/ui/**',
+    ],
+    vue: {
+      overrides: {
+        'vue/block-lang': ['warn', {
+          script: { lang: ['ts', 'tsx'] },
+        }],
+        'vue/enforce-style-attribute': ['warn', {
+          allow: ['scoped'],
+        }],
+      },
+    },
+    imports: {
+      overrides: {
+        'perfectionist/sort-imports': ['error', {
+          tsconfig: { rootDir: '.' },
+        }],
+      },
+    },
+    rules: {
+    },
+  }),
 )

@@ -2,5 +2,7 @@ shellEmulator: true
 
 trustPolicy: no-downgrade
 
+patchedDependencies:
+  docus@5.12.3: patches/docus@5.12.3.patch
 onlyBuiltDependencies:
   - better-sqlite3

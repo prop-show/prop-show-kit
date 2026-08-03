@@ -22,6 +22,7 @@ description: Inline tip component, used to display different types of tip inform
 
 ::props-table
 ---
+
 data:
 
 - name: label
@@ -34,7 +35,9 @@ data:
   default: info
   required: false
   description: Tip type variant
+
 ---
+
 ::
 
 ### Slots
