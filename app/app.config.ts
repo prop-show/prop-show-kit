@@ -14,6 +14,10 @@ export default defineAppConfig({
     favicon: '/prop-light.svg',
   },
 
+  assistant: {
+    explainWithAi: false,
+  },
+
   components: [
     {
       name: 'Cascader',
