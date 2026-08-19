@@ -13,10 +13,6 @@ export default defineNuxtConfig({
     plugins: [tailwindcss()],
   },
 
-  // fonts: {
-  //     preload: false,
-  // },
-
   shadcn: {
     prefix: 'Ui',
     componentDir: '@/components/ui',
@@ -45,15 +41,21 @@ export default defineNuxtConfig({
 
   i18n: {
     defaultLocale: 'en',
-    locales: [{
-      code: 'en',
-      name: 'English',
-      language: 'en',
-    }, {
-      code: 'zh-CN',
-      name: '简体中文',
-      language: 'zh-CN',
-    }],
+    langDir: 'locales',
+    locales: [
+      {
+        code: 'en',
+        name: 'English',
+        language: 'en',
+        file: 'en.json',
+      },
+      // {
+      //   code: 'zh-CN',
+      //   name: '简体中文',
+      //   language: 'zh-CN',
+      //   file: 'zh-CN.json',
+      // },
+    ],
   },
 
   eslint: {

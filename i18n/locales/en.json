@@ -1,0 +1,58 @@
+{
+  "common": {
+    "copy": "Copy",
+    "copied": "Copied"
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "Shadcn-vue extensions",
+      "title": "Copy what’s missing. Own every line.",
+      "description": "Practical Vue components for the gaps in your base library. Add the source, adapt it to your product, and ship without package lock-in.",
+      "getStarted": "Get started",
+      "viewSource": "View source",
+      "libraryIndex": "Library index",
+      "availableComponents": "Available components",
+      "foundation": "Foundation",
+      "delivery": "Delivery",
+      "copyPaste": "Copy & paste"
+    },
+    "archive": {
+      "title": "Components",
+      "entries": "entries",
+      "ariaLabel": "Component directory"
+    },
+    "install": {
+      "eyebrow": "Install",
+      "title": "Add one component.",
+      "guide": "Read installation guide",
+      "terminal": "Terminal"
+    },
+    "components": {
+      "cascader": {
+        "name": "Cascader",
+        "description": "Navigate nested choices without losing context.",
+        "tag": "Navigation"
+      },
+      "copy": {
+        "name": "Copy",
+        "description": "Copy text with clear, immediate feedback.",
+        "tag": "Utility"
+      },
+      "filters": {
+        "name": "Filters",
+        "description": "Filter and sort data with ease.",
+        "tag": "Filter"
+      },
+      "inline-tip": {
+        "name": "Inline Tip",
+        "description": "Place useful context exactly where it matters.",
+        "tag": "Feedback"
+      },
+      "status-badge": {
+        "name": "Status Badge",
+        "description": "Make state readable at a glance.",
+        "tag": "Data display"
+      }
+    }
+  }
+}

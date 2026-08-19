@@ -1,8 +1,4 @@
 <script setup lang="ts">
-import type { Component } from 'vue'
-
-import { computed, shallowRef } from 'vue'
-
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 
 import SourceCodeViewer from './SourceCodeViewer.vue'
@@ -101,12 +97,12 @@ const sourceFiles = computed(() => {
           </div>
         </div>
       </TabsContent>
-      <TabsContent value="code" class="relative rounded-md border-none p-0" :class="{ hidden: currentTab !== 'code' }" :force-mount="true">
+      <TabsContent value="code" class="relative rounded-md border-none p-2" :class="{ hidden: currentTab !== 'code' }" :force-mount="true">
         <SourceCodeViewer :files="sourceFiles" />
       </TabsContent>
     </Tabs>
 
-    <div v-else class="w-full">
+    <div v-else class="w-full p-2">
       <SourceCodeViewer :files="sourceFiles" />
     </div>
   </div>

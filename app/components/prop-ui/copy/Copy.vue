@@ -10,8 +10,6 @@ import type { ButtonVariants } from '@/components/ui/button'
 import { Button } from '@/components/ui/button'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 
-import { copyVariants } from '.'
-
 interface Props {
   content: string
   size?: ButtonVariants['size']
@@ -38,9 +36,6 @@ const buttonSize = computed<ButtonVariants['size']>(() => {
     return 'icon-lg'
   return props.size
 })
-const iconClass = computed(() => copyVariants({
-  iconSize: props.size === 'sm' || props.size === 'icon-sm' ? 'sm' : 'default',
-}))
 
 const { copy, copied, copyPending, isSupported } = useClipboard({ source })
 
@@ -65,8 +60,8 @@ async function handleCopy() {
           :class="props.class"
           @click="handleCopy"
         >
-          <CopyIcon v-if="!copied" :class="iconClass" />
-          <CopyCheckIcon v-else :class="iconClass" />
+          <CopyIcon v-if="!copied" />
+          <CopyCheckIcon v-else />
         </Button>
       </TooltipTrigger>
       <TooltipContent>
