@@ -1,19 +1,27 @@
 {
   "$schema": "https://shadcn-vue.com/schema/registry-item.json",
   "name": "copy",
-  "type": "registry:component",
   "title": "Copy",
   "description": "A simple copy component.",
+  "dependencies": [
+    "@lucide/vue",
+    "@vueuse/core"
+  ],
+  "registryDependencies": [
+    "button",
+    "tooltip"
+  ],
   "files": [
     {
       "path": "app/components/prop-ui/copy/Copy.vue",
-      "content": "<script lang=\"ts\" setup>\nimport type { HTMLAttributes } from 'vue'\n\nimport { useClipboard } from '@vueuse/core'\nimport { Copy, CopyCheck } from '@lucide/vue'\n\nimport type { ButtonVariants } from '@/components/ui/button'\n\nimport { Button } from '@/components/ui/button'\nimport { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'\nimport { cn } from '@/lib/utils'\n\nimport { copyVariants } from '.'\n\ninterface Props {\n    content: string\n    size?: 'sm' | 'default'\n    variant?: ButtonVariants['variant']\n    class?: HTMLAttributes['class']\n    copyTooltipText?: string\n    copiedTooltipText?: string\n}\n\nconst props = withDefaults(defineProps<Props>(), {\n    size: 'default',\n    variant: 'outline',\n    copyTooltipText: 'Copy',\n    copiedTooltipText: 'Copied',\n})\n\nconst iconSize = computed(() => {\n    return props.size === 'sm' ? 'sm' : 'default'\n})\n\nconst size = computed(() => {\n    return props.size === 'sm' ? 'sm' : 'icon'\n})\n\nconst source = computed(() => props.content)\n\nconst { copy, copied, isSupported } = useClipboard({ source })\n</script>\n\n<template>\n    <span v-if=\"isSupported\">\n        <TooltipProvider>\n            <Tooltip>\n                <TooltipTrigger as-child>\n                    <Button :variant=\"props.variant\" :size=\"size\" :class=\"cn(props.class)\" @click=\"copy(source)\">\n                        <Copy v-if=\"!copied\" :class=\"cn(copyVariants({ iconSize }))\" />\n                        <CopyCheck v-else :class=\"cn(copyVariants({ iconSize }))\" />\n                    </Button>\n                </TooltipTrigger>\n                <TooltipContent>\n                    <p v-if=\"!copied\">{{ props.copyTooltipText }}: {{ props.content }}</p>\n                    <p v-else>{{ props.copiedTooltipText }}: {{ props.content }}</p>\n                </TooltipContent>\n            </Tooltip>\n        </TooltipProvider>\n    </span>\n    <span v-else>Your browser does not support Clipboard API</span>\n</template>\n",
+      "content": "<script setup lang=\"ts\">\nimport type { HTMLAttributes } from 'vue'\n\nimport { CopyCheckIcon, CopyIcon } from '@lucide/vue'\nimport { useClipboard } from '@vueuse/core'\nimport { computed } from 'vue'\n\nimport type { ButtonVariants } from '@/components/ui/button'\n\nimport { Button } from '@/components/ui/button'\nimport { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'\n\ninterface Props {\n  content: string\n  size?: ButtonVariants['size']\n  variant?: ButtonVariants['variant']\n  class?: HTMLAttributes['class']\n  copyTooltipText?: string\n  copiedTooltipText?: string\n}\n\nconst props = withDefaults(defineProps<Props>(), {\n  size: 'default',\n  variant: 'outline',\n  copyTooltipText: 'Copy',\n  copiedTooltipText: 'Copied',\n})\n\nconst source = computed(() => props.content)\nconst buttonSize = computed<ButtonVariants['size']>(() => {\n  if (props.size === 'default')\n    return 'icon'\n  if (props.size === 'sm')\n    return 'icon-sm'\n  if (props.size === 'lg')\n    return 'icon-lg'\n  return props.size\n})\n\nconst { copy, copied, copyPending, isSupported } = useClipboard({ source })\n\nconst buttonLabel = computed(() => copied.value ? props.copiedTooltipText : props.copyTooltipText)\nconst tooltipText = computed(() => `${buttonLabel.value}: ${props.content}`)\n\nasync function handleCopy() {\n  await copy()\n}\n</script>\n\n<template>\n  <TooltipProvider v-if=\"isSupported\">\n    <Tooltip>\n      <TooltipTrigger as-child>\n        <Button\n          type=\"button\"\n          :aria-label=\"buttonLabel\"\n          :disabled=\"copyPending\"\n          :variant=\"props.variant\"\n          :size=\"buttonSize\"\n          :class=\"props.class\"\n          @click=\"handleCopy\"\n        >\n          <CopyIcon v-if=\"!copied\" />\n          <CopyCheckIcon v-else />\n        </Button>\n      </TooltipTrigger>\n      <TooltipContent>\n        <p>{{ tooltipText }}</p>\n      </TooltipContent>\n    </Tooltip>\n  </TooltipProvider>\n  <span v-else role=\"status\">Your browser does not support Clipboard API</span>\n</template>\n",
       "type": "registry:component"
     },
     {
       "path": "app/components/prop-ui/copy/index.ts",
-      "content": "import type { VariantProps } from 'class-variance-authority'\n\nimport { cva } from 'class-variance-authority'\n\nexport { default as Copy } from './Copy.vue'\n\nexport const copyVariants = cva(\n    '',\n    {\n        variants: {\n            iconSize: {\n                default: 'size-4',\n                sm: 'size-3',\n            },\n        },\n        defaultVariants: {\n            iconSize: 'default',\n        },\n    },\n)\n\nexport type CopyVariants = VariantProps<typeof copyVariants>\n",
+      "content": "export { default as Copy } from './Copy.vue'\n",
       "type": "registry:component"
     }
-  ]
+  ],
+  "type": "registry:component"
 }

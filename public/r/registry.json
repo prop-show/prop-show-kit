@@ -24,6 +24,14 @@
       "type": "registry:component",
       "title": "Copy",
       "description": "A simple copy component.",
+      "dependencies": [
+        "@lucide/vue",
+        "@vueuse/core"
+      ],
+      "registryDependencies": [
+        "button",
+        "tooltip"
+      ],
       "files": [
         {
           "path": "app/components/prop-ui/copy/Copy.vue",
@@ -40,13 +48,67 @@
       "type": "registry:component",
       "title": "Status Badge",
       "description": "A simple status badge component.",
+      "registryDependencies": [
+        "badge"
+      ],
       "files": [
         {
           "path": "app/components/prop-ui/status-badge/StatusBadge.vue",
           "type": "registry:component"
         },
         {
+          "path": "app/components/prop-ui/status-badge/Status.vue",
+          "type": "registry:component"
+        },
+        {
           "path": "app/components/prop-ui/status-badge/index.ts",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "filters",
+      "type": "registry:component",
+      "title": "Filters",
+      "description": "A typed, composable field filtering component.",
+      "dependencies": [
+        "@lucide/vue",
+        "@vueuse/core",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "button",
+        "button-group",
+        "dropdown-menu",
+        "input",
+        "input-group",
+        "kbd",
+        "scroll-area",
+        "tooltip"
+      ],
+      "files": [
+        {
+          "path": "app/components/prop-ui/filters/Filter.vue",
+          "type": "registry:component"
+        },
+        {
+          "path": "app/components/prop-ui/filters/FilterChip.vue",
+          "type": "registry:component"
+        },
+        {
+          "path": "app/components/prop-ui/filters/FilterOptionsMenu.vue",
+          "type": "registry:component"
+        },
+        {
+          "path": "app/components/prop-ui/filters/FiltersContent.vue",
+          "type": "registry:component"
+        },
+        {
+          "path": "app/components/prop-ui/filters/filter-core.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "app/components/prop-ui/filters/index.ts",
           "type": "registry:component"
         }
       ]

@@ -4,5 +4,5 @@ defineI18nRoute(false)
 </script>
 
 <template>
-    <HomeLanding />
+  <HomeLanding />
 </template>
