@@ -1,0 +1,7 @@
+{
+  "name": "kit-prop-show",
+  "compatibility_date": "2026-08-16",
+  "assets": {
+    "directory": "./.output/public"
+  }
+}

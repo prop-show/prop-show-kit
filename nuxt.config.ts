@@ -80,4 +80,10 @@ export default defineNuxtConfig({
       emojis: 'noto',
     },
   },
+  nitro: {
+    cloudflare: {
+      deployConfig: false,
+    },
+    compressPublicAssets: true,
+  },
 })
