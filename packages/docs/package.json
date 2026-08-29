@@ -1,0 +1,29 @@
+{
+  "name": "docs",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vp run ui#build && node scripts/undocs.mjs dev .",
+    "build": "vp run ui#build && node scripts/undocs.mjs build ."
+  },
+  "devDependencies": {
+    "@iconify-json/heroicons": "1.2.3",
+    "@iconify-json/lucide": "1.2.125",
+    "@iconify-json/ph": "1.2.2",
+    "@iconify-json/simple-icons": "1.2.93",
+    "@iconify-json/vscode-icons": "catalog:",
+    "@lucide/vue": "^1.31.0",
+    "@nuxt/ui": "4.11.0",
+    "@types/node": "catalog:",
+    "@vueuse/core": "^14.4.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "reka-ui": "^2.10.3",
+    "tailwind-merge": "^3.6.0",
+    "tailwindcss": "4.3.3",
+    "typescript": "6.0.3",
+    "undocs": "0.4.17",
+    "vue": "^3.5.41"
+  }
+}

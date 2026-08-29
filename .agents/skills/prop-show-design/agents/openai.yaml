@@ -1,4 +1,0 @@
-interface:
-  display_name: Prop.Show 设计规范
-  short_description: 约束 prop.show 页面与组件的视觉、响应式和交互一致性
-  default_prompt: 使用 $prop-show-design 为 prop.show 新增组件，并按现有视觉规范完成响应式与明暗模式检查。

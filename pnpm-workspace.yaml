@@ -1,8 +1,29 @@
-shellEmulator: true
+packages:
+  - apps/*
+  - packages/*
+  - tools/*
 
-trustPolicy: no-downgrade
+catalogMode: prefer
 
-patchedDependencies:
-  docus@5.12.3: patches/docus@5.12.3.patch
-onlyBuiltDependencies:
-  - better-sqlite3
+catalog:
+  "@iconify-json/vscode-icons": 1.2.75
+  "@types/node": ^24.13.3
+  extend: 3.0.2
+  typescript: ^7.0.2
+  vite: npm:@voidzero-dev/vite-plus-core@0.2.6
+  vite-plus: 0.2.6
+  wrangler: ^4.127.0
+overrides:
+  vite: "catalog:"
+peerDependencyRules:
+  allowAny:
+    - vite
+  allowedVersions:
+    vite: "*"
+allowBuilds:
+  "@parcel/watcher": true
+  esbuild: true
+  vue-demi: true
+  workerd: true
+minimumReleaseAgeExclude:
+  - "@iconify-json/lucide@1.2.125"
