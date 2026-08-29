@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vp run docs#dev",
     "build": "vp run docs#build",
+    "generate": "vp run docs#build",
     "deploy": "wrangler deploy",
     "deploy:preview": "wrangler versions upload",
     "ready": "vp check && vp run ui#test && vp test run --passWithNoTests && vp run build",
