@@ -8,7 +8,7 @@ process.env.BRANCH ||= "main";
 
 createCLI({
   name: "undocs",
-  description: "suit-help documentation",
+  description: "prop-show-kit documentation",
   setup: {
     extends: [docsLayer],
   },

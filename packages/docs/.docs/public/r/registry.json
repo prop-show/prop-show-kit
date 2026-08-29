@@ -1,6 +1,6 @@
 {
   "$schema": "https://shadcn-vue.com/schema/registry.json",
-  "name": "suit-help",
+  "name": "prop-show-kit",
   "homepage": "http://localhost:4000",
   "items": [
     {

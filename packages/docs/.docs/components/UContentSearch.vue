@@ -5,5 +5,9 @@ defineOptions({ inheritAttrs: false });
 </script>
 
 <template>
-  <ContentSearch v-bind="$attrs" title="Search" description="Search the suit-help documentation." />
+  <ContentSearch
+    v-bind="$attrs"
+    title="Search"
+    description="Search the prop-show-kit documentation."
+  />
 </template>
