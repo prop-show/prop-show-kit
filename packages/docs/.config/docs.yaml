@@ -1,0 +1,8 @@
+name: "PropShow Kit"
+shortDescription: "Shadcn-vue extensions"
+description: "Copy what’s missing. Own every line."
+github: "prop-show/prop-show-kit"
+url: "https://kit.prop.show/"
+automd: true
+landing:
+  contributors: true

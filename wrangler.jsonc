@@ -1,7 +1,8 @@
 {
-  "name": "kit-prop-show",
-  "compatibility_date": "2026-08-16",
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "prop-show-kit",
+  "compatibility_date": "2026-08-29",
   "assets": {
-    "directory": "./.output/public"
-  }
+    "directory": "packages/docs/.docs/.output/public",
+  },
 }

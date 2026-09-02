@@ -1,0 +1,17 @@
+{
+  "name": "ui",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "shadcn-vue build registry.json --output ../docs/.docs/public/r",
+    "test": "node --experimental-strip-types registry/filters/filter-core.check.ts"
+  },
+  "devDependencies": {
+    "@lucide/vue": "^1.31.0",
+    "@vueuse/core": "^14.4.0",
+    "class-variance-authority": "^0.7.1",
+    "shadcn-vue": "2.8.2",
+    "vue": "^3.5.41"
+  }
+}
