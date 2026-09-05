@@ -1,0 +1,24 @@
+diff --git a/src/app/app.config.ts b/src/app/app.config.ts
+index c25987343ec7af4f5db1def98ba4d952eecada8a..0b68af079dcbf975ed2a96c03271b5ae18b9d31c 100644
+--- a/src/app/app.config.ts
++++ b/src/app/app.config.ts
+@@ -53,6 +53,7 @@ export default defineAppConfig({
+         jsx: "vscode-icons:file-type-js",
+         md: "vscode-icons:file-type-markdown",
+         py: "vscode-icons:file-type-python",
++        vue: "vscode-icons:file-type-vue",
+         ico: "vscode-icons:file-type-favicon",
+         npm: "vscode-icons:file-type-npm",
+         pnpm: "vscode-icons:file-type-pnpm",
+diff --git a/src/app/builtin-icons.ts b/src/app/builtin-icons.ts
+index 552bcbdf3fd9f00e6fe78a43133ad79fd8357b89..a272119ff126d76204ad58c962df5a984234edda 100644
+--- a/src/app/builtin-icons.ts
++++ b/src/app/builtin-icons.ts
+@@ -84,6 +84,7 @@ export const BUILTIN_ICONS: Record<string, string[]> = {
+     "file-type-tsconfig",
+     "file-type-typescript",
+     "file-type-vscode",
++    "file-type-vue",
+     "file-type-yaml",
+     "file-type-yarn",
+   ],

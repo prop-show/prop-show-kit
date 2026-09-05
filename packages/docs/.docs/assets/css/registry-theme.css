@@ -1,3 +1,13 @@
+@theme inline {
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+}
+
 .registry-preview {
   --radius: 0.625rem;
   --radius-sm: calc(var(--radius) - 4px);

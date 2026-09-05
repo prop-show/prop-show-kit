@@ -7,6 +7,7 @@
     "allowArbitraryExtensions": true,
     "esModuleInterop": true,
     "paths": {
+      "@/components/ui/*": ["./packages/docs/.docs/ui/*"],
       "@/*": ["./packages/docs/.docs/*"]
     },
     "types": ["vite/client", "node"]

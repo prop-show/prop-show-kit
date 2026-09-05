@@ -1,21 +1,12 @@
 <script setup lang="ts">
-import highlighter from "#mdc-highlighter";
-import { useHead } from "#imports";
-import { computed, h } from "vue";
-
-type HighlightNode =
-  | { type: "text"; value: string }
-  | {
-      type: "element";
-      tagName: string;
-      properties: Record<string, unknown>;
-      children: HighlightNode[];
-    };
+import { computed, shallowRef } from "vue";
+import ProsePre from "undocs/src/app/content/ProsePre.vue";
+import { highlightCode } from "undocs/src/server/content/highlight.ts";
 
 const props = withDefaults(
   defineProps<{
     path: string;
-    filename?: string;
+    filename?: string | null;
     collapseAfter?: number;
     hideHeader?: boolean;
   }>(),
@@ -28,58 +19,40 @@ const sources = import.meta.glob<string>("../../../ui/registry/**/*.{ts,vue}", {
   query: "?raw",
 });
 
-const filename = computed(() => props.filename ?? props.path.split("/").at(-1) ?? props.path);
+const filename = computed(() =>
+  props.filename === undefined ? props.path.split("/").at(-1) : props.filename,
+);
 const source = computed(() => {
   const value = sources[`../../../ui/registry/${props.path}`];
   if (!value) throw new Error(`Unknown registry source: ${props.path}`);
   return value;
 });
-const language = computed(() => filename.value.split(".").at(-1));
+const language = computed(() => props.path.split(".").at(-1));
 const shouldCollapse = computed(
   () => source.value.trimEnd().split("\n").length > props.collapseAfter,
 );
-const highlighted = await highlighter(source.value, language.value, {
-  default: "github-dark",
-  dark: "github-dark",
-  light: "github-light",
-});
-useHead({ style: [{ key: "component-source-shiki", textContent: highlighted.style }] });
-// Shiki separates line spans with bare `\n` text nodes. Lines render as
-// `display: block` with `white-space: pre-wrap`, so those separators would
-// produce an empty line box per line. Token text lives inside the spans and
-// is unaffected.
-const nodes = (highlighted.tree as HighlightNode[]).filter(
-  (node) => node.type !== "text" || node.value.trim() !== "",
-);
-
-function renderNode(node: HighlightNode): ReturnType<typeof h> | string {
-  if (node.type === "text") return node.value;
-  return h(node.tagName, node.properties, node.children.map(renderNode));
-}
-
-const HighlightedCode = () => h("code", nodes.map(renderNode));
+const expanded = shallowRef(false);
+const highlighted = computed(() => highlightCode(source.value, language.value));
 </script>
 
 <template>
-  <ProseCodeCollapse v-if="shouldCollapse" name="source">
-    <ProsePre
-      :class="highlighted.className"
-      :code="source"
-      :filename="filename"
-      :hide-header="props.hideHeader"
-      :language="language"
+  <div>
+    <div :class="{ 'max-h-96 overflow-hidden': shouldCollapse && !expanded }">
+      <ProsePre
+        :highlighted="highlighted"
+        :code="source"
+        :filename="props.hideHeader ? undefined : filename || undefined"
+        :language="language"
+      />
+    </div>
+    <button
+      v-if="shouldCollapse"
+      type="button"
+      class="w-full border-t border-border px-4 py-2 text-sm text-muted-foreground hover:text-foreground"
+      :aria-expanded="expanded"
+      @click="expanded = !expanded"
     >
-      <HighlightedCode />
-    </ProsePre>
-  </ProseCodeCollapse>
-  <ProsePre
-    v-else
-    :class="highlighted.className"
-    :code="source"
-    :filename="filename"
-    :hide-header="props.hideHeader"
-    :language="language"
-  >
-    <HighlightedCode />
-  </ProsePre>
+      {{ expanded ? "Collapse code" : "Expand code" }}
+    </button>
+  </div>
 </template>
