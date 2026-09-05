@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { useAppConfig } from "#imports";
+import { useAppConfig } from "undocs/src/app/composables/useAppConfig.ts";
+import PmX from "undocs/src/app/components/global/Pm-x.vue";
 import { computed } from "vue";
 
 const props = defineProps<{ url: string }>();

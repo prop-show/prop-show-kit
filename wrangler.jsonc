@@ -3,6 +3,7 @@
   "name": "prop-show-kit",
   "compatibility_date": "2026-08-29",
   "assets": {
-    "directory": "packages/docs/.docs/.output/public",
+    "directory": "packages/docs/.output/public",
+    "html_handling": "drop-trailing-slash",
   },
 }
