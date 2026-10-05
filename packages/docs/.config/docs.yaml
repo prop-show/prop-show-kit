@@ -6,5 +6,23 @@ url: "https://kit.prop.show/"
 automd: true
 redirects:
   "/guide/components/**": "/components/**"
+  "/guide/installation": "/guide"
 landing:
   contributors: true
+  heroLinks:
+    components:
+      icon: "i-lucide-component"
+      to: "/components"
+  features:
+    - title: Copied, not installed
+      description: No package to add, no version to track, no upstream API to wait on — the CLI writes the component into your project.
+      icon: i-lucide-file-code
+    - title: Shadcn-native
+      description: Built on the same Tailwind tokens and shadcn-vue primitives (`button`, `tooltip`, `badge`, `dropdown-menu`) as the components you already have.
+      icon: i-lucide-swatch-book
+    - title: Accessible defaults
+      description: ARIA roles and labels, focus states and keyboard navigation ship with the component instead of being bolted on later.
+      icon: i-lucide-keyboard
+    - title: Typed and themed
+      description: Written in TypeScript with semantic color tokens, so props autocomplete and light and dark mode keep working.
+      icon: i-lucide-moon-star
