@@ -7,12 +7,12 @@ catalogMode: prefer
 
 catalog:
   "@iconify-json/vscode-icons": 1.2.75
-  "@types/node": ^24.13.3
+  "@types/node": ^24.19.1
   extend: 3.0.2
   typescript: ^7.0.2
   vite: npm:@voidzero-dev/vite-plus-core@0.2.6
   vite-plus: 0.2.6
-  wrangler: ^4.127.0
+  wrangler: ^4.147.0
 overrides:
   vite: "catalog:"
 peerDependencyRules:
