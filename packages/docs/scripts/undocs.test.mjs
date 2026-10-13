@@ -34,6 +34,7 @@ it("starts the docs CLI and renders registry documentation with the installed Un
       "inline-tip",
       "status-badge",
       "copy",
+      "inline-copy-text",
       "filters",
     ]) {
       const response = await fetch(new URL(`components/${component}`, url), {

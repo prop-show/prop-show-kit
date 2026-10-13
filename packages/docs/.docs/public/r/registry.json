@@ -148,6 +148,28 @@
       ]
     },
     {
+      "name": "inline-copy-text",
+      "type": "registry:component",
+      "title": "Inline Copy Text",
+      "description": "A compact, borderless copy control for inline IDs and other short values.",
+      "dependencies": ["@lucide/vue", "@vueuse/core"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/inline-copy-text/InlineCopyText.vue",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/inline-copy-text/variants.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/inline-copy-text/index.ts",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "filters",
       "type": "registry:component",
       "title": "Filters",
