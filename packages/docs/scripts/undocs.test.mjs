@@ -36,6 +36,7 @@ it("starts the docs CLI and renders registry documentation with the installed Un
       "copy",
       "inline-copy-text",
       "filters",
+      "slider",
     ]) {
       const response = await fetch(new URL(`components/${component}`, url), {
         signal: AbortSignal.timeout(10_000),

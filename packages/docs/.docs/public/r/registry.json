@@ -211,6 +211,24 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "slider",
+      "type": "registry:component",
+      "title": "Slider",
+      "description": "An accessible slider with value badges, range selection and formatted values.",
+      "dependencies": ["reka-ui", "@vueuse/core"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/slider/Slider.vue",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/slider/index.ts",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
