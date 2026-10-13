@@ -1,0 +1,31 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "layer-card",
+  "title": "Layer Card",
+  "description": "A composable card with primary and secondary visual layers.",
+  "dependencies": ["reka-ui"],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/layer-card/LayerCard.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { HTMLAttributes } from \"vue\";\nimport { Primitive, type PrimitiveProps } from \"reka-ui\";\nimport { cn } from \"@/lib/utils\";\n\nwithDefaults(defineProps<PrimitiveProps & { class?: HTMLAttributes[\"class\"] }>(), {\n  as: \"div\",\n});\n</script>\n\n<template>\n  <Primitive\n    :as=\"as\"\n    :as-child=\"asChild\"\n    data-slot=\"layer-card\"\n    :class=\"\n      cn(\n        'flex w-full min-w-0 flex-col overflow-hidden rounded-lg bg-card text-card-foreground shadow-xs ring ring-border [overflow-wrap:anywhere] has-[>[data-slot^=layer-card-]]:bg-muted has-[>[data-slot^=layer-card-]]:shadow-none',\n        $props.class,\n      )\n    \"\n  >\n    <slot />\n  </Primitive>\n</template>\n",
+      "type": "registry:component"
+    },
+    {
+      "path": "registry/layer-card/LayerCardPrimary.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { HTMLAttributes } from \"vue\";\nimport { cn } from \"@/lib/utils\";\n\ndefineProps<{ class?: HTMLAttributes[\"class\"] }>();\n</script>\n\n<template>\n  <div\n    data-slot=\"layer-card-primary\"\n    :class=\"\n      cn(\n        'relative flex min-w-0 flex-col gap-2 overflow-hidden rounded-lg bg-card p-4 pr-3 text-card-foreground ring ring-border',\n        $props.class,\n      )\n    \"\n  >\n    <slot />\n  </div>\n</template>\n",
+      "type": "registry:component"
+    },
+    {
+      "path": "registry/layer-card/LayerCardSecondary.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { HTMLAttributes } from \"vue\";\nimport { cn } from \"@/lib/utils\";\n\ndefineProps<{ class?: HTMLAttributes[\"class\"] }>();\n</script>\n\n<template>\n  <div\n    data-slot=\"layer-card-secondary\"\n    :class=\"\n      cn(\n        '-my-2 flex min-w-0 items-center gap-2 bg-muted p-4 text-base font-medium text-muted-foreground',\n        $props.class,\n      )\n    \"\n  >\n    <slot />\n  </div>\n</template>\n",
+      "type": "registry:component"
+    },
+    {
+      "path": "registry/layer-card/index.ts",
+      "content": "export { default as LayerCard } from \"./LayerCard.vue\";\nexport { default as LayerCardPrimary } from \"./LayerCardPrimary.vue\";\nexport { default as LayerCardSecondary } from \"./LayerCardSecondary.vue\";\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:component"
+}

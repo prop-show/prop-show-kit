@@ -9,6 +9,7 @@ catalog:
   "@iconify-json/vscode-icons": 1.2.75
   "@types/node": ^24.19.1
   extend: 3.0.2
+  reka-ui: 2.10.3
   typescript: ^7.0.2
   vite: npm:@voidzero-dev/vite-plus-core@0.2.6
   vite-plus: 0.2.6

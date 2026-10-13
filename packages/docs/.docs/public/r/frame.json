@@ -1,0 +1,51 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "frame",
+  "title": "Frame",
+  "description": "A composable framed container with panels, headers and footers.",
+  "dependencies": ["@lucide/vue", "reka-ui"],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/frame/Frame.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { HTMLAttributes } from \"vue\";\nimport { cn } from \"@/lib/utils\";\n\nwithDefaults(\n  defineProps<{\n    variant?: \"default\" | \"ghost\";\n    tone?: \"default\" | \"info\" | \"destructive\";\n    spacing?: \"sm\" | \"default\" | \"lg\";\n    dense?: boolean;\n    stacked?: boolean;\n    class?: HTMLAttributes[\"class\"];\n  }>(),\n  { variant: \"default\", tone: \"default\", spacing: \"default\", dense: false, stacked: false },\n);\n</script>\n\n<template>\n  <div\n    data-slot=\"frame\"\n    :data-tone=\"tone\"\n    :data-dense=\"dense\"\n    :data-stacked=\"stacked\"\n    :class=\"\n      cn(\n        'group/frame flex min-w-0 flex-col rounded-[var(--frame-radius)] border bg-muted/50 text-foreground [--frame-radius:0.5rem]',\n        spacing === 'sm' && 'gap-0.5 p-0.5',\n        spacing === 'default' && 'gap-1 p-1',\n        spacing === 'lg' && 'gap-2 p-2',\n        stacked && 'gap-0',\n        dense && 'gap-0 overflow-hidden p-0',\n        tone === 'info' && 'border-blue-500/20 bg-blue-500/10',\n        tone === 'destructive' && 'border-destructive/20 bg-destructive/10',\n        variant === 'ghost' && 'border-transparent',\n        $props.class,\n      )\n    \"\n  >\n    <slot />\n  </div>\n</template>\n\n<style scoped>\n[data-stacked=\"true\"] > :deep([data-slot=\"frame-panel\"] + [data-slot=\"frame-panel\"]) {\n  margin-top: -1px;\n  border-top-left-radius: 0;\n  border-top-right-radius: 0;\n}\n[data-stacked=\"true\"] > :deep([data-slot=\"frame-panel\"]:has(+ [data-slot=\"frame-panel\"])) {\n  border-bottom-left-radius: 0;\n  border-bottom-right-radius: 0;\n}\n[data-dense=\"true\"] > :deep([data-slot=\"frame-panel\"]) {\n  border-inline: 0;\n  border-radius: 0;\n}\n[data-dense=\"true\"] > :deep([data-slot=\"frame-panel\"]:first-child) {\n  border-top: 0;\n}\n[data-dense=\"true\"] > :deep([data-slot=\"frame-panel\"]:last-child) {\n  border-bottom: 0;\n}\n[data-dense=\"true\"] > :deep([data-slot=\"frame-panel\"] + [data-slot=\"frame-panel\"]) {\n  margin-top: -1px;\n}\n</style>\n",
+      "type": "registry:component"
+    },
+    {
+      "path": "registry/frame/FramePanel.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { HTMLAttributes } from \"vue\";\nimport { cn } from \"@/lib/utils\";\nwithDefaults(\n  defineProps<{ patterned?: boolean; fit?: boolean; class?: HTMLAttributes[\"class\"] }>(),\n  { patterned: false, fit: false },\n);\n</script>\n\n<template>\n  <div\n    data-slot=\"frame-panel\"\n    :class=\"\n      cn(\n        'relative isolate min-w-0 rounded-[max(0px,calc(var(--frame-radius,0.5rem)-2px))] border bg-background p-4 [overflow-wrap:anywhere] group-data-[tone=info]/frame:border-blue-500/20 group-data-[tone=destructive]/frame:border-destructive/20',\n        !fit && 'flex-1',\n        $props.class,\n      )\n    \"\n  >\n    <div\n      v-if=\"patterned\"\n      aria-hidden=\"true\"\n      class=\"pointer-events-none absolute inset-y-0 right-0 -z-10 w-1/3 rounded-[inherit] opacity-[0.04] [background-image:radial-gradient(currentColor_1px,transparent_1px)] [background-size:6px_6px]\"\n    />\n    <slot />\n  </div>\n</template>\n",
+      "type": "registry:component"
+    },
+    {
+      "path": "registry/frame/FrameHeader.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { HTMLAttributes } from \"vue\";\nimport { cn } from \"@/lib/utils\";\ndefineProps<{ class?: HTMLAttributes[\"class\"] }>();\n</script>\n\n<template>\n  <div\n    data-slot=\"frame-header\"\n    :class=\"cn('flex min-w-0 flex-col gap-1 px-3 py-2 [overflow-wrap:anywhere]', $props.class)\"\n  >\n    <slot />\n  </div>\n</template>\n",
+      "type": "registry:component"
+    },
+    {
+      "path": "registry/frame/FrameTitle.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { HTMLAttributes } from \"vue\";\nimport { cn } from \"@/lib/utils\";\ndefineProps<{ class?: HTMLAttributes[\"class\"] }>();\n</script>\n\n<template>\n  <h3\n    data-slot=\"frame-title\"\n    :class=\"cn('text-sm font-medium leading-6 [overflow-wrap:anywhere]', $props.class)\"\n  >\n    <slot />\n  </h3>\n</template>\n",
+      "type": "registry:component"
+    },
+    {
+      "path": "registry/frame/FrameDescription.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { HTMLAttributes } from \"vue\";\nimport { cn } from \"@/lib/utils\";\ndefineProps<{ class?: HTMLAttributes[\"class\"] }>();\n</script>\n\n<template>\n  <p\n    data-slot=\"frame-description\"\n    :class=\"cn('text-sm leading-6 text-muted-foreground [overflow-wrap:anywhere]', $props.class)\"\n  >\n    <slot />\n  </p>\n</template>\n",
+      "type": "registry:component"
+    },
+    {
+      "path": "registry/frame/FrameFooter.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { HTMLAttributes } from \"vue\";\nimport { cn } from \"@/lib/utils\";\ndefineProps<{ class?: HTMLAttributes[\"class\"] }>();\n</script>\n\n<template>\n  <div\n    data-slot=\"frame-footer\"\n    :class=\"\n      cn(\n        'flex min-w-0 flex-wrap items-center gap-2 px-3 py-2 text-xs text-muted-foreground [overflow-wrap:anywhere] group-data-[tone=info]/frame:text-blue-600 group-data-[tone=info]/frame:dark:text-blue-400 group-data-[tone=destructive]/frame:text-destructive',\n        $props.class,\n      )\n    \"\n  >\n    <slot />\n  </div>\n</template>\n",
+      "type": "registry:component"
+    },
+    {
+      "path": "registry/frame/FrameDialog.vue",
+      "content": "<script setup lang=\"ts\">\nimport { XIcon } from \"@lucide/vue\";\nimport {\n  DialogClose,\n  DialogContent,\n  DialogDescription,\n  DialogOverlay,\n  DialogPortal,\n  DialogRoot,\n  DialogTitle,\n  DialogTrigger,\n} from \"reka-ui\";\nimport Frame from \"./Frame.vue\";\n\ndefineOptions({ inheritAttrs: false });\nwithDefaults(\n  defineProps<{\n    title: string;\n    description?: string;\n    closeLabel?: string;\n    dismissible?: boolean;\n  }>(),\n  { closeLabel: \"Close\", dismissible: true },\n);\n\nconst open = defineModel<boolean>(\"open\", { default: false });\nconst close = () => {\n  open.value = false;\n};\n</script>\n\n<template>\n  <DialogRoot v-model:open=\"open\">\n    <DialogTrigger v-if=\"$slots.trigger\" as-child><slot name=\"trigger\" /></DialogTrigger>\n    <DialogPortal>\n      <DialogOverlay class=\"fixed inset-0 z-50 bg-black/40\" />\n      <DialogContent\n        as-child\n        v-bind=\"description ? {} : { 'aria-describedby': undefined }\"\n        @escape-key-down=\"!dismissible && $event.preventDefault()\"\n        @interact-outside=\"!dismissible && $event.preventDefault()\"\n      >\n        <Frame\n          v-bind=\"$attrs\"\n          class=\"fixed left-1/2 top-1/2 z-50 max-h-[calc(100dvh-2rem)] w-[calc(100%-2rem)] max-w-lg -translate-x-1/2 -translate-y-1/2 overflow-y-auto bg-background shadow-lg outline-none\"\n        >\n          <DialogTitle class=\"sr-only\">{{ title }}</DialogTitle>\n          <DialogDescription v-if=\"description\" class=\"sr-only\">{{\n            description\n          }}</DialogDescription>\n          <slot :close=\"close\" />\n          <DialogClose\n            v-if=\"dismissible\"\n            :aria-label=\"closeLabel\"\n            class=\"absolute right-3 top-3 inline-flex size-8 items-center justify-center rounded-md text-muted-foreground hover:bg-muted hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring\"\n          >\n            <XIcon aria-hidden=\"true\" class=\"size-4\" />\n          </DialogClose>\n        </Frame>\n      </DialogContent>\n    </DialogPortal>\n  </DialogRoot>\n</template>\n",
+      "type": "registry:component"
+    },
+    {
+      "path": "registry/frame/index.ts",
+      "content": "export { default as Frame } from \"./Frame.vue\";\nexport { default as FramePanel } from \"./FramePanel.vue\";\nexport { default as FrameHeader } from \"./FrameHeader.vue\";\nexport { default as FrameTitle } from \"./FrameTitle.vue\";\nexport { default as FrameDescription } from \"./FrameDescription.vue\";\nexport { default as FrameFooter } from \"./FrameFooter.vue\";\nexport { default as FrameDialog } from \"./FrameDialog.vue\";\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:component"
+}

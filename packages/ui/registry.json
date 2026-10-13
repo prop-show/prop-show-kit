@@ -4,6 +4,92 @@
   "homepage": "http://localhost:4000",
   "items": [
     {
+      "name": "frame",
+      "type": "registry:component",
+      "title": "Frame",
+      "description": "A composable framed container with panels, headers and footers.",
+      "dependencies": ["@lucide/vue", "reka-ui"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/frame/Frame.vue",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/frame/FramePanel.vue",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/frame/FrameHeader.vue",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/frame/FrameTitle.vue",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/frame/FrameDescription.vue",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/frame/FrameFooter.vue",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/frame/FrameDialog.vue",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/frame/index.ts",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "layer-card",
+      "type": "registry:component",
+      "title": "Layer Card",
+      "description": "A composable card with primary and secondary visual layers.",
+      "dependencies": ["reka-ui"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/layer-card/LayerCard.vue",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/layer-card/LayerCardPrimary.vue",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/layer-card/LayerCardSecondary.vue",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/layer-card/index.ts",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "layer-dialog",
+      "type": "registry:component",
+      "title": "Layer Dialog",
+      "description": "A responsive layered dialog with a persistent title and action footer.",
+      "dependencies": ["@lucide/vue", "reka-ui"],
+      "registryDependencies": ["button"],
+      "files": [
+        {
+          "path": "registry/layer-dialog/LayerDialog.vue",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/layer-dialog/index.ts",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "inline-tip",
       "type": "registry:component",
       "title": "Inline Tip",
@@ -17,6 +103,28 @@
         },
         {
           "path": "registry/inline-tip/index.ts",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "status-badge",
+      "type": "registry:component",
+      "title": "Status Badge",
+      "description": "A badge with an animated status indicator.",
+      "dependencies": ["class-variance-authority"],
+      "registryDependencies": ["badge"],
+      "files": [
+        {
+          "path": "registry/status-badge/StatusBadge.vue",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/status-badge/Status.vue",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/status-badge/index.ts",
           "type": "registry:component"
         }
       ]
@@ -40,23 +148,23 @@
       ]
     },
     {
-      "name": "status-badge",
+      "name": "inline-copy-text",
       "type": "registry:component",
-      "title": "Status Badge",
-      "description": "A badge with an animated status indicator.",
-      "dependencies": ["class-variance-authority"],
-      "registryDependencies": ["badge"],
+      "title": "Inline Copy Text",
+      "description": "A compact, borderless copy control for inline IDs and other short values.",
+      "dependencies": ["@lucide/vue", "@vueuse/core"],
+      "registryDependencies": [],
       "files": [
         {
-          "path": "registry/status-badge/StatusBadge.vue",
+          "path": "registry/inline-copy-text/InlineCopyText.vue",
           "type": "registry:component"
         },
         {
-          "path": "registry/status-badge/Status.vue",
+          "path": "registry/inline-copy-text/variants.ts",
           "type": "registry:component"
         },
         {
-          "path": "registry/status-badge/index.ts",
+          "path": "registry/inline-copy-text/index.ts",
           "type": "registry:component"
         }
       ]
@@ -100,6 +208,46 @@
         },
         {
           "path": "registry/filters/index.ts",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "slider",
+      "type": "registry:component",
+      "title": "Slider",
+      "description": "An accessible slider with value badges, range selection and formatted values.",
+      "dependencies": ["reka-ui", "@vueuse/core"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/slider/Slider.vue",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/slider/index.ts",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "delete-resource",
+      "type": "registry:component",
+      "title": "Delete Resource",
+      "description": "A resource deletion dialog with typed confirmation and async feedback.",
+      "dependencies": ["@lucide/vue", "reka-ui"],
+      "registryDependencies": ["button", "inline-copy-text", "input"],
+      "files": [
+        {
+          "path": "registry/delete-resource/DeleteResource.vue",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/delete-resource/confirmation.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/delete-resource/index.ts",
           "type": "registry:component"
         }
       ]
