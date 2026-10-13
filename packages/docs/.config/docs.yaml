@@ -1,6 +1,6 @@
 name: "PropShow Kit"
-shortDescription: "Shadcn-vue extensions"
-description: "Copy what’s missing. Own every line."
+shortDescription: "Add-on registry for shadcn-vue"
+description: "Add-ons for shadcn-vue. Copy what’s missing, own every line."
 github: "prop-show/prop-show-kit"
 url: "https://kit.prop.show/"
 automd: true
