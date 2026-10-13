@@ -30,6 +30,7 @@ it("starts the docs CLI and renders registry documentation with the installed Un
     for (const component of [
       "frame",
       "layer-card",
+      "layer-dialog",
       "inline-tip",
       "status-badge",
       "copy",

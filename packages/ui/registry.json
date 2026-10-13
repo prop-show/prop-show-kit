@@ -72,6 +72,24 @@
       ]
     },
     {
+      "name": "layer-dialog",
+      "type": "registry:component",
+      "title": "Layer Dialog",
+      "description": "A responsive layered dialog with a persistent title and action footer.",
+      "dependencies": ["@lucide/vue", "reka-ui"],
+      "registryDependencies": ["button"],
+      "files": [
+        {
+          "path": "registry/layer-dialog/LayerDialog.vue",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/layer-dialog/index.ts",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "inline-tip",
       "type": "registry:component",
       "title": "Inline Tip",
