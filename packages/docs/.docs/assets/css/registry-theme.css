@@ -64,3 +64,15 @@
     border-color: var(--border);
   }
 }
+
+/* Keep document typography from changing the Frame previews. */
+.registry-preview [data-slot="frame-title"] {
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+}
+
+.registry-preview [data-slot="frame-description"] {
+  margin-block: 0;
+}

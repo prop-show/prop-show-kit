@@ -4,6 +4,48 @@
   "homepage": "http://localhost:4000",
   "items": [
     {
+      "name": "frame",
+      "type": "registry:component",
+      "title": "Frame",
+      "description": "A composable framed container with panels, headers and footers.",
+      "dependencies": ["@lucide/vue", "reka-ui"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/frame/Frame.vue",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/frame/FramePanel.vue",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/frame/FrameHeader.vue",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/frame/FrameTitle.vue",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/frame/FrameDescription.vue",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/frame/FrameFooter.vue",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/frame/FrameDialog.vue",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/frame/index.ts",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "inline-tip",
       "type": "registry:component",
       "title": "Inline Tip",
