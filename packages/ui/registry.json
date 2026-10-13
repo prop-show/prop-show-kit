@@ -229,6 +229,28 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "delete-resource",
+      "type": "registry:component",
+      "title": "Delete Resource",
+      "description": "A resource deletion dialog with typed confirmation and async feedback.",
+      "dependencies": ["@lucide/vue", "reka-ui"],
+      "registryDependencies": ["button", "inline-copy-text", "input"],
+      "files": [
+        {
+          "path": "registry/delete-resource/DeleteResource.vue",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/delete-resource/confirmation.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/delete-resource/index.ts",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
