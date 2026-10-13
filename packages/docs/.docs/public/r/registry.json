@@ -46,6 +46,32 @@
       ]
     },
     {
+      "name": "layer-card",
+      "type": "registry:component",
+      "title": "Layer Card",
+      "description": "A composable card with primary and secondary visual layers.",
+      "dependencies": ["reka-ui"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/layer-card/LayerCard.vue",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/layer-card/LayerCardPrimary.vue",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/layer-card/LayerCardSecondary.vue",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/layer-card/index.ts",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "inline-tip",
       "type": "registry:component",
       "title": "Inline Tip",

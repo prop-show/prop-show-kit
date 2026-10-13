@@ -27,7 +27,14 @@ it("starts the docs CLI and renders registry documentation with the installed Un
         if (match) resolve(match[1]);
       });
     });
-    for (const component of ["frame", "inline-tip", "status-badge", "copy", "filters"]) {
+    for (const component of [
+      "frame",
+      "layer-card",
+      "inline-tip",
+      "status-badge",
+      "copy",
+      "filters",
+    ]) {
       const response = await fetch(new URL(`components/${component}`, url), {
         signal: AbortSignal.timeout(10_000),
       });
