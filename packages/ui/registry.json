@@ -22,24 +22,6 @@
       ]
     },
     {
-      "name": "copy",
-      "type": "registry:component",
-      "title": "Copy",
-      "description": "An accessible copy button with clipboard feedback.",
-      "dependencies": ["@lucide/vue", "@vueuse/core"],
-      "registryDependencies": ["button", "tooltip"],
-      "files": [
-        {
-          "path": "registry/copy/Copy.vue",
-          "type": "registry:component"
-        },
-        {
-          "path": "registry/copy/index.ts",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
       "name": "status-badge",
       "type": "registry:component",
       "title": "Status Badge",
@@ -57,6 +39,24 @@
         },
         {
           "path": "registry/status-badge/index.ts",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "copy",
+      "type": "registry:component",
+      "title": "Copy",
+      "description": "An accessible copy button with clipboard feedback.",
+      "dependencies": ["@lucide/vue", "@vueuse/core"],
+      "registryDependencies": ["button", "tooltip"],
+      "files": [
+        {
+          "path": "registry/copy/Copy.vue",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/copy/index.ts",
           "type": "registry:component"
         }
       ]

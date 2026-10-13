@@ -23,7 +23,13 @@ process.env.UNDOCS_DIR = docsDir;
 const config = {
   root: pkgRoot,
   configFile: resolve(pkgRoot, "vite.config.ts"),
-  resolve: { alias: { "@/components/ui": resolve(docsLayer, "ui"), "@": docsLayer } },
+  resolve: {
+    alias: [
+      { find: "@/components/ui", replacement: resolve(docsLayer, "ui") },
+      { find: /^@\/components\/(.+)$/, replacement: resolve(docsDir, "../ui/registry/$1") },
+      { find: "@", replacement: docsLayer },
+    ],
+  },
   optimizeDeps: { include: ["vue"] },
   server: {
     port: Number(values.port || process.env.PORT || 3000),
