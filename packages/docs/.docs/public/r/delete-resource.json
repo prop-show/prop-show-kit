@@ -4,7 +4,7 @@
   "title": "Delete Resource",
   "description": "A resource deletion dialog with typed confirmation and async feedback.",
   "dependencies": ["@lucide/vue", "reka-ui"],
-  "registryDependencies": ["button", "inline-copy-text", "input"],
+  "registryDependencies": ["button", "https://kit.prop.show/r/inline-copy-text.json", "input"],
   "files": [
     {
       "path": "registry/delete-resource/DeleteResource.vue",

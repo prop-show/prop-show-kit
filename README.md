@@ -8,6 +8,18 @@
 
 **PropShow Kit** is an **add-on registry for [shadcn-vue](https://www.shadcn-vue.com/)** — companion components layered on top of the base library, the way an add-on extends the thing it plugs into. It follows the same **copy-and-paste** philosophy as shadcn-vue: there is no package to install, you copy the component source straight into your project and own it.
 
+### Local registry development
+
+By default, the registry uses the address and port resolved by the development server, preferring a network address when listening on `0.0.0.0` or `::`. When accessing it through a proxy or from another device, you can explicitly set an address reachable by the client:
+
+```sh
+vp run ui#build
+cd packages/docs
+node scripts/undocs.mjs dev . --host 0.0.0.0 --port 3000 --registry-url http://192.168.1.10:3000/
+```
+
+Replace the example IP with your development machine's address. `--registry-url` only affects the development registry's homepage and dependency URLs for components from this registry. Production builds use the `url` in `.config/docs.yaml`.
+
 ### Features
 
 - 🎨 **Shadcn-native** - Built on `reka-ui` and the same Tailwind CSS v4 tokens and shadcn-vue primitives you already use.
@@ -22,6 +34,18 @@
 ## 中文
 
 **PropShow Kit** 是 **[shadcn-vue](https://www.shadcn-vue.com/) 的附属组件库** —— 在基础组件库之上补充的配套组件，就像模组的附属模组一样。它同样遵循 **复制即用** 的理念：无需安装任何包，直接把组件源码复制进你的项目即可拥有它。
+
+### 本地 registry 调试
+
+默认使用开发服务器实际解析的地址和端口；监听 `0.0.0.0` 或 `::` 时优先使用网络地址。通过代理或其他设备访问时，可以显式指定客户端可访问的地址：
+
+```sh
+vp run ui#build
+cd packages/docs
+node scripts/undocs.mjs dev . --host 0.0.0.0 --port 3000 --registry-url http://192.168.1.10:3000/
+```
+
+将示例 IP 替换为开发机地址。`--registry-url` 仅影响开发 registry 的主页和自有组件依赖地址，生产构建使用 `.config/docs.yaml` 中的 `url`。
 
 ### 特性
 
