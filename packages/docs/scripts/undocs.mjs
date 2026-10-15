@@ -3,13 +3,19 @@ import { dirname, resolve } from "node:path";
 import { readFile } from "node:fs/promises";
 import { parseArgs } from "node:util";
 import { createBuilder, createServer } from "vite-plus";
+import { loadConfig } from "c12";
+import { updateRegistryURLs } from "./registry-urls.mjs";
 
 const {
   positionals: [command, dir = "."],
   values,
 } = parseArgs({
   allowPositionals: true,
-  options: { port: { type: "string" }, host: { type: "string" } },
+  options: {
+    port: { type: "string" },
+    host: { type: "string" },
+    "registry-url": { type: "string" },
+  },
 });
 if (command !== "dev" && command !== "build") throw new Error("Usage: undocs.mjs dev|build [dir]");
 
@@ -59,11 +65,16 @@ const config = {
 };
 
 if (command === "build") {
+  const { config: docsConfig } = await loadConfig({ name: "docs", cwd: docsDir });
+  await updateRegistryURLs(resolve(docsLayer, "public/r"), docsConfig.url);
   const builder = await createBuilder(config);
   await builder.buildApp();
 } else {
   const server = await createServer(config);
   await server.listen();
+  const homepage =
+    values["registry-url"] || server.resolvedUrls.network[0] || server.resolvedUrls.local[0];
+  await updateRegistryURLs(resolve(docsLayer, "public/r"), homepage);
   server.printUrls();
   const shutdown = () => server.close().finally(() => process.exit(0));
   process.on("SIGINT", shutdown);
