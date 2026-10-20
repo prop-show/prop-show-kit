@@ -8,7 +8,7 @@
     "build": "vp run docs#build",
     "generate": "vp run docs#build",
     "deploy": "wrangler deploy",
-    "deploy:preview": "wrangler versions upload",
+    "deploy:preview": "wrangler preview",
     "ready": "vp check && vp run ui#test && vp test run --passWithNoTests && vp run build",
     "prepare": "vp config"
   },

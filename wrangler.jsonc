@@ -6,4 +6,5 @@
     "directory": "packages/docs/.output/public",
     "html_handling": "drop-trailing-slash",
   },
+  "previews": {},
 }
