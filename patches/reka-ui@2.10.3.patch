@@ -1,0 +1,105 @@
+diff --git a/dist/shared/useBodyScrollLock.cjs b/dist/shared/useBodyScrollLock.cjs
+index 29bd24314e544035fd8f9e0c2c820be263784c5d..a7a57de399583706a8d0e3091bb54afa8b0a456a 100644
+--- a/dist/shared/useBodyScrollLock.cjs
++++ b/dist/shared/useBodyScrollLock.cjs
+@@ -7,7 +7,8 @@ const __vueuse_shared = require_rolldown_runtime.__toESM(require("@vueuse/shared
+ const defu = require_rolldown_runtime.__toESM(require("defu"));
+ 
+ //#region src/shared/useBodyScrollLock.ts
+-const useBodyLockStackCount = (0, __vueuse_core.createSharedComposable)(() => {
++const createBodyLockStackCount = () => (0, __vueuse_core.createSharedComposable)((document) => {
++	const window = document.defaultView;
+ 	const map = (0, vue.ref)(/* @__PURE__ */ new Map());
+ 	const initialOverflow = (0, vue.ref)();
+ 	const locked = (0, vue.computed)(() => {
+@@ -62,9 +63,18 @@ const useBodyLockStackCount = (0, __vueuse_core.createSharedComposable)(() => {
+ 	});
+ 	return map;
+ });
++const bodyLockStacks = new WeakMap();
+ function useBodyScrollLock(initialState) {
++	if (!__vueuse_shared.isClient) return (0, vue.ref)(initialState ?? false);
++	const target = require_ConfigProvider_ConfigProvider.injectConfigProviderContext({}).teleportTo?.value;
++	const document = (typeof target === "string" ? globalThis.document.querySelector(target) : target)?.ownerDocument ?? globalThis.document;
++	let useBodyLockStackCount = bodyLockStacks.get(document);
++	if (!useBodyLockStackCount) {
++		useBodyLockStackCount = createBodyLockStackCount();
++		bodyLockStacks.set(document, useBodyLockStackCount);
++	}
+ 	const id = Math.random().toString(36).substring(2, 7);
+-	const map = useBodyLockStackCount();
++	const map = useBodyLockStackCount(document);
+ 	map.value.set(id, initialState ?? false);
+ 	const locked = (0, vue.computed)({
+ 		get: () => map.value.get(id) ?? false,
+diff --git a/dist/shared/useBodyScrollLock.js b/dist/shared/useBodyScrollLock.js
+index 9f8cda84294c4c4fd58802fa19646e89283f8fde..8041a30052c9be6af12fe6e1260c2cbb6fc1380d 100644
+--- a/dist/shared/useBodyScrollLock.js
++++ b/dist/shared/useBodyScrollLock.js
+@@ -6,7 +6,8 @@ import { isClient, isIOS, tryOnBeforeUnmount } from "@vueuse/shared";
+ import { defu } from "defu";
+ 
+ //#region src/shared/useBodyScrollLock.ts
+-const useBodyLockStackCount = createSharedComposable(() => {
++const createBodyLockStackCount = () => createSharedComposable((document) => {
++	const window = document.defaultView;
+ 	const map = ref(/* @__PURE__ */ new Map());
+ 	const initialOverflow = ref();
+ 	const locked = computed(() => {
+@@ -61,9 +62,18 @@ const useBodyLockStackCount = createSharedComposable(() => {
+ 	});
+ 	return map;
+ });
++const bodyLockStacks = new WeakMap();
+ function useBodyScrollLock(initialState) {
++	if (!isClient) return ref(initialState ?? false);
++	const target = injectConfigProviderContext({}).teleportTo?.value;
++	const document = (typeof target === "string" ? globalThis.document.querySelector(target) : target)?.ownerDocument ?? globalThis.document;
++	let useBodyLockStackCount = bodyLockStacks.get(document);
++	if (!useBodyLockStackCount) {
++		useBodyLockStackCount = createBodyLockStackCount();
++		bodyLockStacks.set(document, useBodyLockStackCount);
++	}
+ 	const id = Math.random().toString(36).substring(2, 7);
+-	const map = useBodyLockStackCount();
++	const map = useBodyLockStackCount(document);
+ 	map.value.set(id, initialState ?? false);
+ 	const locked = computed({
+ 		get: () => map.value.get(id) ?? false,
+diff --git a/src/shared/useBodyScrollLock.ts b/src/shared/useBodyScrollLock.ts
+index 3ed2a8b1dc9d895ee2681b969c869655ae10673a..c13ff9f1faeac836bd4c7ebf302f140fd069ca42 100644
+--- a/src/shared/useBodyScrollLock.ts
++++ b/src/shared/useBodyScrollLock.ts
+@@ -9,7 +9,8 @@ import { computed, nextTick, ref, watch } from 'vue'
+ import { injectConfigProviderContext } from '@/ConfigProvider/ConfigProvider.vue'
+ import { context as dismissableLayerContext } from '@/DismissableLayer/context'
+ 
+-const useBodyLockStackCount = createSharedComposable(() => {
++const createBodyLockStackCount = () => createSharedComposable((document: Document) => {
++  const window = document.defaultView!
+   const map = ref<Map<string, boolean>>(new Map())
+   const initialOverflow = ref<string | undefined>()
+ 
+@@ -97,9 +98,21 @@ const useBodyLockStackCount = createSharedComposable(() => {
+   return map
+ })
+ 
++const bodyLockStacks = new WeakMap<Document, ReturnType<typeof createBodyLockStackCount>>()
++
+ export function useBodyScrollLock(initialState?: boolean | undefined) {
++  if (!isClient)
++    return ref(initialState ?? false)
++
++  const target = injectConfigProviderContext({}).teleportTo?.value
++  const document = (typeof target === 'string' ? globalThis.document.querySelector(target) : target)?.ownerDocument ?? globalThis.document
++  let useBodyLockStackCount = bodyLockStacks.get(document)
++  if (!useBodyLockStackCount) {
++    useBodyLockStackCount = createBodyLockStackCount()
++    bodyLockStacks.set(document, useBodyLockStackCount)
++  }
+   const id = Math.random().toString(36).substring(2, 7) // just simple random id, need not to be cryptographically secure
+-  const map = useBodyLockStackCount()
++  const map = useBodyLockStackCount(document)
+ 
+   map.value.set(id, initialState ?? false)
+ 

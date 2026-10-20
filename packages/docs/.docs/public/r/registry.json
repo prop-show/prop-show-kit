@@ -4,6 +4,74 @@
   "homepage": "https://kit.prop.show/",
   "items": [
     {
+      "name": "project-overview",
+      "type": "registry:block",
+      "title": "Project Overview",
+      "description": "A responsive workspace overview with reporting periods, metrics and deployment status.",
+      "dependencies": ["@lucide/vue"],
+      "registryDependencies": [
+        "button",
+        "https://kit.prop.show/r/frame.json",
+        "https://kit.prop.show/r/status-badge.json"
+      ],
+      "files": [
+        {
+          "path": "registry/project-overview/ProjectOverview.vue",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/project-overview/index.ts",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "team-members",
+      "type": "registry:block",
+      "title": "Team Members",
+      "description": "A searchable team directory with an invitation dialog and member status.",
+      "dependencies": ["@lucide/vue"],
+      "registryDependencies": [
+        "button",
+        "input",
+        "https://kit.prop.show/r/frame.json",
+        "https://kit.prop.show/r/status-badge.json",
+        "https://kit.prop.show/r/layer-dialog.json"
+      ],
+      "files": [
+        {
+          "path": "registry/team-members/TeamMembers.vue",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/team-members/InviteMemberDialog.vue",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/team-members/index.ts",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "workspace-settings",
+      "type": "registry:block",
+      "title": "Workspace Settings",
+      "description": "A workspace settings form with notification preferences, save feedback and discard behavior.",
+      "dependencies": ["@lucide/vue"],
+      "registryDependencies": ["button", "input", "https://kit.prop.show/r/frame.json"],
+      "files": [
+        {
+          "path": "registry/workspace-settings/WorkspaceSettings.vue",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/workspace-settings/index.ts",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "frame",
       "type": "registry:component",
       "title": "Frame",

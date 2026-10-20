@@ -16,6 +16,7 @@
     "@lucide/vue": "^1.31.0",
     "@nuxt/ui": "4.11.0",
     "@types/node": "catalog:",
+    "@unhead/vue": "catalog:",
     "@vueuse/core": "^14.4.0",
     "c12": "4.0.0-beta.5",
     "class-variance-authority": "^0.7.1",

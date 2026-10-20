@@ -6,6 +6,7 @@ import { highlightCode } from "undocs/src/server/content/highlight.ts";
 const props = withDefaults(
   defineProps<{
     path: string;
+    code?: string;
     filename?: string | null;
     collapseAfter?: number;
     hideHeader?: boolean;
@@ -23,7 +24,7 @@ const filename = computed(() =>
   props.filename === undefined ? props.path.split("/").at(-1) : props.filename,
 );
 const source = computed(() => {
-  const value = sources[`../../../ui/registry/${props.path}`];
+  const value = props.code ?? sources[`../../../ui/registry/${props.path}`];
   if (!value) throw new Error(`Unknown registry source: ${props.path}`);
   return value;
 });

@@ -8,6 +8,7 @@ catalogMode: prefer
 catalog:
   "@iconify-json/vscode-icons": 1.2.75
   "@types/node": ^24.19.1
+  "@unhead/vue": 3.3.2
   extend: 3.0.2
   reka-ui: 2.10.3
   typescript: ^7.0.2
@@ -29,4 +30,6 @@ allowBuilds:
 minimumReleaseAgeExclude:
   - "@iconify-json/lucide@1.2.125"
 patchedDependencies:
+  # Modal scroll locks must follow preview portals into their iframe document.
+  reka-ui@2.10.3: patches/reka-ui@2.10.3.patch
   undocs-nightly: patches/undocs-nightly.patch
