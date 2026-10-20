@@ -6,7 +6,11 @@ import { ConfigProvider } from "reka-ui";
 defineOptions({ inheritAttrs: false });
 withDefaults(defineProps<{ height?: number; fullscreen?: boolean }>(), { height: 240 });
 const mounted = shallowRef(false);
+const srcdoc = shallowRef("");
 onMounted(() => {
+  const scheme = document.documentElement.classList.contains("dark") ? "dark" : "light";
+  // Set the canvas color before the iframe loads its copied styles.
+  srcdoc.value = `<!doctype html><html style="color-scheme: ${scheme}"><head></head><body></body></html>`;
   mounted.value = true;
 });
 const target = shallowRef<HTMLElement>();
@@ -26,6 +30,9 @@ function initialize(event: Event) {
   };
   const syncTheme = () => {
     doc.documentElement.className = document.documentElement.className;
+    doc.documentElement.style.colorScheme = document.documentElement.classList.contains("dark")
+      ? "dark"
+      : "light";
   };
   syncStyles();
   syncTheme();
@@ -55,9 +62,12 @@ onBeforeUnmount(() => {
     v-if="mounted"
     v-bind="$attrs"
     title="Component preview"
-    srcdoc="<!doctype html><html><head></head><body></body></html>"
-    class="block w-full border-0"
-    :style="{ height: fullscreen ? '100vh' : `${height}px` }"
+    :srcdoc="srcdoc"
+    class="block w-full border-0 bg-background [color-scheme:light] dark:[color-scheme:dark]"
+    :style="{
+      height: fullscreen ? '100vh' : `${height}px`,
+      visibility: target ? 'visible' : 'hidden',
+    }"
     @load="initialize"
   />
   <Teleport v-if="target" :to="target">
