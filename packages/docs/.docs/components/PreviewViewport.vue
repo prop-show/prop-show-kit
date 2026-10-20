@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, shallowRef } from "vue";
+import { nextTick, onBeforeUnmount, onMounted, shallowRef } from "vue";
 import { ConfigProvider } from "reka-ui";
 
 // Attributes belong to the iframe, not the teleported preview content.
@@ -14,19 +14,29 @@ onMounted(() => {
   mounted.value = true;
 });
 const target = shallowRef<HTMLElement>();
+const ready = shallowRef(false);
 let styles: MutationObserver | undefined;
 let theme: MutationObserver | undefined;
 
-function initialize(event: Event) {
+async function initialize(event: Event) {
   const frame = event.target as HTMLIFrameElement;
   const doc = frame.contentDocument;
   if (!doc) return;
   const syncStyles = () => {
-    doc.head.replaceChildren(
-      ...Array.from(document.head.querySelectorAll('style, link[rel="stylesheet"]')).map((node) =>
-        node.cloneNode(true),
-      ),
+    const nodes = Array.from(document.head.querySelectorAll('style, link[rel="stylesheet"]')).map(
+      (node) => node.cloneNode(true) as HTMLElement,
     );
+    const loaded = nodes
+      .filter((node) => node.tagName === "LINK")
+      .map(
+        (node) =>
+          new Promise<void>((resolve) => {
+            node.addEventListener("load", () => resolve(), { once: true });
+            node.addEventListener("error", () => resolve(), { once: true });
+          }),
+      );
+    doc.head.replaceChildren(...nodes);
+    return Promise.all(loaded);
   };
   const syncTheme = () => {
     doc.documentElement.className = document.documentElement.className;
@@ -34,21 +44,28 @@ function initialize(event: Event) {
       ? "dark"
       : "light";
   };
-  syncStyles();
+  ready.value = false;
+  const stylesLoaded = syncStyles();
   syncTheme();
   doc.documentElement.style.overscrollBehaviorY = "contain";
   doc.body.style.overscrollBehaviorY = "contain";
   doc.body.style.margin = "0";
+  theme?.disconnect();
+  theme = new MutationObserver(syncTheme);
+  theme.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+  await stylesLoaded;
+  if (!frame.isConnected || frame.contentDocument !== doc) return;
   const container = doc.createElement("div");
   container.className = "registry-preview";
   doc.body.append(container);
   target.value = container;
   styles?.disconnect();
-  styles = new MutationObserver(syncStyles);
+  styles = new MutationObserver(() => {
+    void syncStyles();
+  });
   styles.observe(document.head, { childList: true, subtree: true, characterData: true });
-  theme?.disconnect();
-  theme = new MutationObserver(syncTheme);
-  theme.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+  await nextTick();
+  if (frame.isConnected && frame.contentDocument === doc) ready.value = true;
 }
 
 onBeforeUnmount(() => {
@@ -66,7 +83,7 @@ onBeforeUnmount(() => {
     class="block w-full border-0 bg-background [color-scheme:light] dark:[color-scheme:dark]"
     :style="{
       height: fullscreen ? '100vh' : `${height}px`,
-      visibility: target ? 'visible' : 'hidden',
+      visibility: ready ? 'visible' : 'hidden',
     }"
     @load="initialize"
   />
