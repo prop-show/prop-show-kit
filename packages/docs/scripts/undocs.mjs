@@ -31,6 +31,7 @@ const config = {
   configFile: resolve(pkgRoot, "vite.config.ts"),
   resolve: {
     alias: [
+      { find: "@app/error.vue", replacement: resolve(docsLayer, "error.vue") },
       { find: "@/components/ui", replacement: resolve(docsLayer, "ui") },
       { find: /^@\/components\/(.+)$/, replacement: resolve(docsDir, "../ui/registry/$1") },
       { find: "@", replacement: docsLayer },

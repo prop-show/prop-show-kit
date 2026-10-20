@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "noEmit": true,
+    "target": "ES2022",
     "module": "preserve",
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
@@ -8,8 +9,10 @@
     "esModuleInterop": true,
     "paths": {
       "@/components/ui/*": ["./packages/docs/.docs/ui/*"],
+      "@/components/*": ["./packages/ui/registry/*"],
       "@/*": ["./packages/docs/.docs/*"]
     },
     "types": ["vite/client", "node"]
-  }
+  },
+  "include": ["**/*.ts", "**/*.vue", "packages/docs/.docs/**/*.vue"]
 }

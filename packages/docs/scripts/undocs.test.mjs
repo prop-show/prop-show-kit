@@ -66,6 +66,8 @@ it.each([undefined, "https://registry.example.test/"])(
         expect(response.status, output).toBe(200);
         const html = await response.text();
         expect(html).toContain("Component Source");
+        expect(html).not.toContain('aria-label="Component example"');
+        expect(html).not.toContain('aria-label="Resize preview width"');
         expect(html).toContain("prose-code-group");
         expect(html).toContain(`https://kit.prop.show/r/${component}.json`);
         const registry = await fetch(new URL(`r/${component}.json`, url));
@@ -73,6 +75,34 @@ it.each([undefined, "https://registry.example.test/"])(
         expect((await registry.json()).name).toBe(component);
       }
       const homepage = registryURL || url;
+      for (const block of ["project-overview", "team-members", "workspace-settings"]) {
+        const response = await fetch(new URL(`blocks/${block}`, url), {
+          signal: AbortSignal.timeout(10_000),
+        });
+        expect(response.status, output).toBe(200);
+        const html = await response.text();
+        expect(html).toContain('aria-label="Component example"');
+        expect(html).toContain('aria-label="Resize preview width"');
+        expect(html).toContain(`https://kit.prop.show/r/${block}.json`);
+        const registry = await fetch(new URL(`r/${block}.json`, url)).then((response) => {
+          expect(response.status).toBe(200);
+          return response.json();
+        });
+        expect(registry.name).toBe(block);
+        expect(registry.type).toBe("registry:block");
+        expect(registry.registryDependencies).toContain(`${homepage}r/frame.json`);
+        expect(registry.files.some((file) => file.path.endsWith("/index.ts"))).toBe(true);
+      }
+      for (const missing of ["404", "components/missing-component", "blog/missing-post"]) {
+        const response = await fetch(new URL(missing, url));
+        expect(response.status, output).toBe(404);
+        const html = await response.text();
+        expect(html).toContain("This piece is missing.");
+        expect(html).toContain('data-slot="not-found-illustration"');
+        expect(html).toContain("Back to home");
+        expect(html).toContain("Browse components");
+        expect(html).toContain('name="robots" content="noindex, follow"');
+      }
       const index = await fetch(new URL("r/registry.json", url)).then((response) =>
         response.json(),
       );

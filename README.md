@@ -20,6 +20,20 @@ node scripts/undocs.mjs dev . --host 0.0.0.0 --port 3000 --registry-url http://1
 
 Replace the example IP with your development machine's address. `--registry-url` only affects the development registry's homepage and dependency URLs for components from this registry. Production builds use the `url` in `.config/docs.yaml`.
 
+### Block and page previews
+
+Regular components use the lightweight `PreviewFrame`. Block and page examples can opt into `ComponentPreview`, which supports resizing by dragging or using the arrow keys, PC (1440px) / iPad (768px) / Phone (390px) presets, fullscreen, reset, Preview / Code tabs, and install command copying. Previews render in a separate iframe so responsive media queries follow the preview width. The width stays within the available container space, including when a device preset is selected.
+
+When adding a block or page example, specify its registry source path and installation name:
+
+```vue
+<ComponentPreview source="frame/Frame.vue" registry="frame">
+  <YourExample />
+</ComponentPreview>
+```
+
+The optional `height` prop sets the preview viewport height (240px by default); taller content scrolls inside the iframe. Reset exits fullscreen, restores automatic width, and returns to Preview. Switching tabs or sizes preserves the example's interactive state.
+
 ### Features
 
 - 🎨 **Shadcn-native** - Built on `reka-ui` and the same Tailwind CSS v4 tokens and shadcn-vue primitives you already use.
@@ -46,6 +60,20 @@ node scripts/undocs.mjs dev . --host 0.0.0.0 --port 3000 --registry-url http://1
 ```
 
 将示例 IP 替换为开发机地址。`--registry-url` 仅影响开发 registry 的主页和自有组件依赖地址，生产构建使用 `.config/docs.yaml` 中的 `url`。
+
+### Block 和页面预览
+
+普通 components 继续使用轻量的 `PreviewFrame` 展示。后续 block 和页面示例按需使用 `ComponentPreview`，支持拖拽或方向键调整宽度、PC（1440px）/ iPad（768px）/ Phone（390px）预设、全屏、恢复默认、Preview / Code 标签及安装命令复制。预览在独立 iframe 中渲染，响应式媒体查询按预览宽度生效；预览宽度始终限制在容器可用空间内，设备预设也会按可用宽度收缩。
+
+新增 block 或页面示例时指定 registry 源码路径及安装名称：
+
+```vue
+<ComponentPreview source="frame/Frame.vue" registry="frame">
+  <YourExample />
+</ComponentPreview>
+```
+
+可选 `height` 属性设置预览视口高度（默认 240px），超出的内容在 iframe 内滚动。恢复默认会退出全屏、恢复自动宽度并切回 Preview；切换标签或尺寸会保留示例交互状态。
 
 ### 特性
 
