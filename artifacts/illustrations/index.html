@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Empty state illustrations</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 32px;
+        background: #f4f4f5;
+        color: #52525b;
+        font:
+          13px/1.5 ui-sans-serif,
+          system-ui,
+          sans-serif;
+      }
+      h1 {
+        margin: 0 0 4px;
+        font-size: 18px;
+        color: #18181b;
+      }
+      p {
+        margin: 0 0 24px;
+      }
+      table {
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        padding: 10px 14px;
+        text-align: left;
+        vertical-align: middle;
+      }
+      thead th {
+        font-weight: 500;
+        color: #71717a;
+      }
+      tbody th {
+        font:
+          12px/1 ui-monospace,
+          monospace;
+        color: #18181b;
+      }
+      td.dark {
+        background: #26262b;
+      }
+      td svg {
+        display: block;
+        width: 160px;
+        height: 120px;
+      }
+      code {
+        font-size: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Empty state illustrations</h1>
+    <p>
+      One standalone inline SVG per component, 160&times;120, each with its own colour scope and id
+      prefix. Files live in <code>svg/</code>; regenerate with <code>node generate.mjs</code>.
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th>Component</th>
+          <th>light</th>
+          <th>dark</th>
+          <th>auto</th>
+        </tr>
+      </thead>
+      <tbody id="rows"></tbody>
+    </table>
+    <script type="module">
+      // names.json is written by generate.mjs, so new scenes show up here automatically.
+      const names = await fetch("names.json").then((response) => response.json());
+      for (const name of names) {
+        const markup = await fetch(`svg/${name}.svg`).then((response) => response.text());
+        const row = document.createElement("tr");
+        row.innerHTML = `<th>${name}</th>`;
+        for (const theme of ["light", "dark", "auto"]) {
+          const cell = document.createElement("td");
+          if (theme === "dark") cell.className = "dark";
+          cell.innerHTML = markup.replace('data-theme="auto"', `data-theme="${theme}"`);
+          row.append(cell);
+        }
+        document.querySelector("#rows").append(row);
+      }
+    </script>
+  </body>
+</html>
