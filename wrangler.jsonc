@@ -2,6 +2,14 @@
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "prop-show-kit",
   "compatibility_date": "2026-08-29",
+  // Runs before `wrangler deploy` AND `wrangler preview`, so even a fresh CI
+  // checkout (where the gitignored packages/docs/.output does not exist yet)
+  // produces assets.directory itself. With the build here, the Cloudflare
+  // dashboard's Deploy and Preview commands can stay at their defaults for
+  // every branch instead of being reconfigured per branch.
+  "build": {
+    "command": "pnpm build",
+  },
   "assets": {
     "directory": "packages/docs/.output/public",
     "html_handling": "drop-trailing-slash",
