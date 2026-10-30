@@ -586,6 +586,67 @@
       ],
       "dependencies": ["@lucide/vue"],
       "registryDependencies": ["button"]
+    },
+    {
+      "name": "logo-cloud-grid",
+      "type": "registry:block",
+      "title": "Grid Logo Cloud",
+      "description": "A rounded partner grid with a framed surface and balanced spacing.",
+      "files": [
+        {
+          "path": "registry/logo-cloud/LogoCloudGrid.vue",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "logo-cloud-decorated",
+      "type": "registry:block",
+      "title": "Decorated Logo Cloud",
+      "description": "A checkerboard logo grid with decorative corner accents.",
+      "files": [
+        {
+          "path": "registry/logo-cloud/LogoCloudDecorated.vue",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": ["@lucide/vue"]
+    },
+    {
+      "name": "logo-cloud-marquee",
+      "type": "registry:block",
+      "title": "Marquee Logo Cloud",
+      "description": "A continuous logo marquee with fading edges.",
+      "files": [
+        {
+          "path": "registry/logo-cloud/LogoCloudMarquee.vue",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "logo-cloud-blur",
+      "type": "registry:block",
+      "title": "Blur Logo Cloud",
+      "description": "A framed logo marquee with progressively blurred edges.",
+      "files": [
+        {
+          "path": "registry/logo-cloud/LogoCloudBlur.vue",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "logo-cloud-wrap",
+      "type": "registry:block",
+      "title": "Wrap Logo Cloud",
+      "description": "A centered logo cloud that wraps naturally across screen sizes.",
+      "files": [
+        {
+          "path": "registry/logo-cloud/LogoCloudWrap.vue",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
