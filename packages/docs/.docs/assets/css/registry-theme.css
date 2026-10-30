@@ -65,6 +65,16 @@
   }
 }
 
+/* Pricing previews own their spacing rather than inheriting Markdown rhythm. */
+.registry-preview [data-slot="pricing-plan"] :is(p, ul, li, h3) {
+  margin: 0;
+}
+
+.registry-preview [data-slot="pricing-plan"] ul {
+  padding: 0;
+  list-style: none;
+}
+
 /* Keep document typography from changing the Frame previews. */
 .registry-preview [data-slot="frame-title"] {
   margin: 0;

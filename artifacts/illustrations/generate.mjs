@@ -281,6 +281,51 @@ const scenes = {
     <g class="PREFIX-cta">${rect(92, 87, 40, 12, 6, "accent")}${icon("check", 97, 89.5, 7, "on-accent")}${line(107, 91, 16, 4, "on-accent")}</g>`,
   },
 
+  "pricing-plan": {
+    aria: "A pricing card with a price, included features and a choose-plan action",
+    back: () => BACK(45, 16, 76, 65),
+    surface: () => PAGE(38, 26, 84, 78),
+    content: () => `
+    ${title(46, 34, 28)}
+    ${line(46, 44, 58)}
+    ${title(46, 55, 30, 8)}
+    ${line(80, 59, 20)}
+    ${icon("check", 46, 70, 8)}${line(58, 72, 44)}
+    ${icon("check", 46, 80, 8)}${line(58, 82, 34)}
+    <g class="PREFIX-cta">${rect(46, 92, 68, 8, 4, "accent")}${line(66, 94, 28, 4, "on-accent")}</g>`,
+  },
+
+  "pricing-plans": {
+    aria: "Two pricing plans side by side with one recommended plan action",
+    back: () => BACK(28, 18, 104, 65),
+    surface: () => `${PAGE(20, 28, 57, 74)}${PAGE(83, 28, 57, 74)}`,
+    content: () =>
+      [26, 89]
+        .map(
+          (x, index) => `
+    ${title(x, 36, 27)}
+    ${line(x, 46, 37)}
+    ${title(x, 57, 23, 7)}
+    ${icon("check", x, 71, 7)}${line(x + 11, 73, 27)}
+    ${icon("check", x, 80, 7)}${line(x + 11, 82, 21)}
+    <g class="${index ? "PREFIX-cta" : ""}">${rect(x, 92, 45, 6, 3, index ? "accent" : "cell")}${line(x + 12, 93, 21, 4, index ? "on-accent" : "bar-strong")}</g>`,
+        )
+        .join(""),
+  },
+
+  "pricing-table": {
+    aria: "A pricing comparison table with two tiers and included feature checkmarks",
+    back: () => BACK(34, 16, 100, 60),
+    surface: () => PAGE(22, 28, 116, 74),
+    content: () => `
+    ${rect(98, 34, 34, 62, 6, "cell")}
+    ${title(68, 36, 21)}${title(104, 36, 21)}
+    ${title(68, 47, 17, 7)}${title(104, 47, 17, 7)}
+    ${rect(68, 59, 23, 7, 3.5, "back")}
+    <g class="PREFIX-cta">${rect(104, 59, 23, 7, 3.5, "accent")}</g>
+    ${[0, 1, 2].map((i) => `${line(28, 73 + i * 9, 28)}${icon("check", 75, 71 + i * 9, 8)}${icon("check", 111, 71 + i * 9, 8)}`).join("")}`,
+  },
+
   "bookmarks-empty": {
     aria: "A browser window showing an empty bookmarks folder",
     back: () => BACK(40, 20, 100, 54),
