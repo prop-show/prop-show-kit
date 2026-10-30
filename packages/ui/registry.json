@@ -453,6 +453,72 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "testimonial-centered",
+      "type": "registry:block",
+      "title": "Centered Testimonial",
+      "description": "A centered quote with a company mark and author portrait.",
+      "files": [
+        {
+          "path": "registry/testimonials/TestimonialCentered.vue",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["avatar"]
+    },
+    {
+      "name": "testimonial-split",
+      "type": "registry:block",
+      "title": "Split Testimonial",
+      "description": "A masked portrait beside a compact quote with fading dividers.",
+      "files": [
+        {
+          "path": "registry/testimonials/TestimonialSplit.vue",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["avatar"]
+    },
+    {
+      "name": "testimonial-staggered",
+      "type": "registry:block",
+      "title": "Staggered Testimonial",
+      "description": "Staggered quote cards with extended borders and corner accents.",
+      "files": [
+        {
+          "path": "registry/testimonials/TestimonialStaggered.vue",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["avatar"],
+      "dependencies": ["@lucide/vue"]
+    },
+    {
+      "name": "testimonial-split-grid",
+      "type": "registry:block",
+      "title": "Split Grid Testimonial",
+      "description": "An asymmetric quote grid with full-width dividers.",
+      "files": [
+        {
+          "path": "registry/testimonials/TestimonialSplitGrid.vue",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": ["@lucide/vue"]
+    },
+    {
+      "name": "testimonial-wall",
+      "type": "registry:block",
+      "title": "Wall Testimonial",
+      "description": "A responsive testimonial wall with avatars and subtle grid patterns.",
+      "files": [
+        {
+          "path": "registry/testimonials/TestimonialWall.vue",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["avatar"]
     }
   ]
 }
