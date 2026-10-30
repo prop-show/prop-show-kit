@@ -1,0 +1,15 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "cta-split",
+  "title": "Split CTA",
+  "description": "A split call to action with full-width dividers.",
+  "registryDependencies": ["button"],
+  "files": [
+    {
+      "path": "registry/cta/CtaSplit.vue",
+      "content": "<script setup lang=\"ts\">\nimport { Button } from \"@/components/ui/button\";\n\nwithDefaults(\n  defineProps<{\n    title?: string;\n    primaryLabel?: string;\n    secondaryLabel?: string;\n  }>(),\n  {\n    title: \"Let your plans shape the future.\",\n    primaryLabel: \"Get Started\",\n    secondaryLabel: \"Contact Sales\",\n  },\n);\nconst emit = defineEmits<{ contact: []; start: [] }>();\n</script>\n\n<template>\n  <section\n    class=\"relative mx-auto flex w-full max-w-3xl flex-col justify-between border-x md:flex-row\"\n  >\n    <span aria-hidden=\"true\" class=\"pointer-events-none absolute inset-x-[-2rem] top-0 border-t\" />\n\n    <div class=\"border-b p-4 md:border-b-0\">\n      <h2 class=\"text-center text-lg font-bold md:text-left md:text-2xl\">{{ title }}</h2>\n    </div>\n\n    <div class=\"flex items-center justify-center gap-2 p-4 md:border-l\">\n      <slot name=\"actions\">\n        <Button type=\"button\" variant=\"secondary\" @click=\"emit('contact')\">{{\n          secondaryLabel\n        }}</Button>\n        <Button type=\"button\" @click=\"emit('start')\">{{ primaryLabel }}</Button>\n      </slot>\n    </div>\n\n    <span\n      aria-hidden=\"true\"\n      class=\"pointer-events-none absolute inset-x-[-2rem] bottom-0 border-t\"\n    />\n  </section>\n</template>\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:block"
+}

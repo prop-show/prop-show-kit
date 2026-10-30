@@ -11,9 +11,18 @@
       "dependencies": ["@lucide/vue", "@vueuse/core"],
       "registryDependencies": ["button", "badge"],
       "files": [
-        { "path": "registry/pricing-plan/PricingPlan.vue", "type": "registry:component" },
-        { "path": "registry/pricing-plan/PricingPlanPrice.vue", "type": "registry:component" },
-        { "path": "registry/pricing-plan/index.ts", "type": "registry:component" }
+        {
+          "path": "registry/pricing-plan/PricingPlan.vue",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/pricing-plan/PricingPlanPrice.vue",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/pricing-plan/index.ts",
+          "type": "registry:component"
+        }
       ]
     },
     {
@@ -23,8 +32,14 @@
       "description": "A responsive collection of pricing plans with automatic columns.",
       "registryDependencies": ["https://kit.prop.show/r/pricing-plan.json"],
       "files": [
-        { "path": "registry/pricing-plans/PricingPlans.vue", "type": "registry:component" },
-        { "path": "registry/pricing-plans/index.ts", "type": "registry:component" }
+        {
+          "path": "registry/pricing-plans/PricingPlans.vue",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/pricing-plans/index.ts",
+          "type": "registry:component"
+        }
       ]
     },
     {
@@ -35,13 +50,22 @@
       "dependencies": ["@lucide/vue", "@vueuse/core"],
       "registryDependencies": ["https://kit.prop.show/r/pricing-plan.json"],
       "files": [
-        { "path": "registry/pricing-table/PricingTable.vue", "type": "registry:component" },
-        { "path": "registry/pricing-table/PricingTableTier.vue", "type": "registry:component" },
+        {
+          "path": "registry/pricing-table/PricingTable.vue",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/pricing-table/PricingTableTier.vue",
+          "type": "registry:component"
+        },
         {
           "path": "registry/pricing-table/PricingTableFeatureValue.vue",
           "type": "registry:component"
         },
-        { "path": "registry/pricing-table/index.ts", "type": "registry:component" }
+        {
+          "path": "registry/pricing-table/index.ts",
+          "type": "registry:component"
+        }
       ]
     },
     {
@@ -56,8 +80,14 @@
         "https://kit.prop.show/r/status-badge.json"
       ],
       "files": [
-        { "path": "registry/project-overview/ProjectOverview.vue", "type": "registry:component" },
-        { "path": "registry/project-overview/index.ts", "type": "registry:component" }
+        {
+          "path": "registry/project-overview/ProjectOverview.vue",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/project-overview/index.ts",
+          "type": "registry:component"
+        }
       ]
     },
     {
@@ -74,9 +104,18 @@
         "https://kit.prop.show/r/layer-dialog.json"
       ],
       "files": [
-        { "path": "registry/team-members/TeamMembers.vue", "type": "registry:component" },
-        { "path": "registry/team-members/InviteMemberDialog.vue", "type": "registry:component" },
-        { "path": "registry/team-members/index.ts", "type": "registry:component" }
+        {
+          "path": "registry/team-members/TeamMembers.vue",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/team-members/InviteMemberDialog.vue",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/team-members/index.ts",
+          "type": "registry:component"
+        }
       ]
     },
     {
@@ -91,7 +130,10 @@
           "path": "registry/workspace-settings/WorkspaceSettings.vue",
           "type": "registry:component"
         },
-        { "path": "registry/workspace-settings/index.ts", "type": "registry:component" }
+        {
+          "path": "registry/workspace-settings/index.ts",
+          "type": "registry:component"
+        }
       ]
     },
     {
@@ -339,6 +381,75 @@
         },
         {
           "path": "registry/delete-resource/index.ts",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "cta-split",
+      "type": "registry:block",
+      "title": "Split CTA",
+      "description": "A split call to action with full-width dividers.",
+      "registryDependencies": ["button"],
+      "files": [
+        {
+          "path": "registry/cta/CtaSplit.vue",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "cta-centered",
+      "type": "registry:block",
+      "title": "Centered CTA",
+      "description": "A centered call to action with a secondary action band.",
+      "dependencies": ["@lucide/vue"],
+      "registryDependencies": ["button"],
+      "files": [
+        {
+          "path": "registry/cta/CtaCentered.vue",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "cta-corner-accent",
+      "type": "registry:block",
+      "title": "Corner Accent CTA",
+      "description": "An editorial call to action with corner accents.",
+      "dependencies": ["@lucide/vue"],
+      "registryDependencies": ["button"],
+      "files": [
+        {
+          "path": "registry/cta/CtaCornerAccent.vue",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "cta-trial-card",
+      "type": "registry:block",
+      "title": "Trial Card CTA",
+      "description": "A rounded call to action with trial reassurance.",
+      "dependencies": ["@lucide/vue"],
+      "registryDependencies": ["button"],
+      "files": [
+        {
+          "path": "registry/cta/CtaTrialCard.vue",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "cta-newsletter",
+      "type": "registry:block",
+      "title": "Newsletter CTA",
+      "description": "A newsletter signup with email validation and social proof.",
+      "dependencies": ["@lucide/vue"],
+      "registryDependencies": ["button", "input-group"],
+      "files": [
+        {
+          "path": "registry/cta/CtaNewsletter.vue",
           "type": "registry:component"
         }
       ]
