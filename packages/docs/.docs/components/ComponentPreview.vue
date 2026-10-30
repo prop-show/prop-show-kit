@@ -12,6 +12,7 @@ const props = defineProps<{
   files?: { path: string; code: string }[];
   registry: string;
   height?: number;
+  autoHeight?: boolean;
 }>();
 const canvas = useTemplateRef<InstanceType<typeof PreviewCanvas>>("canvas");
 const panelHeight = shallowRef((props.height ?? 240) + 60);
@@ -63,6 +64,7 @@ async function reset() {
         <PreviewCanvas
           ref="canvas"
           :height="height"
+          :auto-height="autoHeight"
           @height-change="panelHeight = Math.max(panelHeight, $event)"
           ><slot
         /></PreviewCanvas>

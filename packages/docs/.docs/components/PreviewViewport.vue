@@ -4,7 +4,12 @@ import { ConfigProvider } from "reka-ui";
 
 // Attributes belong to the iframe, not the teleported preview content.
 defineOptions({ inheritAttrs: false });
-withDefaults(defineProps<{ height?: number; fullscreen?: boolean }>(), { height: 240 });
+const props = withDefaults(
+  defineProps<{ height?: number; fullscreen?: boolean; autoHeight?: boolean }>(),
+  { height: 240 },
+);
+const contentHeight = shallowRef(0);
+let contentSize: ResizeObserver | undefined;
 const mounted = shallowRef(false);
 const srcdoc = shallowRef("");
 onMounted(() => {
@@ -65,12 +70,18 @@ async function initialize(event: Event) {
   });
   styles.observe(document.head, { childList: true, subtree: true, characterData: true });
   await nextTick();
+  contentSize?.disconnect();
+  contentSize = new ResizeObserver(() => {
+    contentHeight.value = Math.ceil(container.getBoundingClientRect().height);
+  });
+  if (props.autoHeight) contentSize.observe(container);
   if (frame.isConnected && frame.contentDocument === doc) ready.value = true;
 }
 
 onBeforeUnmount(() => {
   styles?.disconnect();
   theme?.disconnect();
+  contentSize?.disconnect();
 });
 </script>
 
@@ -82,7 +93,7 @@ onBeforeUnmount(() => {
     :srcdoc="srcdoc"
     class="block w-full border-0 bg-background [color-scheme:light] dark:[color-scheme:dark]"
     :style="{
-      height: fullscreen ? '100vh' : `${height}px`,
+      height: fullscreen ? '100vh' : `${autoHeight ? Math.max(height, contentHeight) : height}px`,
       visibility: ready ? 'visible' : 'hidden',
     }"
     @load="initialize"
