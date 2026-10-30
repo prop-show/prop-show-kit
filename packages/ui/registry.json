@@ -647,6 +647,216 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "header-simple",
+      "type": "registry:block",
+      "title": "Simple Header",
+      "description": "A clean sticky header with simple nav links and a compact mobile menu.",
+      "dependencies": ["@lucide/vue", "@vueuse/core", "reka-ui"],
+      "registryDependencies": ["button"],
+      "files": [
+        {
+          "path": "registry/header/HeaderSimple.vue",
+          "type": "registry:component",
+          "target": "components/header/HeaderSimple.vue"
+        },
+        {
+          "path": "registry/header/HeaderLogo.vue",
+          "type": "registry:component",
+          "target": "components/header/HeaderLogo.vue"
+        },
+        {
+          "path": "registry/header/HeaderMobileNav.vue",
+          "type": "registry:component",
+          "target": "components/header/HeaderMobileNav.vue"
+        },
+        {
+          "path": "registry/header/HeaderLinkItem.vue",
+          "type": "registry:component",
+          "target": "components/header/HeaderLinkItem.vue"
+        },
+        {
+          "path": "registry/header/navigation.ts",
+          "type": "registry:component",
+          "target": "components/header/navigation.ts"
+        },
+        {
+          "path": "registry/header/useHeaderScroll.ts",
+          "type": "registry:component",
+          "target": "components/header/useHeaderScroll.ts"
+        }
+      ]
+    },
+    {
+      "name": "header-framed",
+      "type": "registry:block",
+      "title": "Framed Header",
+      "description": "A framed sticky header that narrows into a softer product shell on scroll.",
+      "dependencies": ["@lucide/vue", "@vueuse/core", "reka-ui"],
+      "registryDependencies": ["button"],
+      "files": [
+        {
+          "path": "registry/header/HeaderFramed.vue",
+          "type": "registry:component",
+          "target": "components/header/HeaderFramed.vue"
+        },
+        {
+          "path": "registry/header/HeaderLogo.vue",
+          "type": "registry:component",
+          "target": "components/header/HeaderLogo.vue"
+        },
+        {
+          "path": "registry/header/HeaderMobileNav.vue",
+          "type": "registry:component",
+          "target": "components/header/HeaderMobileNav.vue"
+        },
+        {
+          "path": "registry/header/HeaderLinkItem.vue",
+          "type": "registry:component",
+          "target": "components/header/HeaderLinkItem.vue"
+        },
+        {
+          "path": "registry/header/navigation.ts",
+          "type": "registry:component",
+          "target": "components/header/navigation.ts"
+        },
+        {
+          "path": "registry/header/useHeaderScroll.ts",
+          "type": "registry:component",
+          "target": "components/header/useHeaderScroll.ts"
+        }
+      ]
+    },
+    {
+      "name": "header-mega",
+      "type": "registry:block",
+      "title": "Mega Header",
+      "description": "A sticky header with two-column mega menus and a full mobile navigation.",
+      "dependencies": ["@lucide/vue", "@vueuse/core", "reka-ui"],
+      "registryDependencies": ["button"],
+      "files": [
+        {
+          "path": "registry/header/HeaderMega.vue",
+          "type": "registry:component",
+          "target": "components/header/HeaderMega.vue"
+        },
+        {
+          "path": "registry/header/HeaderLogo.vue",
+          "type": "registry:component",
+          "target": "components/header/HeaderLogo.vue"
+        },
+        {
+          "path": "registry/header/HeaderMobileNav.vue",
+          "type": "registry:component",
+          "target": "components/header/HeaderMobileNav.vue"
+        },
+        {
+          "path": "registry/header/HeaderLinkItem.vue",
+          "type": "registry:component",
+          "target": "components/header/HeaderLinkItem.vue"
+        },
+        {
+          "path": "registry/header/navigation.ts",
+          "type": "registry:component",
+          "target": "components/header/navigation.ts"
+        },
+        {
+          "path": "registry/header/useHeaderScroll.ts",
+          "type": "registry:component",
+          "target": "components/header/useHeaderScroll.ts"
+        },
+        {
+          "path": "registry/header/HeaderDesktopNav.vue",
+          "type": "registry:component",
+          "target": "components/header/HeaderDesktopNav.vue"
+        }
+      ]
+    },
+    {
+      "name": "header-floating",
+      "type": "registry:block",
+      "title": "Floating Header",
+      "description": "A floating rounded header with prominent account actions.",
+      "dependencies": ["@lucide/vue", "@vueuse/core", "reka-ui"],
+      "registryDependencies": ["button"],
+      "files": [
+        {
+          "path": "registry/header/HeaderFloating.vue",
+          "type": "registry:component",
+          "target": "components/header/HeaderFloating.vue"
+        },
+        {
+          "path": "registry/header/HeaderLogo.vue",
+          "type": "registry:component",
+          "target": "components/header/HeaderLogo.vue"
+        },
+        {
+          "path": "registry/header/HeaderMobileNav.vue",
+          "type": "registry:component",
+          "target": "components/header/HeaderMobileNav.vue"
+        },
+        {
+          "path": "registry/header/HeaderLinkItem.vue",
+          "type": "registry:component",
+          "target": "components/header/HeaderLinkItem.vue"
+        },
+        {
+          "path": "registry/header/navigation.ts",
+          "type": "registry:component",
+          "target": "components/header/navigation.ts"
+        },
+        {
+          "path": "registry/header/useHeaderScroll.ts",
+          "type": "registry:component",
+          "target": "components/header/useHeaderScroll.ts"
+        }
+      ]
+    },
+    {
+      "name": "header-pill",
+      "type": "registry:block",
+      "title": "Pill Header",
+      "description": "A rounded header with compact mega menus and pill-shaped account actions.",
+      "dependencies": ["@lucide/vue", "@vueuse/core", "reka-ui"],
+      "registryDependencies": ["button"],
+      "files": [
+        {
+          "path": "registry/header/HeaderPill.vue",
+          "type": "registry:component",
+          "target": "components/header/HeaderPill.vue"
+        },
+        {
+          "path": "registry/header/HeaderLogo.vue",
+          "type": "registry:component",
+          "target": "components/header/HeaderLogo.vue"
+        },
+        {
+          "path": "registry/header/HeaderMobileNav.vue",
+          "type": "registry:component",
+          "target": "components/header/HeaderMobileNav.vue"
+        },
+        {
+          "path": "registry/header/HeaderLinkItem.vue",
+          "type": "registry:component",
+          "target": "components/header/HeaderLinkItem.vue"
+        },
+        {
+          "path": "registry/header/navigation.ts",
+          "type": "registry:component",
+          "target": "components/header/navigation.ts"
+        },
+        {
+          "path": "registry/header/useHeaderScroll.ts",
+          "type": "registry:component",
+          "target": "components/header/useHeaderScroll.ts"
+        },
+        {
+          "path": "registry/header/HeaderDesktopNav.vue",
+          "type": "registry:component",
+          "target": "components/header/HeaderDesktopNav.vue"
+        }
+      ]
     }
   ]
 }
