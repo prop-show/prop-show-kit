@@ -519,6 +519,73 @@
         }
       ],
       "registryDependencies": ["avatar"]
+    },
+    {
+      "name": "integrations-strip",
+      "type": "registry:block",
+      "title": "Strip Integrations",
+      "description": "A compact integration strip with lightweight cards and a link-out action.",
+      "files": [
+        {
+          "path": "registry/integrations/IntegrationsStrip.vue",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": ["@lucide/vue"],
+      "registryDependencies": ["button"]
+    },
+    {
+      "name": "integrations-grid",
+      "type": "registry:block",
+      "title": "Grid Integrations",
+      "description": "A framed integration grid with decorative corner accents.",
+      "files": [
+        {
+          "path": "registry/integrations/IntegrationsGrid.vue",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": ["@lucide/vue"]
+    },
+    {
+      "name": "integrations-split",
+      "type": "registry:block",
+      "title": "Split Integrations",
+      "description": "A split integration hero with grid-positioned logos and divider rails.",
+      "files": [
+        {
+          "path": "registry/integrations/IntegrationsSplit.vue",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["button"]
+    },
+    {
+      "name": "integrations-floating",
+      "type": "registry:block",
+      "title": "Floating Integrations",
+      "description": "A large product statement beside a grid of floating logo tiles.",
+      "files": [
+        {
+          "path": "registry/integrations/IntegrationsFloating.vue",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["button"]
+    },
+    {
+      "name": "integrations-cluster",
+      "type": "registry:block",
+      "title": "Cluster Integrations",
+      "description": "Overlapping logo pills with a centered heading and primary action.",
+      "files": [
+        {
+          "path": "registry/integrations/IntegrationsCluster.vue",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": ["@lucide/vue"],
+      "registryDependencies": ["button"]
     }
   ]
 }

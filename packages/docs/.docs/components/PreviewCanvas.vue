@@ -3,7 +3,7 @@ import { computed, readonly, shallowRef, useTemplateRef, watch } from "vue";
 import { useFullscreen, useResizeObserver } from "@vueuse/core";
 import PreviewViewport from "./PreviewViewport.vue";
 
-defineProps<{ height?: number }>();
+defineProps<{ height?: number; autoHeight?: boolean }>();
 const emit = defineEmits<{ heightChange: [height: number] }>();
 const container = useTemplateRef<HTMLElement>("container");
 const viewport = useTemplateRef<HTMLElement>("viewport");
@@ -86,6 +86,7 @@ defineExpose({
         <PreviewViewport
           :fullscreen="isFullscreen"
           :height="height"
+          :auto-height="autoHeight"
           :class="{ 'pointer-events-none': dragging }"
           ><slot
         /></PreviewViewport>
