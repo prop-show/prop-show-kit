@@ -384,6 +384,75 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "cta-split",
+      "type": "registry:block",
+      "title": "Split CTA",
+      "description": "A split call to action with full-width dividers.",
+      "registryDependencies": ["button"],
+      "files": [
+        {
+          "path": "registry/cta/CtaSplit.vue",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "cta-centered",
+      "type": "registry:block",
+      "title": "Centered CTA",
+      "description": "A centered call to action with a secondary action band.",
+      "dependencies": ["@lucide/vue"],
+      "registryDependencies": ["button"],
+      "files": [
+        {
+          "path": "registry/cta/CtaCentered.vue",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "cta-corner-accent",
+      "type": "registry:block",
+      "title": "Corner Accent CTA",
+      "description": "An editorial call to action with corner accents.",
+      "dependencies": ["@lucide/vue"],
+      "registryDependencies": ["button"],
+      "files": [
+        {
+          "path": "registry/cta/CtaCornerAccent.vue",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "cta-trial-card",
+      "type": "registry:block",
+      "title": "Trial Card CTA",
+      "description": "A rounded call to action with trial reassurance.",
+      "dependencies": ["@lucide/vue"],
+      "registryDependencies": ["button"],
+      "files": [
+        {
+          "path": "registry/cta/CtaTrialCard.vue",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "cta-newsletter",
+      "type": "registry:block",
+      "title": "Newsletter CTA",
+      "description": "A newsletter signup with email validation and social proof.",
+      "dependencies": ["@lucide/vue"],
+      "registryDependencies": ["button", "input-group"],
+      "files": [
+        {
+          "path": "registry/cta/CtaNewsletter.vue",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
