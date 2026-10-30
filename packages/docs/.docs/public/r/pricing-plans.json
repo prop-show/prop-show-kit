@@ -1,0 +1,20 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "pricing-plans",
+  "title": "Pricing Plans",
+  "description": "A responsive collection of pricing plans with automatic columns.",
+  "registryDependencies": ["https://kit.prop.show/r/pricing-plan.json"],
+  "files": [
+    {
+      "path": "registry/pricing-plans/PricingPlans.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { HTMLAttributes, VNode } from \"vue\";\nimport { Comment, Fragment, Text } from \"vue\";\nimport { PricingPlan } from \"@/components/pricing-plan\";\nimport type { PricingPlanProps } from \"@/components/pricing-plan\";\nimport { cn } from \"@/lib/utils\";\n\nconst props = withDefaults(\n  defineProps<{\n    as?: string;\n    plans?: PricingPlanProps[];\n    orientation?: \"horizontal\" | \"vertical\";\n    compact?: boolean;\n    scale?: boolean;\n    class?: HTMLAttributes[\"class\"];\n  }>(),\n  { as: \"div\", orientation: \"horizontal\" },\n);\n\nfunction countPlans(nodes: VNode[]): number | undefined {\n  // Only comments and empty fragments trigger Vue's slot fallback; text is valid content.\n  let count: number | undefined;\n  for (const node of nodes) {\n    if (node.type === Comment) continue;\n    const childCount =\n      node.type === Fragment ? countPlans(node.children as VNode[]) : node.type === Text ? 0 : 1;\n    if (childCount !== undefined) count = (count ?? 0) + childCount;\n  }\n  return count;\n}\n</script>\n\n<template>\n  <component\n    :is=\"as\"\n    data-slot=\"pricing-plans\"\n    :style=\"{\n      '--count': Math.max(1, countPlans($slots.default?.() ?? []) ?? plans?.length ?? 0),\n    }\"\n    :class=\"\n      cn(\n        'flex min-w-0 flex-col gap-y-8',\n        orientation === 'horizontal' && 'lg:grid lg:grid-cols-[repeat(var(--count),minmax(0,1fr))]',\n        !compact && (scale ? 'gap-x-13' : 'gap-x-8'),\n        props.class,\n      )\n    \"\n  >\n    <slot>\n      <PricingPlan\n        v-for=\"(plan, index) in plans\"\n        :key=\"index\"\n        :orientation=\"orientation === 'horizontal' ? 'vertical' : 'horizontal'\"\n        v-bind=\"plan\"\n      >\n        <template\n          v-for=\"name in Object.keys($slots).filter((name) => name !== 'default')\"\n          :key=\"name\"\n          #[name]=\"scope\"\n          ><slot :name=\"name\" v-bind=\"scope\" :plan=\"plan\" :index=\"index\"\n        /></template>\n      </PricingPlan>\n    </slot>\n  </component>\n</template>\n",
+      "type": "registry:component"
+    },
+    {
+      "path": "registry/pricing-plans/index.ts",
+      "content": "export { default as PricingPlans } from \"./PricingPlans.vue\";\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:component"
+}

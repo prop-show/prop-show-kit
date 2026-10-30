@@ -4,6 +4,71 @@
   "homepage": "https://kit.prop.show/",
   "items": [
     {
+      "name": "pricing-plan",
+      "type": "registry:component",
+      "title": "Pricing Plan",
+      "description": "A customizable pricing card with discounts, features and a call to action.",
+      "dependencies": ["@lucide/vue", "@vueuse/core"],
+      "registryDependencies": ["button", "badge"],
+      "files": [
+        {
+          "path": "registry/pricing-plan/PricingPlan.vue",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/pricing-plan/PricingPlanPrice.vue",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/pricing-plan/index.ts",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "pricing-plans",
+      "type": "registry:component",
+      "title": "Pricing Plans",
+      "description": "A responsive collection of pricing plans with automatic columns.",
+      "registryDependencies": ["https://kit.prop.show/r/pricing-plan.json"],
+      "files": [
+        {
+          "path": "registry/pricing-plans/PricingPlans.vue",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/pricing-plans/index.ts",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "pricing-table",
+      "type": "registry:component",
+      "title": "Pricing Table",
+      "description": "A responsive feature comparison table with mobile pricing cards.",
+      "dependencies": ["@lucide/vue", "@vueuse/core"],
+      "registryDependencies": ["https://kit.prop.show/r/pricing-plan.json"],
+      "files": [
+        {
+          "path": "registry/pricing-table/PricingTable.vue",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/pricing-table/PricingTableTier.vue",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/pricing-table/PricingTableFeatureValue.vue",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/pricing-table/index.ts",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "project-overview",
       "type": "registry:block",
       "title": "Project Overview",
