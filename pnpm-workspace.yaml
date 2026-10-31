@@ -32,4 +32,4 @@ minimumReleaseAgeExclude:
 patchedDependencies:
   # Modal scroll locks must follow preview portals into their iframe document.
   reka-ui@2.10.3: patches/reka-ui@2.10.3.patch
-  undocs-nightly: patches/undocs-nightly.patch
+  undocs-nightly@0.10.1-20260828-133553-e5fe415: patches/undocs-nightly@0.10.1-20260828-133553-e5fe415.patch

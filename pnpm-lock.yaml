@@ -188,7 +188,7 @@ overrides:
 
 patchedDependencies:
   reka-ui@2.10.3: ce712115b0dbf3903a47e383000d3113fb16949852de95313fb6e79c7be08164
-  undocs-nightly: bd49df218b3d1da95881b097b82943e595145848dc295c4863c675a25c4aa306
+  undocs-nightly@0.10.1-20260828-133553-e5fe415: 2d149c1b88a55a1d23f12ed139b5d84aa79d5ef42aff5c34d8b04cb9e4921121
 
 importers:
 
@@ -262,7 +262,7 @@ importers:
         version: 6.0.3
       undocs:
         specifier: npm:undocs-nightly@0.10.1-20260828-133553-e5fe415
-        version: undocs-nightly@0.10.1-20260828-133553-e5fe415(patch_hash=bd49df218b3d1da95881b097b82943e595145848dc295c4863c675a25c4aa306)(@oxc-project/types@0.146.0)(@types/node@24.19.2)(chokidar@5.0.0)(csstype@3.2.3)(dotenv@17.4.2)(esbuild@0.27.7)(giget@3.3.1)(h3@2.0.1-rc.31(crossws@0.4.12(srvx@0.12.8))(ocache@0.3.0))(jiti@2.7.0)(lightningcss@1.33.0)(magicast@0.5.4)(ocache@0.3.0)(oxc-parser@0.139.0)(rolldown@1.2.5)(rollup@4.62.5)(stylus@0.57.0(supports-color@10.2.2))(terser@5.50.0)(typescript@6.0.3)(yaml@2.9.0)
+        version: undocs-nightly@0.10.1-20260828-133553-e5fe415(patch_hash=2d149c1b88a55a1d23f12ed139b5d84aa79d5ef42aff5c34d8b04cb9e4921121)(@oxc-project/types@0.146.0)(@types/node@24.19.2)(chokidar@5.0.0)(csstype@3.2.3)(dotenv@17.4.2)(esbuild@0.27.7)(giget@3.3.1)(h3@2.0.1-rc.31(crossws@0.4.12(srvx@0.12.8))(ocache@0.3.0))(jiti@2.7.0)(lightningcss@1.33.0)(magicast@0.5.4)(ocache@0.3.0)(oxc-parser@0.139.0)(rolldown@1.2.5)(rollup@4.62.5)(stylus@0.57.0(supports-color@10.2.2))(terser@5.50.0)(typescript@6.0.3)(yaml@2.9.0)
       vue:
         specifier: ^3.5.41
         version: 3.5.41(typescript@6.0.3)
@@ -12081,7 +12081,7 @@ snapshots:
 
   undici@8.10.0: {}
 
-  undocs-nightly@0.10.1-20260828-133553-e5fe415(patch_hash=bd49df218b3d1da95881b097b82943e595145848dc295c4863c675a25c4aa306)(@oxc-project/types@0.146.0)(@types/node@24.19.2)(chokidar@5.0.0)(csstype@3.2.3)(dotenv@17.4.2)(esbuild@0.27.7)(giget@3.3.1)(h3@2.0.1-rc.31(crossws@0.4.12(srvx@0.12.8))(ocache@0.3.0))(jiti@2.7.0)(lightningcss@1.33.0)(magicast@0.5.4)(ocache@0.3.0)(oxc-parser@0.139.0)(rolldown@1.2.5)(rollup@4.62.5)(stylus@0.57.0(supports-color@10.2.2))(terser@5.50.0)(typescript@6.0.3)(yaml@2.9.0):
+  undocs-nightly@0.10.1-20260828-133553-e5fe415(patch_hash=2d149c1b88a55a1d23f12ed139b5d84aa79d5ef42aff5c34d8b04cb9e4921121)(@oxc-project/types@0.146.0)(@types/node@24.19.2)(chokidar@5.0.0)(csstype@3.2.3)(dotenv@17.4.2)(esbuild@0.27.7)(giget@3.3.1)(h3@2.0.1-rc.31(crossws@0.4.12(srvx@0.12.8))(ocache@0.3.0))(jiti@2.7.0)(lightningcss@1.33.0)(magicast@0.5.4)(ocache@0.3.0)(oxc-parser@0.139.0)(rolldown@1.2.5)(rollup@4.62.5)(stylus@0.57.0(supports-color@10.2.2))(terser@5.50.0)(typescript@6.0.3)(yaml@2.9.0):
     dependencies:
       '@floating-ui/dom': 1.8.0
       '@fontsource-variable/geist': 5.3.0
