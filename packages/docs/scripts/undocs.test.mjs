@@ -104,6 +104,7 @@ it.each([undefined, "https://registry.example.test/"])(
         "filters",
         "slider",
         "delete-resource",
+        "comments-thread",
       ]) {
         const response = await fetch(new URL(`components/${component}`, url), {
           signal: AbortSignal.timeout(10_000),
@@ -226,7 +227,7 @@ it.each([undefined, "https://registry.example.test/"])(
       const shippedHtml = await fetch(new URL("blog/what-ships-today", url)).then((response) =>
         response.text(),
       );
-      expect(shippedHtml).toContain("13 components");
+      expect(shippedHtml).toContain("14 components");
       expect(shippedHtml).toContain("3 blocks");
       expect(shippedHtml).not.toContain("36 blocks");
       expect(shippedHtml).toContain("/blog/removing-efferd-marketing-blocks");
