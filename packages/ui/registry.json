@@ -857,6 +857,66 @@
           "target": "components/header/HeaderDesktopNav.vue"
         }
       ]
+    },
+    {
+      "name": "hero-spotlight",
+      "type": "registry:block",
+      "title": "Spotlight Hero",
+      "description": "A centered editorial hero with subtle spotlight rails and a marquee trust band.",
+      "dependencies": ["@lucide/vue"],
+      "registryDependencies": ["button", "https://kit.prop.show/r/header-simple.json"],
+      "files": [
+        {
+          "path": "registry/hero/HeroSpotlight.vue",
+          "type": "registry:component",
+          "target": "components/hero/HeroSpotlight.vue"
+        },
+        {
+          "path": "registry/logo-cloud/LogoCloudMarquee.vue",
+          "type": "registry:component",
+          "target": "components/logo-cloud/LogoCloudMarquee.vue"
+        }
+      ]
+    },
+    {
+      "name": "hero-framed",
+      "type": "registry:block",
+      "title": "Framed Hero",
+      "description": "A framed product hero with corner accents, dashboard imagery and a bordered logo section.",
+      "dependencies": ["@lucide/vue"],
+      "registryDependencies": ["button", "https://kit.prop.show/r/header-framed.json"],
+      "files": [
+        {
+          "path": "registry/hero/HeroFramed.vue",
+          "type": "registry:component",
+          "target": "components/hero/HeroFramed.vue"
+        },
+        {
+          "path": "registry/logo-cloud/LogoCloudDecorated.vue",
+          "type": "registry:component",
+          "target": "components/logo-cloud/LogoCloudDecorated.vue"
+        }
+      ]
+    },
+    {
+      "name": "hero-product",
+      "type": "registry:block",
+      "title": "Product Hero",
+      "description": "A left-aligned product hero with mega navigation, a fading dashboard mockup and compact logos.",
+      "dependencies": ["@lucide/vue"],
+      "registryDependencies": ["button", "https://kit.prop.show/r/header-mega.json"],
+      "files": [
+        {
+          "path": "registry/hero/HeroProduct.vue",
+          "type": "registry:component",
+          "target": "components/hero/HeroProduct.vue"
+        },
+        {
+          "path": "registry/logo-cloud/LogoCloudWrap.vue",
+          "type": "registry:component",
+          "target": "components/logo-cloud/LogoCloudWrap.vue"
+        }
+      ]
     }
   ]
 }
