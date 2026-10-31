@@ -384,6 +384,28 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "avatar-crop",
+      "type": "registry:component",
+      "title": "Avatar Crop",
+      "description": "Crop a profile image with pan, zoom, and a circular or square mask.",
+      "dependencies": ["@lucide/vue"],
+      "registryDependencies": ["button"],
+      "files": [
+        {
+          "path": "registry/avatar-crop/AvatarCrop.vue",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/avatar-crop/crop.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/avatar-crop/index.ts",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }

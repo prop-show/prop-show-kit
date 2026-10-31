@@ -104,6 +104,7 @@ it.each([undefined, "https://registry.example.test/"])(
         "filters",
         "slider",
         "delete-resource",
+        "avatar-crop",
       ]) {
         const response = await fetch(new URL(`components/${component}`, url), {
           signal: AbortSignal.timeout(10_000),
