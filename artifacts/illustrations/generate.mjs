@@ -326,6 +326,21 @@ const scenes = {
     ${[0, 1, 2].map((i) => `${line(28, 73 + i * 9, 28)}${icon("check", 75, 71 + i * 9, 8)}${icon("check", 111, 71 + i * 9, 8)}`).join("")}`,
   },
 
+  "comments-thread": {
+    aria: "A comment thread with one reply nested under the first comment and a reply action",
+    back: () => BACK(40, 16, 94, 52),
+    surface: () => PAGE(26, 30, 108, 72),
+    content: () => `
+    ${title(34, 36, 28)}
+    <circle cx="40" cy="54" r="5" style="fill: var(--icon)" />
+    ${line(50, 50, 30)}
+    ${line(50, 57, 64)}
+    <circle cx="58" cy="74" r="4" style="fill: var(--icon)" />
+    ${line(66, 70, 24)}
+    ${line(66, 77, 42)}
+    <g class="PREFIX-cta">${rect(96, 88, 28, 10, 5, "accent")}${icon("arrow-right", 100, 90, 6, "on-accent")}${line(110, 91, 10, 4, "on-accent")}</g>`,
+  },
+
   "bookmarks-empty": {
     aria: "A browser window showing an empty bookmarks folder",
     back: () => BACK(40, 20, 100, 54),

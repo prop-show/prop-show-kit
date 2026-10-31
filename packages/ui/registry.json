@@ -384,6 +384,36 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "comments-thread",
+      "type": "registry:component",
+      "title": "Comments Thread",
+      "description": "A threaded discussion with replies nested under each comment.",
+      "dependencies": ["@lucide/vue"],
+      "registryDependencies": ["avatar", "button", "textarea"],
+      "files": [
+        {
+          "path": "registry/comments-thread/CommentsThread.vue",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/comments-thread/CommentBranch.vue",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/comments-thread/CommentComposer.vue",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/comments-thread/thread.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/comments-thread/index.ts",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
