@@ -326,6 +326,28 @@ const scenes = {
     ${[0, 1, 2].map((i) => `${line(28, 73 + i * 9, 28)}${icon("check", 75, 71 + i * 9, 8)}${icon("check", 111, 71 + i * 9, 8)}`).join("")}`,
   },
 
+  "metric-card": {
+    aria: "Three metric cards with empty values and one chart marked as the next reading",
+    back: () => BACK(34, 16, 100, 54),
+    surface: () => PAGE(22, 28, 116, 74),
+    content: () => `
+    ${title(28, 34, 28)}
+    ${[0, 1, 2]
+      .map((i) => {
+        const x = 28 + i * 36;
+        const glyph =
+          i === 0
+            ? `<g class="PREFIX-cta">${icon("chart", x + 4, 76, 10, "accent")}</g>`
+            : icon("chart", x + 4, 76, 10);
+        return `
+      ${rect(x, 46, 32, 48, 6, "cell")}
+      ${line(x + 4, 52, 14, 3.5)}
+      ${title(x + 4, 60, 18, 7)}
+      ${glyph}`;
+      })
+      .join("")}`,
+  },
+
   "bookmarks-empty": {
     aria: "A browser window showing an empty bookmarks folder",
     back: () => BACK(40, 20, 100, 54),
