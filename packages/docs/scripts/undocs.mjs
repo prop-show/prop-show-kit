@@ -4,6 +4,8 @@ import { readFile } from "node:fs/promises";
 import { parseArgs } from "node:util";
 import { createBuilder, createServer } from "vite-plus";
 import { loadConfig } from "c12";
+import { writeCloudflareRedirects } from "./cloudflare-redirects.mjs";
+import { githubEditPathPlugin, repositoryDocsPath } from "./edit-links.mjs";
 import { updateRegistryURLs } from "./registry-urls.mjs";
 
 const {
@@ -23,7 +25,6 @@ const docsDir = resolve(dir);
 const docsLayer = resolve(docsDir, ".docs");
 const pkgRoot = dirname(fileURLToPath(import.meta.resolve("undocs/package.json")));
 
-process.env.BRANCH ||= "main";
 process.env.UNDOCS_DIR = docsDir;
 
 const config = {
@@ -44,6 +45,7 @@ const config = {
     fs: { allow: [pkgRoot, resolve(docsDir, "../..")] },
   },
   plugins: [
+    githubEditPathPlugin(repositoryDocsPath(docsDir)),
     {
       name: "registry-theme",
       enforce: "pre",
@@ -70,6 +72,7 @@ if (command === "build") {
   await updateRegistryURLs(resolve(docsLayer, "public/r"), docsConfig.url);
   const builder = await createBuilder(config);
   await builder.buildApp();
+  await writeCloudflareRedirects(resolve(docsDir, ".output/public"), docsConfig.redirects);
 } else {
   const server = await createServer(config);
   await server.listen();

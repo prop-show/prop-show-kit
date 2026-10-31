@@ -132,6 +132,32 @@ it.each([undefined, "https://registry.example.test/"])(
       ]) {
         expect(css).toContain(selector);
       }
+      const pages = {
+        guide: "packages/docs/1.guide/1.index.md",
+        "components/copy": "packages/docs/2.components/6.copy.md",
+        "blog/what-ships-today": "packages/docs/3.blog/1.what-ships-today.md",
+      };
+      for (const [path, file] of Object.entries(pages)) {
+        const response = await fetch(new URL(path, url), { signal: AbortSignal.timeout(10_000) });
+        expect(response.status, path).toBe(200);
+        const html = await response.text();
+        expect(html).toContain(`https://github.com/prop-show/prop-show-kit/edit/master/${file}`);
+        expect(html).not.toContain("/edit/main/docs/");
+        expect(html).not.toContain("/edit/master/docs/");
+      }
+      for (const [path, pathname] of [
+        ["guide/installation", "/guide"],
+        ["guide/components", "/components"],
+        ["guide/components/copy", "/components/copy"],
+        ["guide/components/frame", "/components/frame"],
+      ]) {
+        const response = await fetch(new URL(path, url), {
+          redirect: "manual",
+          signal: AbortSignal.timeout(10_000),
+        });
+        expect(response.status, path).toBe(301);
+        expect(new URL(response.headers.get("location"), url).pathname, path).toBe(pathname);
+      }
     } finally {
       try {
         if (server.exitCode === null && server.signalCode === null) {
