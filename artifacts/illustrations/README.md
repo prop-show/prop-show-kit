@@ -40,6 +40,7 @@ a static server, e.g. `python3 -m http.server`.
 | `pricing-plan`       | A pricing card with price, billing details, features and an action.                                          | Single card with price bars, feature checks and an accent CTA.              |
 | `pricing-plans`      | Responsive collection of pricing cards.                                                                      | Two side-by-side cards with one accent plan action.                         |
 | `pricing-table`      | Tiered pricing with grouped feature comparisons.                                                             | Two plan columns above feature rows with checkmarks.                        |
+| `sortable-list`      | Accessible list reordered by dragging a handle or with the keyboard.                                         | Three rows with grip handles, the middle row lifted in accent.              |
 | `bookmarks-empty`    | Not a component — the browser-extension bookmark empty state this set started from.                          | Browser window with a tab strip, empty folder and an accent add button.     |
 
 ## Shared rules the generator enforces

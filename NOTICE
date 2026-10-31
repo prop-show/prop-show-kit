@@ -29,6 +29,11 @@ Design references (Vue adaptations, not verbatim copies)
   Referenced by inline-tip.
   Medusa Enterprise Edition materials are a separate license and are not included.
 
+Sortable List
+  packages/ui/registry/sortable-list/ is original PropShow Kit code.
+  It does not include dnd-kit, sortablejs, vuedraggable, or another
+  drag-and-drop library.
+
 Docs-site primitives
   packages/docs/.docs/ui/ and packages/docs/.docs/lib/utils.ts are local
   copies of shadcn-vue primitives used to render this documentation site.
