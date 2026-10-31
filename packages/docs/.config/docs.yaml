@@ -2,6 +2,7 @@ name: "PropShow Kit"
 shortDescription: "Add-on registry for shadcn-vue"
 description: "Add-ons for shadcn-vue. Copy what’s missing, own every line."
 github: "prop-show/prop-show-kit"
+branch: "master"
 url: "https://kit.prop.show/"
 automd: true
 redirects:
