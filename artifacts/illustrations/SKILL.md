@@ -1,13 +1,14 @@
 ---
 name: generate-empty-state-svg-illustrations
-description: Add or update the 160×120 empty-state SVG preview for a show.prop.kit registry component in artifacts/illustrations, then regenerate, check coverage and eyeball light/dark. Use when adding a new component or block, when check.mjs reports "no illustration for registry item ...", or when asked for empty-state or preview artwork for this kit.
+description: Add or update the 160×120 empty-state SVG preview for a show.prop.kit registry component in artifacts/illustrations, then regenerate, check coverage and eyeball light/dark. Use when adding a registry:component, when check.mjs reports "no illustration for registry item ...", or when asked for empty-state or preview artwork for this kit. Marketing blocks (registry:block) do not require a scene.
 ---
 
 # Empty-state illustrations
 
-The illustration set lives in `artifacts/illustrations`. One scene per component in
-`packages/ui/registry.json`, drawn as a reduced real product screen rather than an
-abstract symbol. The full art direction is in `prompt.md`; this file is the workflow.
+The illustration set lives in `artifacts/illustrations`. One scene per
+`registry:component` in `packages/ui/registry.json`, drawn as a reduced real product
+screen rather than an abstract symbol. `registry:block` items are not part of that
+inventory. The full art direction is in `prompt.md`; this file is the workflow.
 
 | File           | Role                                                                   |
 | :------------- | :--------------------------------------------------------------------- |
@@ -21,9 +22,10 @@ abstract symbol. The full art direction is in `prompt.md`; this file is the work
 
 ## When to use
 
-After adding any item to `packages/ui/registry.json`, or whenever the illustration set
-must gain or change a preview. This is the illustration half of adding a component;
-docs and preview wiring are covered by the `add-ui-registry-component` skill.
+After adding a `registry:component` to `packages/ui/registry.json`, or whenever the
+illustration set must gain or change a preview. A new `registry:block` does not need
+a scene. This is the illustration half of adding a component; docs and preview
+wiring are covered by the `add-ui-registry-component` skill.
 
 ## Procedure
 
@@ -51,9 +53,10 @@ docs and preview wiring are covered by the `add-ui-registry-component` skill.
 ## Pitfalls
 
 - Never hand-edit `svg/*.svg`; `generate.mjs` rewrites them.
-- `check.mjs` fails with `no illustration for registry item "<name>"` until the scene
-  exists, and with `illustration "<name>" has no registry item` for a stale scene. Fix
-  the scene list, never the check.
+- `check.mjs` fails with `no illustration for registry item "<name>"` until a
+  `registry:component` scene exists, and with `illustration "<name>" has no registry item`
+  for a stale scene. Fix the scene list for components. Do not widen the check to every
+  `registry:block`.
 - Do not judge the render with `rsvg-convert` or `qlmanage`: they ignore the SVG
   `<style>` CSS variables and paint the plate black. Use headless Chrome with
   `--force-device-scale-factor`.
@@ -71,8 +74,9 @@ docs and preview wiring are covered by the `add-ui-registry-component` skill.
 ## Verification
 
 - `node artifacts/illustrations/check.mjs` prints
-  `ok: <N> illustrations for <M> registry items` with no assertion error (coverage,
-  unique scoped ids, no forbidden constructs, all objects inside the 14px safe area).
+  `ok: <N> illustrations, <C> registry components covered, <M> registry items` with no
+  assertion error (component coverage, unique scoped ids, no forbidden constructs, all
+  objects inside the 14px safe area).
 - A headless Chrome screenshot of `index.html` shows the new row correct in light and
   dark: 18px rounded plate, stripes, shadow, exactly one accent element.
 - `vp check` passes at the repo root.

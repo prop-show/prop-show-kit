@@ -1,0 +1,13 @@
+# Origin robots policy for https://kit.prop.show/
+# Search crawlers may index the docs. Baiduspider is allowed here on purpose:
+# the live Disallow for that bot is injected by Cloudflare Managed robots.txt
+# (AI Crawl Control) and is not part of this file. Remove it in the dashboard
+# for the allow below to be the rule a crawler actually sees.
+
+User-agent: *
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+Sitemap: https://kit.prop.show/sitemap.xml

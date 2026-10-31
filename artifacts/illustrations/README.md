@@ -1,7 +1,9 @@
 # Empty-state illustrations for the registry
 
-One 160×120 inline SVG per component in `packages/ui/registry.json`, drawn as a
-reduced real product screen rather than an abstract symbol.
+One 160×120 inline SVG per `registry:component` in `packages/ui/registry.json`,
+drawn as a reduced real product screen rather than an abstract symbol. Marketing
+blocks (`registry:block`) are full screens and are not part of this inventory.
+Three workspace blocks already have scenes; new blocks do not require one.
 
 The art direction lives in `prompt.md`, the workflow in `SKILL.md` (an agent skill that
 ships with the repo), and the per-component summary in the table below.
@@ -17,8 +19,9 @@ a static server, e.g. `python3 -m http.server`.
 
 **Adding a component?** Add its scene here in the same change, then run both scripts.
 `check.mjs` fails with `no illustration for registry item "<name>"` if a
-`packages/ui/registry.json` item has no scene, and with
-`illustration "<name>" has no registry item` for a stale scene.
+`registry:component` has no scene, and with
+`illustration "<name>" has no registry item` for a stale scene. A new
+`registry:block` does not fail the check.
 
 ## Component summaries and the scene each one gets
 

@@ -106,16 +106,37 @@ it.each([undefined, "https://registry.example.test/"])(
         });
         expect(response.status, `${path}\n${output}`).toBe(200);
       }
-      const homeHtml = await fetch(url, { signal: AbortSignal.timeout(10_000) }).then(
-        (response) => {
-          expect(response.status).toBe(200);
-          return response.text();
-        },
-      );
+      const homeResponse = await fetch(url, { signal: AbortSignal.timeout(10_000) });
+      expect(homeResponse.status).toBe(200);
+      const homeHtml = await homeResponse.text();
       expect(homeHtml).toContain("PropShow Kit");
       expect(homeHtml).toContain("Add-on registry for shadcn-vue");
       expect(homeHtml).toContain("Add-ons for shadcn-vue.");
       expect(homeHtml).toContain("Copied, not installed");
+      expect(homeHtml).toContain('rel="canonical"');
+      expect(homeHtml).toContain('href="https://kit.prop.show/"');
+      expect(homeHtml).toContain('property="og:url"');
+      expect(homeHtml).toContain('content="https://kit.prop.show/"');
+      expect(homeHtml).toContain('property="og:type"');
+      expect(homeHtml).toContain('content="website"');
+      expect(homeHtml).toContain('name="twitter:title"');
+      expect(homeHtml).toContain("application/ld+json");
+      expect(homeHtml).toContain('href="/favicon.ico"');
+      expect(homeHtml).toContain('rel="apple-touch-icon"');
+      expect(homeHtml).toContain('href="/apple-touch-icon.png"');
+      expect(homeResponse.headers.get("x-content-type-options")).toBe("nosniff");
+      expect(homeResponse.headers.get("referrer-policy")).toBe("strict-origin-when-cross-origin");
+      expect(homeResponse.headers.get("strict-transport-security")).toBeNull();
+      const favicon = await fetch(new URL("favicon.ico", url));
+      expect(favicon.status).toBe(200);
+      expect(favicon.headers.get("content-type")).toMatch(/icon|octet-stream/);
+      const apple = await fetch(new URL("apple-touch-icon.png", url));
+      expect(apple.status).toBe(200);
+      expect(apple.headers.get("content-type")).toContain("image/png");
+      const robots = await fetch(new URL("robots.txt", url)).then((response) => response.text());
+      expect(robots).toContain("User-agent: Baiduspider");
+      expect(robots).toContain("Allow: /");
+      expect(robots).toContain("Sitemap: https://kit.prop.show/sitemap.xml");
       expect(homeHtml).not.toContain("13 components · 36 blocks");
       expect(homeHtml).not.toContain("Fill the gaps in shadcn-vue");
       expect(homeHtml).not.toContain("Browse blocks");
@@ -140,6 +161,8 @@ it.each([undefined, "https://registry.example.test/"])(
       expect(shippedHtml).toContain("13 components");
       expect(shippedHtml).toContain("36 blocks");
       expect(shippedHtml).not.toContain("four components");
+      expect(shippedHtml).toContain('content="article"');
+      expect(shippedHtml).toContain('href="https://kit.prop.show/blog/what-ships-today"');
       const introHtml = await fetch(new URL("guide/introduction", url)).then((response) =>
         response.text(),
       );
@@ -155,6 +178,8 @@ it.each([undefined, "https://registry.example.test/"])(
         expect(html).toContain("Back to home");
         expect(html).toContain("Browse components");
         expect(html).toContain('name="robots" content="noindex, follow"');
+        expect(html).toContain('href="/favicon.ico"');
+        expect(html).toContain('href="/apple-touch-icon.png"');
       }
       const index = await fetch(new URL("r/registry.json", url)).then((response) =>
         response.json(),

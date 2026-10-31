@@ -11,9 +11,13 @@ const dir = join(here, "svg");
 const files = readdirSync(dir).filter((file) => file.endsWith(".svg"));
 assert.ok(files.length > 0, "no illustrations generated");
 
-// Coverage: adding a registry item without an illustration must fail here.
+// Coverage matches the empty-state inventory: every registry:component needs a
+// scene. registry:block entries are full screens, not empty states, and are
+// not required to have one. A scene still has to name a real registry item
+// (bookmarks-empty is the set's origin and is the only exception).
 const registry = JSON.parse(readFileSync(join(here, "../../packages/ui/registry.json"), "utf8"));
-for (const item of registry.items) {
+const components = registry.items.filter((item) => item.type === "registry:component");
+for (const item of components) {
   assert.ok(
     files.includes(`${item.name}.svg`),
     `no illustration for registry item "${item.name}" — add a scene in generate.mjs`,
@@ -73,5 +77,5 @@ for (const [file, x1, y1, x2, y2] of extents) {
 }
 
 console.log(
-  `ok: ${files.length} illustrations for ${registry.items.length} registry items, ${ids.size} scoped ids, ${extents.length} rects in bounds`,
+  `ok: ${files.length} illustrations, ${components.length} registry components covered, ${registry.items.length} registry items, ${ids.size} scoped ids, ${extents.length} rects in bounds`,
 );

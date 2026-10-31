@@ -4,7 +4,10 @@ import { readFile } from "node:fs/promises";
 import { parseArgs } from "node:util";
 import { createBuilder, createServer } from "vite-plus";
 import { loadConfig } from "c12";
+import { writeCloudflareHeaders } from "./cloudflare-headers.mjs";
 import { writeCloudflareRedirects } from "./cloudflare-redirects.mjs";
+import { securityHeaders } from "./security-headers.mjs";
+import { writeSitemap } from "./sitemap.mjs";
 import { githubEditPathPlugin, repositoryDocsPath } from "./edit-links.mjs";
 import { updateRegistryURLs } from "./registry-urls.mjs";
 
@@ -45,6 +48,7 @@ const config = {
     fs: { allow: [pkgRoot, resolve(docsDir, "../..")] },
   },
   plugins: [
+    securityHeadersPlugin(),
     githubEditPathPlugin(repositoryDocsPath(docsDir)),
     {
       name: "registry-theme",
@@ -72,7 +76,10 @@ if (command === "build") {
   await updateRegistryURLs(resolve(docsLayer, "public/r"), docsConfig.url);
   const builder = await createBuilder(config);
   await builder.buildApp();
-  await writeCloudflareRedirects(resolve(docsDir, ".output/public"), docsConfig.redirects);
+  const publicDir = resolve(docsDir, ".output/public");
+  await writeCloudflareRedirects(publicDir, docsConfig.redirects);
+  await writeCloudflareHeaders(publicDir);
+  if (docsConfig.url) await writeSitemap(publicDir, docsConfig.url);
 } else {
   const server = await createServer(config);
   await server.listen();
@@ -83,4 +90,27 @@ if (command === "build") {
   const shutdown = () => server.close().finally(() => process.exit(0));
   process.on("SIGINT", shutdown);
   process.on("SIGTERM", shutdown);
+}
+
+function securityHeadersPlugin() {
+  // Dev stays on http. HSTS and upgrade-insecure-requests belong on the deployed host.
+  const headers = securityHeaders({ production: false });
+  const apply = (_req, res, next) => {
+    for (const [name, value] of Object.entries(headers)) res.setHeader(name, value);
+    next();
+  };
+  // Run after Nitro installs its own middleware, then prepend so headers are set
+  // before the handler writes the body. Appending never runs: Nitro ends the request.
+  const install = (server) => {
+    server.middlewares.stack.unshift({ route: "", handle: apply });
+  };
+  return {
+    name: "security-headers",
+    configureServer(server) {
+      return () => install(server);
+    },
+    configurePreviewServer(server) {
+      return () => install(server);
+    },
+  };
 }

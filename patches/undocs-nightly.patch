@@ -10,6 +10,58 @@ index c25987343ec7af4f5db1def98ba4d952eecada8a..0b68af079dcbf975ed2a96c03271b5ae
          ico: "vscode-icons:file-type-favicon",
          npm: "vscode-icons:file-type-npm",
          pnpm: "vscode-icons:file-type-pnpm",
+diff --git a/src/app/app.vue b/src/app/app.vue
+index 57e4af057a328da97f9bda0c88d134e94a2a4d8e..e79da87e8c4d1528898c531c671cff9f4256a0ea 100644
+--- a/src/app/app.vue
++++ b/src/app/app.vue
+@@ -45,6 +45,11 @@ hintPrerenderRoute("/api/docs/search.json");
+ 
+ const twitterSite = appConfig.docs.socials?.twitter || appConfig.docs.socials?.x || undefined;
+ const browserTabIcon = appConfig.docs?.logo || undefined;
++const browserTabIconType =
++  browserTabIcon &&
++  (browserTabIcon.endsWith(".svg") || browserTabIcon.startsWith("data:image/svg+xml"))
++    ? "image/svg+xml"
++    : undefined;
+ 
+ useSeoMeta({
+   twitterSite: twitterSite ? `@${twitterSite}` : undefined,
+@@ -54,20 +59,21 @@ useHead({
+   htmlAttrs: {
+     lang: appConfig.docs.lang || "en",
+   },
+-  link: browserTabIcon
+-    ? [
+-        {
+-          rel: "icon",
+-          href: browserTabIcon,
+-          // A bundled icon arrives as a hashed `.svg` URL or, under
+-          // `assetsInlineLimit`, as a `data:` URI that never ends in `.svg`.
+-          type:
+-            browserTabIcon.endsWith(".svg") || browserTabIcon.startsWith("data:image/svg+xml")
+-              ? "image/svg+xml"
+-              : undefined,
+-        },
+-      ]
+-    : [],
++  // SVG (often inlined) plus the static `/favicon.ico` and apple touch icon.
++  // Crawlers and older clients request those paths even when the tab icon is a data URI.
++  link: [
++    ...(browserTabIcon
++      ? [
++          {
++            rel: "icon",
++            href: browserTabIcon,
++            type: browserTabIconType,
++          },
++        ]
++      : []),
++    { rel: "icon", href: "/favicon.ico", sizes: "any" },
++    { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
++  ],
+ });
+ 
+ const route = useRoute();
 diff --git a/src/app/builtin-icons.ts b/src/app/builtin-icons.ts
 index 552bcbdf3fd9f00e6fe78a43133ad79fd8357b89..a272119ff126d76204ad58c962df5a984234edda 100644
 --- a/src/app/builtin-icons.ts
@@ -22,3 +74,104 @@ index 552bcbdf3fd9f00e6fe78a43133ad79fd8357b89..a272119ff126d76204ad58c962df5a98
      "file-type-yaml",
      "file-type-yarn",
    ],
+diff --git a/src/app/composables/usePageSEO.ts b/src/app/composables/usePageSEO.ts
+index 6c05c45d1a1e6345bb882689fed49ab876c0ac69..7ac639e66c593687fc15e7011da7f884539a58c3 100644
+--- a/src/app/composables/usePageSEO.ts
++++ b/src/app/composables/usePageSEO.ts
+@@ -1,7 +1,7 @@
+ import { useRoute } from "@app/router.ts";
+ import { useAppConfig } from "@app/composables/useAppConfig.ts";
+ import { hintPrerenderRoute } from "@app/composables/useContent.ts";
+-import { useSeoMeta } from "@unhead/vue";
++import { useHead, useSeoMeta } from "@unhead/vue";
+ export interface PageMeta {
+   title: string;
+   description: string;
+@@ -34,12 +34,58 @@ export function usePageSEO(page: PageMeta) {
+   // (`src/server/routes/_og/[...slug].get.ts`) loads the card meta itself from
+   // the content index. `/` maps to the `_index` (landing) card.
+   const path = route.path === "/" ? "/_index" : route.path;
+-  const canonicalURL = new URL(base);
+-  const ogURL = new URL(`/_og${path}.png`, canonicalURL);
++  const pageURL = new URL(route.path, base);
++  const canonical = pageURL.href;
++  const ogURL = new URL(`/_og${path}.png`, pageURL);
++  const siteURL = new URL("/", base).href;
++  const siteName = appConfig.site.name || "";
++  // Posts are articles; the blog index and the rest of the docs are web pages.
++  const ogType = route.path.startsWith("/blog/") ? "article" : "website";
++  const structuredData = {
++    "@context": "https://schema.org",
++    "@graph": [
++      {
++        "@type": "WebSite",
++        "@id": `${siteURL}#website`,
++        name: siteName,
++        url: siteURL,
++        description: appConfig.site.description || description,
++        publisher: { "@id": `${siteURL}#organization` },
++      },
++      {
++        "@type": "Organization",
++        "@id": `${siteURL}#organization`,
++        name: siteName,
++        url: siteURL,
++        logo: new URL("/apple-touch-icon.png", siteURL).href,
++      },
++      ogType === "article"
++        ? {
++            "@type": "Article",
++            "@id": `${canonical}#article`,
++            headline: page.title,
++            description,
++            url: canonical,
++            mainEntityOfPage: canonical,
++            isPartOf: { "@id": `${siteURL}#website` },
++            publisher: { "@id": `${siteURL}#organization` },
++          }
++        : {
++            "@type": "WebPage",
++            "@id": `${canonical}#webpage`,
++            name: page.title,
++            description,
++            url: canonical,
++            isPartOf: { "@id": `${siteURL}#website` },
++          },
++    ],
++  };
+ 
+   useSeoMeta({
+     ogTitle: page.title,
+     ogDescription: description,
++    ogUrl: canonical,
++    ogType,
+     ogImage: {
+       url: ogURL.href,
+       width: 1200,
+@@ -48,6 +94,7 @@ export function usePageSEO(page: PageMeta) {
+       alt: description,
+     },
+     twitterCard: "summary_large_image",
++    twitterTitle: page.title,
+     twitterDescription: description,
+     twitterImage: {
+       url: ogURL.href,
+@@ -57,6 +104,18 @@ export function usePageSEO(page: PageMeta) {
+     },
+   });
+ 
++  useHead({
++    link: [{ rel: "canonical", href: canonical, key: "canonical" }],
++    script: [
++      {
++        type: "application/ld+json",
++        key: "ldjson",
++        // Escape `<` so a description cannot close the script tag.
++        textContent: JSON.stringify(structuredData).replaceAll("<", "\\u003c"),
++      },
++    ],
++  });
++
+   // Prerender the page's OG image alongside its HTML. The card route is now
+   // path-addressed and query-less (`/_og/<path>.png`), so Nitro can write it to
+   // disk; hinting it via the `x-nitro-prerender` response header is the only way

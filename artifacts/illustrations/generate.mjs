@@ -522,13 +522,16 @@ for (const name of only) {
 // Gallery markup and the illustration list live in index.html (kept as a normal file).
 writeFileSync(join(here, "names.json"), `${JSON.stringify(names, null, 2)}\n`);
 
-// Coverage: every registry item needs a scene; a new component fails loudly here instead of
-// shipping without a preview. `bookmarks-empty` is the illustration set's origin, not a component.
+// Coverage matches check.mjs: registry:component items need a scene. Blocks do not.
+// `bookmarks-empty` is the illustration set's origin, not a component.
 const registry = JSON.parse(readFileSync(join(here, "../../packages/ui/registry.json"), "utf8"));
-const components = registry.items.map((item) => item.name);
+const components = registry.items
+  .filter((item) => item.type === "registry:component")
+  .map((item) => item.name);
+const itemNames = registry.items.map((item) => item.name);
 const missing = components.filter((name) => !scenes[name]);
 const extra = Object.keys(scenes).filter(
-  (name) => name !== "bookmarks-empty" && !components.includes(name),
+  (name) => name !== "bookmarks-empty" && !itemNames.includes(name),
 );
 if (missing.length) console.warn(`missing scenes for: ${missing.join(", ")}`);
 if (extra.length) console.warn(`scenes without a component: ${extra.join(", ")}`);

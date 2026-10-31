@@ -10,7 +10,7 @@
     "generate": "vp run docs#build",
     "deploy": "wrangler deploy",
     "deploy:preview": "wrangler preview",
-    "ready": "vp check && vp run ui#test && vp test run --passWithNoTests && vp run build",
+    "ready": "node artifacts/illustrations/check.mjs && vp check && vp run ui#test && vp test run --passWithNoTests && vp run build",
     "prepare": "vp config"
   },
   "devDependencies": {

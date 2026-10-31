@@ -41,7 +41,18 @@ useSeoMeta({
 });
 useHead({
   htmlAttrs: { lang: appConfig.docs.lang || "en" },
-  link: [{ rel: "icon", href: logo }],
+  link: [
+    {
+      rel: "icon",
+      href: logo,
+      type:
+        logo.endsWith(".svg") || logo.startsWith("data:image/svg+xml")
+          ? "image/svg+xml"
+          : undefined,
+    },
+    { rel: "icon", href: "/favicon.ico", sizes: "any" },
+    { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
+  ],
 });
 
 const { data: navigation } = await useAsyncData("navigation", () => queryNavigation());
