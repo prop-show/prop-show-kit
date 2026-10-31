@@ -137,6 +137,28 @@
       ]
     },
     {
+      "name": "cookie-consent",
+      "type": "registry:block",
+      "title": "Cookie Consent",
+      "description": "A cookie banner with category preferences for accept, reject, and custom choices.",
+      "dependencies": ["@lucide/vue", "reka-ui"],
+      "registryDependencies": ["button"],
+      "files": [
+        {
+          "path": "registry/cookie-consent/CookieConsent.vue",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/cookie-consent/consent.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/cookie-consent/index.ts",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "frame",
       "type": "registry:component",
       "title": "Frame",

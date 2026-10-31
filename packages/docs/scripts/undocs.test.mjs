@@ -138,6 +138,27 @@ it.each([undefined, "https://registry.example.test/"])(
         expect(registry.registryDependencies).toContain(`${homepage}r/frame.json`);
         expect(registry.files.some((file) => file.path.endsWith("/index.ts"))).toBe(true);
       }
+      for (const block of ["cookie-consent"]) {
+        const response = await fetch(new URL(`blocks/${block}`, url), {
+          signal: AbortSignal.timeout(10_000),
+        });
+        expect(response.status, output).toBe(200);
+        const html = await response.text();
+        expect(html).toContain('aria-label="Component example"');
+        expect(html).toContain('aria-label="Resize preview width"');
+        expect(html).toContain("Component Source");
+        expect(html).toContain(`https://kit.prop.show/r/${block}.json`);
+        const registry = await fetch(new URL(`r/${block}.json`, url)).then((item) => {
+          expect(item.status).toBe(200);
+          return item.json();
+        });
+        expect(registry.name).toBe(block);
+        expect(registry.type).toBe("registry:block");
+        expect(registry.registryDependencies).toContain("button");
+        expect(registry.dependencies).toContain("reka-ui");
+        expect(registry.files.some((file) => file.path.endsWith("/index.ts"))).toBe(true);
+        expect(registry.files.some((file) => file.path.endsWith("/consent.ts"))).toBe(true);
+      }
       for (const path of [
         "blocks",
         "blocks/workspace",
@@ -210,6 +231,7 @@ it.each([undefined, "https://registry.example.test/"])(
       expect(blocksHtml).toContain("工作台");
       expect(blocksHtml).toContain("/blocks/project-overview");
       expect(blocksHtml).toContain("/blocks/workspace");
+      expect(blocksHtml).toContain("/blocks/cookie-consent");
       expect(blocksHtml).not.toContain("/blocks/hero");
       expect(blocksHtml).not.toContain("/blocks/header");
       expect(blocksHtml).not.toContain("/blocks/cta");
@@ -227,7 +249,7 @@ it.each([undefined, "https://registry.example.test/"])(
         response.text(),
       );
       expect(shippedHtml).toContain("13 components");
-      expect(shippedHtml).toContain("3 blocks");
+      expect(shippedHtml).toContain("4 blocks");
       expect(shippedHtml).not.toContain("36 blocks");
       expect(shippedHtml).toContain("/blog/removing-efferd-marketing-blocks");
       expect(shippedHtml).not.toContain("four components");
@@ -259,6 +281,7 @@ it.each([undefined, "https://registry.example.test/"])(
         "project-overview",
         "team-members",
         "workspace-settings",
+        "cookie-consent",
       ]) {
         expect(names, kept).toContain(kept);
       }

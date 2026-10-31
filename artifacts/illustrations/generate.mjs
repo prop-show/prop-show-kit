@@ -337,6 +337,21 @@ const scenes = {
     ${title(63, 81, 34)}
     ${line(54, 89, 52)}`,
   },
+
+  "cookie-consent": {
+    aria: "A cookie banner waiting for a choice on an otherwise empty page",
+    back: () => BACK(40, 14, 94, 52),
+    surface: () => PAGE(22, 22, 116, 86),
+    content: () => `
+    ${title(28, 28, 28)}
+    ${line(28, 38, 70)}
+    ${line(28, 46, 48)}
+    ${rect(28, 78, 104, 24, 8, "cell", { stroke: true })}
+    ${icon("shield", 34, 85, 10)}
+    ${line(48, 84, 36)}
+    ${line(48, 92, 22, 3.5)}
+    <g class="PREFIX-cta">${rect(100, 86, 26, 12, 6, "accent")}${icon("check", 105, 88.5, 7, "on-accent")}</g>`,
+  },
 };
 
 const theme = (
