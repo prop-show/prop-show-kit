@@ -1,6 +1,6 @@
 ---
 name: generate-empty-state-svg-illustrations
-description: Add or update the 160×120 empty-state SVG preview for a show.prop.kit registry component in artifacts/illustrations, then regenerate, check coverage and eyeball light/dark. Use when adding a new component or block, when check.mjs reports "no illustration for registry item ...", or when asked for empty-state or preview artwork for this kit.
+description: Add or update the 160×120 empty-state SVG preview for a PropShow Kit registry component in artifacts/illustrations, then regenerate, check coverage and eyeball light/dark. Use when adding a new component or block, when check.mjs reports "no illustration for registry item ...", or when asked for empty-state or preview artwork for this kit.
 ---
 
 # Empty-state illustrations

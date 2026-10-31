@@ -1,0 +1,53 @@
+name: Bug report
+description: An install, a copied component, a block, or the docs site is wrong.
+title: "bug: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting this. 中文描述也可以。
+
+        For a security issue, use the private channel in SECURITY.md instead of this form.
+  - type: dropdown
+    id: area
+    attributes:
+      label: Where did this happen?
+      options:
+        - Installing with the shadcn-vue CLI
+        - A component or block after it was copied into a project
+        - The docs site (kit.prop.show)
+        - This repository (build, tests, illustrations)
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What did you expect, and what did you see instead?
+    validations:
+      required: true
+  - type: input
+    id: entry
+    attributes:
+      label: Registry entry
+      description: For example `copy` or `hero-spotlight`. Leave blank if this is not about one entry.
+      placeholder: copy
+  - type: textarea
+    id: command
+    attributes:
+      label: Command you ran
+      description: The `shadcn-vue add` command, or the docs command, if there was one.
+      render: shell
+  - type: input
+    id: versions
+    attributes:
+      label: Versions
+      description: shadcn-vue CLI, Vue, and Node, if you know them.
+      placeholder: shadcn-vue 2.x, Vue 3.5, Node 22
+  - type: textarea
+    id: extra
+    attributes:
+      label: Anything else
+      description: Errors, screenshots, or a minimal repository. Do not include secrets.

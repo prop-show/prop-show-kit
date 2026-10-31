@@ -100,6 +100,7 @@ it.each([undefined, "https://registry.example.test/"])(
         "guide/components-and-blocks",
         "guide/boundaries",
         "guide/pitfalls",
+        "guide/changelog",
       ]) {
         const response = await fetch(new URL(path, url), {
           signal: AbortSignal.timeout(10_000),
@@ -120,6 +121,18 @@ it.each([undefined, "https://registry.example.test/"])(
       expect(homeHtml).not.toContain("Fill the gaps in shadcn-vue");
       expect(homeHtml).not.toContain("Browse blocks");
       expect(homeHtml).not.toContain("Three entries, running");
+      expect(homeHtml).not.toContain("Install in 30 seconds");
+      const changelogHtml = await fetch(new URL("guide/changelog", url)).then((response) => {
+        expect(response.status).toBe(200);
+        return response.text();
+      });
+      expect(changelogHtml).toContain("CHANGELOG.md");
+      expect(changelogHtml).toContain("/blog/what-ships-today");
+      expect(changelogHtml).toContain(
+        `https://github.com/prop-show/prop-show-kit/edit/master/packages/docs/1.guide/7.changelog.md`,
+      );
+      expect(changelogHtml).toContain("/blog/from-components-to-working-screens");
+      expect(changelogHtml).toContain("/blog/empty-states-as-a-skill");
       const guideHtml = await fetch(new URL("guide", url)).then((response) => response.text());
       expect(guideHtml).toContain('href="/blocks"');
       expect(guideHtml).toContain("Blocks");

@@ -1,0 +1,11 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Quick start
+    url: https://kit.prop.show/guide
+    about: Install steps, the @propshow alias, and common pitfalls.
+  - name: What changed
+    url: https://github.com/prop-show/prop-show-kit/blob/master/CHANGELOG.md
+    about: Dated changelog. Longer notes are on https://kit.prop.show/blog
+  - name: Security
+    url: https://github.com/prop-show/prop-show-kit/security/policy
+    about: Report a vulnerability in private. Do not open a public issue for it.

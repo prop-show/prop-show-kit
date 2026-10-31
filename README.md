@@ -1,16 +1,86 @@
 # PropShow Kit
 
+Add-on registry for [shadcn-vue](https://www.shadcn-vue.com/). The CLI copies a component or a block into your project. There is no npm package.
+
+[Site](https://kit.prop.show/) · [Guide](https://kit.prop.show/guide) · [Changelog](CHANGELOG.md) · [Blog](https://kit.prop.show/blog) · [Contributing](CONTRIBUTING.md)
+
 [English](#english) | [中文](#chinese)
 
 <a name="english"></a>
 
 ## English
 
-**PropShow Kit** is an **add-on registry for [shadcn-vue](https://www.shadcn-vue.com/)** — companion components layered on top of the base library, the way an add-on extends the thing it plugs into. It follows the same **copy-and-paste** philosophy as shadcn-vue: there is no package to install, you copy the component source straight into your project and own it.
+### Install in 30 seconds
 
-### Local registry development
+The project needs [shadcn-vue](https://www.shadcn-vue.com/docs/installation.html) first: Tailwind, a root `components.json`, and `cn` at `@/lib/utils`. `npx shadcn-vue@latest init` creates that setup.
 
-By default, the registry uses the address and port resolved by the development server, preferring a network address when listening on `0.0.0.0` or `::`. When accessing it through a proxy or from another device, you can explicitly set an address reachable by the client:
+```bash
+npx shadcn-vue@latest add https://kit.prop.show/r/copy.json
+```
+
+```vue
+<script setup lang="ts">
+import { Copy } from "@/components/copy";
+</script>
+
+<template>
+  <Copy content="Hello, PropShow Kit!" />
+</template>
+```
+
+Register the registry once if you want short names. In `components.json`:
+
+```json
+{
+  "registries": {
+    "@propshow": "https://kit.prop.show/r/{name}.json"
+  }
+}
+```
+
+```bash
+npx shadcn-vue@latest add @propshow/copy
+```
+
+A block uses the same command, for example `https://kit.prop.show/r/hero-spotlight.json` or `@propshow/hero-spotlight`. The full walkthrough is the [quick start](https://kit.prop.show/guide).
+
+### See it
+
+Live previews on the docs site:
+
+- [Components](https://kit.prop.show/components) — 13 pieces. Open [Copy](https://kit.prop.show/components/copy), [Frame](https://kit.prop.show/components/frame), or [Filters](https://kit.prop.show/components/filters).
+- [Blocks](https://kit.prop.show/blocks) — 36 screens. Open the [spotlight hero](https://kit.prop.show/blocks/hero/hero-spotlight), [team members](https://kit.prop.show/blocks/team-members), or [feature grid](https://kit.prop.show/blocks/features/feature-grid).
+- [Workspace](https://kit.prop.show/blocks/workspace) — project overview, team directory, and settings.
+
+### Features
+
+- **Copied, not installed.** No package and no version to track. The CLI writes the source into your repo.
+- **Shadcn-native.** Built on `reka-ui` and the same Tailwind CSS v4 tokens and shadcn-vue primitives (`button`, `tooltip`, `badge`, `dropdown-menu`).
+- **TypeScript.** Typed props and slots.
+- **Accessible.** ARIA roles, labels, and keyboard navigation ship with the component.
+- **Dark mode.** Semantic color tokens keep light and dark themes working.
+- **Two shapes.** A component fills one gap. A block installs a section or a screen, including sample copy you replace before publishing.
+
+### What changed
+
+- [CHANGELOG.md](CHANGELOG.md) — dated list in this repository.
+- [Blog](https://kit.prop.show/blog) — longer notes.
+- [What changed](https://kit.prop.show/guide/changelog) — the same entry point on the docs site.
+
+### Local debugging
+
+You do not need this repository to install a component. Clone it when you are changing a component, a block, or the docs.
+
+Requirements: Node.js 22.18 or newer, and [Vite+](https://viteplus.dev/) (`vp`).
+
+```sh
+vp install
+vp dev
+```
+
+`vp dev` builds the registry, then starts the docs site. The dev registry uses the address the server binds, and prefers a network address when it listens on `0.0.0.0` or `::`. Production builds use `url` in `packages/docs/.config/docs.yaml` (`https://kit.prop.show/`).
+
+Through a proxy or from another device, set a registry URL the browser can reach:
 
 ```sh
 vp run ui#build
@@ -18,13 +88,9 @@ cd packages/docs
 node scripts/undocs.mjs dev . --host 0.0.0.0 --port 3000 --registry-url http://192.168.1.10:3000/
 ```
 
-Replace the example IP with your development machine's address. `--registry-url` only affects the development registry's homepage and dependency URLs for components from this registry. Production builds use the `url` in `.config/docs.yaml`.
+Replace the example IP with your machine. `--registry-url` only rewrites the development registry homepage and dependency URLs for components from this registry.
 
-### Block and page previews
-
-Regular components use the lightweight `PreviewFrame`. Block and page examples can opt into `ComponentPreview`, which supports resizing by dragging or using the arrow keys, PC (1440px) / iPad (768px) / Phone (390px) presets, fullscreen, reset, Preview / Code tabs, and install command copying. Previews render in a separate iframe so responsive media queries follow the preview width. The width stays within the available container space, including when a device preset is selected.
-
-When adding a block or page example, specify its registry source path and installation name:
+Component pages use the lightweight `PreviewFrame`. Block pages use `ComponentPreview`: drag or arrow keys to resize, PC (1440px) / iPad (768px) / Phone (390px), fullscreen, reset, and Preview / Code. The preview is an iframe, so media queries follow its width, and that width stays inside the container.
 
 ```vue
 <ComponentPreview source="frame/Frame.vue" registry="frame">
@@ -32,26 +98,87 @@ When adding a block or page example, specify its registry source path and instal
 </ComponentPreview>
 ```
 
-The optional `height` prop sets the preview viewport height (240px by default); taller content scrolls inside the iframe. Reset exits fullscreen, restores automatic width, and returns to Preview. Switching tabs or sizes preserves the example's interactive state.
+`height` defaults to 240px. Taller content scrolls inside the iframe. Reset leaves fullscreen, restores automatic width, and returns to Preview. Switching tabs or sizes keeps the example's state.
 
-### Features
-
-- 🎨 **Shadcn-native** - Built on `reka-ui` and the same Tailwind CSS v4 tokens and shadcn-vue primitives you already use.
-- 🧩 **Registry distribution** - Components install through the `shadcn-vue` CLI and land in your project as source you own.
-- 📋 **TypeScript** - Fully typed props and slots.
-- ♿ **Accessible** - ARIA roles, labels and keyboard navigation built in.
-- 🌙 **Dark mode** - Semantic color tokens keep light and dark themes working.
-- 📝 **Docs with undocs** - Documentation, guides and live previews powered by [undocs](https://github.com/unjs/undocs) (Vite + Nitro + Vue).
+Pull request checks are in [CONTRIBUTING.md](CONTRIBUTING.md). Report vulnerabilities through [SECURITY.md](SECURITY.md). License: [MIT](LICENSE). Attribution for adapted blocks: [NOTICE](NOTICE) and [THIRD_PARTY.md](THIRD_PARTY.md).
 
 <a name="chinese"></a>
 
 ## 中文
 
-**PropShow Kit** 是 **[shadcn-vue](https://www.shadcn-vue.com/) 的附属组件库** —— 在基础组件库之上补充的配套组件，就像模组的附属模组一样。它同样遵循 **复制即用** 的理念：无需安装任何包，直接把组件源码复制进你的项目即可拥有它。
+**PropShow Kit** 是 [shadcn-vue](https://www.shadcn-vue.com/) 的附属 registry。CLI 把组件或 block 的源码复制进你的项目。没有 npm 包。
 
-### 本地 registry 调试
+### 30 秒安装
 
-默认使用开发服务器实际解析的地址和端口；监听 `0.0.0.0` 或 `::` 时优先使用网络地址。通过代理或其他设备访问时，可以显式指定客户端可访问的地址：
+项目需要先完成 [shadcn-vue](https://www.shadcn-vue.com/docs/installation.html) 初始化：Tailwind、项目根目录的 `components.json`，以及 `@/lib/utils` 里的 `cn`。`npx shadcn-vue@latest init` 会生成这套配置。
+
+```bash
+npx shadcn-vue@latest add https://kit.prop.show/r/copy.json
+```
+
+```vue
+<script setup lang="ts">
+import { Copy } from "@/components/copy";
+</script>
+
+<template>
+  <Copy content="Hello, PropShow Kit!" />
+</template>
+```
+
+想用短名字时，在 `components.json` 里登记一次：
+
+```json
+{
+  "registries": {
+    "@propshow": "https://kit.prop.show/r/{name}.json"
+  }
+}
+```
+
+```bash
+npx shadcn-vue@latest add @propshow/copy
+```
+
+Block 用同一条命令，例如 `https://kit.prop.show/r/hero-spotlight.json` 或 `@propshow/hero-spotlight`。完整步骤见[快速开始](https://kit.prop.show/guide)。
+
+### 先看效果
+
+文档站上的实时预览：
+
+- [组件](https://kit.prop.show/components) — 13 个。先看 [Copy](https://kit.prop.show/components/copy)、[Frame](https://kit.prop.show/components/frame)、[Filters](https://kit.prop.show/components/filters)。
+- [Blocks](https://kit.prop.show/blocks) — 36 个现成界面。先看[聚光灯 Hero](https://kit.prop.show/blocks/hero/hero-spotlight)、[团队成员](https://kit.prop.show/blocks/team-members)、[特性网格](https://kit.prop.show/blocks/features/feature-grid)。
+- [工作台](https://kit.prop.show/blocks/workspace) — 项目概览、团队目录和设置。
+
+### 特性
+
+- **复制即拥有。** 没有包，也没有版本号要追。CLI 把源码写进你的仓库。
+- **Shadcn 原生。** 基于 `reka-ui`，以及同一套 Tailwind CSS v4 token 和 shadcn-vue 原子组件（`button`、`tooltip`、`badge`、`dropdown-menu`）。
+- **TypeScript。** props 和 slots 有类型。
+- **可访问。** ARIA role、label 和键盘操作随组件一起提供。
+- **暗色模式。** 语义色 token，明暗主题照常工作。
+- **两种粒度。** 组件补上缺的一块。Block 装进一节或一整屏，里面的示例文案发布前要换成你自己的。
+
+### 变更记录
+
+- [CHANGELOG.md](CHANGELOG.md) — 本仓库里的日期列表。
+- [博客](https://kit.prop.show/blog) — 较长的说明。
+- [What changed](https://kit.prop.show/guide/changelog) — 文档站上的同一入口。
+
+### 本地调试
+
+只是安装组件的话，不需要克隆本仓库。改组件、block 或文档时再克隆。
+
+需要 Node.js 22.18 或更高版本，以及 [Vite+](https://viteplus.dev/)（`vp`）。
+
+```sh
+vp install
+vp dev
+```
+
+`vp dev` 会先构建 registry，再启动文档站。开发 registry 使用服务器实际绑定的地址；监听 `0.0.0.0` 或 `::` 时优先使用网络地址。生产构建使用 `packages/docs/.config/docs.yaml` 里的 `url`（`https://kit.prop.show/`）。
+
+通过代理或从另一台设备访问时，指定浏览器能够打开的 registry 地址：
 
 ```sh
 vp run ui#build
@@ -59,13 +186,9 @@ cd packages/docs
 node scripts/undocs.mjs dev . --host 0.0.0.0 --port 3000 --registry-url http://192.168.1.10:3000/
 ```
 
-将示例 IP 替换为开发机地址。`--registry-url` 仅影响开发 registry 的主页和自有组件依赖地址，生产构建使用 `.config/docs.yaml` 中的 `url`。
+把示例 IP 换成你的机器地址。`--registry-url` 只改写开发 registry 的主页，以及本 registry 组件的依赖地址。
 
-### Block 和页面预览
-
-普通 components 继续使用轻量的 `PreviewFrame` 展示。后续 block 和页面示例按需使用 `ComponentPreview`，支持拖拽或方向键调整宽度、PC（1440px）/ iPad（768px）/ Phone（390px）预设、全屏、恢复默认、Preview / Code 标签及安装命令复制。预览在独立 iframe 中渲染，响应式媒体查询按预览宽度生效；预览宽度始终限制在容器可用空间内，设备预设也会按可用宽度收缩。
-
-新增 block 或页面示例时指定 registry 源码路径及安装名称：
+组件页使用轻量的 `PreviewFrame`。Block 页使用 `ComponentPreview`：拖拽或方向键改宽度，PC（1440px）/ iPad（768px）/ Phone（390px），全屏、恢复默认，以及 Preview / Code。预览在独立 iframe 里，媒体查询按预览宽度生效，宽度也不会超出容器。
 
 ```vue
 <ComponentPreview source="frame/Frame.vue" registry="frame">
@@ -73,13 +196,6 @@ node scripts/undocs.mjs dev . --host 0.0.0.0 --port 3000 --registry-url http://1
 </ComponentPreview>
 ```
 
-可选 `height` 属性设置预览视口高度（默认 240px），超出的内容在 iframe 内滚动。恢复默认会退出全屏、恢复自动宽度并切回 Preview；切换标签或尺寸会保留示例交互状态。
+`height` 默认 240px。更高的内容在 iframe 内滚动。恢复默认会退出全屏、回到自动宽度，并切回 Preview。切换标签或尺寸会保留示例的交互状态。
 
-### 特性
-
-- 🎨 **Shadcn 原生** - 基于 `reka-ui` 与同一套 Tailwind CSS v4 token 和 shadcn-vue 原子组件。
-- 🧩 **Registry 分发** - 通过 `shadcn-vue` CLI 安装，源码落在你的项目里归你所有。
-- 📋 **TypeScript** - 完整的 props / slots 类型。
-- ♿ **可访问性** - 内置 ARIA role、label 与键盘导航。
-- 🌙 **暗色模式** - 语义色 token，明暗主题照常工作。
-- 📝 **undocs 文档站** - 文档、指南与实时预览由 [undocs](https://github.com/unjs/undocs)（Vite + Nitro + Vue）驱动。
+提交前的检查见 [CONTRIBUTING.md](CONTRIBUTING.md)。安全问题见 [SECURITY.md](SECURITY.md)。许可证：[MIT](LICENSE)。改编 block 的署名见 [NOTICE](NOTICE) 和 [THIRD_PARTY.md](THIRD_PARTY.md)。
