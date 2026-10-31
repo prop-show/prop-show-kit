@@ -93,6 +93,59 @@ it.each([undefined, "https://registry.example.test/"])(
         expect(registry.registryDependencies).toContain(`${homepage}r/frame.json`);
         expect(registry.files.some((file) => file.path.endsWith("/index.ts"))).toBe(true);
       }
+      for (const path of [
+        "blocks",
+        "blocks/workspace",
+        "guide/registry",
+        "guide/components-and-blocks",
+        "guide/boundaries",
+        "guide/pitfalls",
+      ]) {
+        const response = await fetch(new URL(path, url), {
+          signal: AbortSignal.timeout(10_000),
+        });
+        expect(response.status, `${path}\n${output}`).toBe(200);
+      }
+      const homeHtml = await fetch(url, { signal: AbortSignal.timeout(10_000) }).then(
+        (response) => {
+          expect(response.status).toBe(200);
+          return response.text();
+        },
+      );
+      expect(homeHtml).toContain("PropShow Kit");
+      expect(homeHtml).toContain("Add-on registry for shadcn-vue");
+      expect(homeHtml).toContain("Add-ons for shadcn-vue.");
+      expect(homeHtml).toContain("Copied, not installed");
+      expect(homeHtml).not.toContain("13 components · 36 blocks");
+      expect(homeHtml).not.toContain("Fill the gaps in shadcn-vue");
+      expect(homeHtml).not.toContain("Browse blocks");
+      expect(homeHtml).not.toContain("Three entries, running");
+      const guideHtml = await fetch(new URL("guide", url)).then((response) => response.text());
+      expect(guideHtml).toContain('href="/blocks"');
+      expect(guideHtml).toContain("Blocks");
+      const blocksHtml = await fetch(new URL("blocks", url)).then((response) => response.text());
+      expect(blocksHtml).toContain("工作台");
+      expect(blocksHtml).toContain("/blocks/hero");
+      expect(blocksHtml).toContain("/blocks/header");
+      expect(blocksHtml).toContain("/blocks/cta");
+      const workspaceHtml = await fetch(new URL("blocks/workspace", url)).then((response) =>
+        response.text(),
+      );
+      expect(workspaceHtml).toContain("/blocks/project-overview");
+      expect(workspaceHtml).toContain("/blocks/team-members");
+      expect(workspaceHtml).toContain("/blocks/workspace-settings");
+      const shippedHtml = await fetch(new URL("blog/what-ships-today", url)).then((response) =>
+        response.text(),
+      );
+      expect(shippedHtml).toContain("13 components");
+      expect(shippedHtml).toContain("36 blocks");
+      expect(shippedHtml).not.toContain("four components");
+      const introHtml = await fetch(new URL("guide/introduction", url)).then((response) =>
+        response.text(),
+      );
+      expect(introHtml).toContain("Frame");
+      expect(introHtml).toContain("Pricing");
+      expect(introHtml).toContain("/blocks/workspace");
       for (const missing of ["404", "components/missing-component", "blog/missing-post"]) {
         const response = await fetch(new URL(missing, url));
         expect(response.status, output).toBe(404);
