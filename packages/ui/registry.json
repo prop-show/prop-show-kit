@@ -384,6 +384,28 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "signature-pad",
+      "type": "registry:component",
+      "title": "Signature Pad",
+      "description": "A handwritten signature pad with clear and image export.",
+      "dependencies": ["@lucide/vue"],
+      "registryDependencies": ["button"],
+      "files": [
+        {
+          "path": "registry/signature-pad/SignaturePad.vue",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/signature-pad/stroke.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/signature-pad/index.ts",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }

@@ -6,6 +6,7 @@ Longer write-ups are on the [blog](https://kit.prop.show/blog). The docs site li
 
 ## 2026-10-31
 
+- Signature Pad. A handwritten signature with clear, undo, and export to a data URL or Blob. The stroke capture is original PropShow Kit code. No third-party signature library is included.
 - Removed 33 marketing blocks ported from [SikandarJODD/sv-efferd](https://github.com/SikandarJODD/sv-efferd): call to action (5), testimonials (5), integrations (5), logo cloud (5), header (5), hero (3), and features (5). Pricing components, the three workspace blocks, and Kumo, ReUI, and Medusa adaptations stay. [Removing the Efferd marketing blocks](https://kit.prop.show/blog/removing-efferd-marketing-blocks) explains why. `NOTICE` and `THIRD_PARTY.md` no longer carry those entries.
 - Collaboration docs on the repository: install-first README, contributing guide, issue and pull request templates, security policy, and this changelog.
 - The registry is MIT licensed. Attribution for adapted components is in `NOTICE` and `THIRD_PARTY.md`.

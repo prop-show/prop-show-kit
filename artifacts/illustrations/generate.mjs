@@ -326,6 +326,20 @@ const scenes = {
     ${[0, 1, 2].map((i) => `${line(28, 73 + i * 9, 28)}${icon("check", 75, 71 + i * 9, 8)}${icon("check", 111, 71 + i * 9, 8)}`).join("")}`,
   },
 
+  "signature-pad": {
+    aria: "An empty signature pad with a baseline and a save action",
+    back: () => BACK(40, 16, 94, 52),
+    surface: () => PAGE(26, 30, 108, 72),
+    content: () => `
+    ${icon("brush", 32, 36, 10)}
+    ${title(46, 38.5, 36)}
+    ${rect(32, 52, 96, 32, 8, "cell", { stroke: true })}
+    ${rect(40, 74, 80, 0.8, 0, "surface-border")}
+    ${rect(32, 90, 22, 12, 6, "surface", { stroke: true })}
+    ${line(37, 94, 12)}
+    <g class="PREFIX-cta">${rect(92, 90, 36, 12, 6, "accent")}${icon("check", 98, 92.5, 7, "on-accent")}${line(108, 94, 14, 4, "on-accent")}</g>`,
+  },
+
   "bookmarks-empty": {
     aria: "A browser window showing an empty bookmarks folder",
     back: () => BACK(40, 20, 100, 54),
