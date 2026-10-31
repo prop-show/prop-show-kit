@@ -29,6 +29,15 @@ Design references (Vue adaptations, not verbatim copies)
   Referenced by inline-tip.
   Medusa Enterprise Edition materials are a separate license and are not included.
 
+Phone numbers
+  phone-input calls libphonenumber-js for calling codes, formatting, and the
+  length check. The component source is original PropShow Kit code.
+  libphonenumber-js is MIT, Copyright (c) 2016 @catamphetamine.
+  https://gitlab.com/catamphetamine/libphonenumber-js
+  Its metadata is generated from Google's libphonenumber (Apache License 2.0,
+  https://github.com/google/libphonenumber) and is distributed with the npm
+  package. That metadata is not copied into this repository.
+
 Docs-site primitives
   packages/docs/.docs/ui/ and packages/docs/.docs/lib/utils.ts are local
   copies of shadcn-vue primitives used to render this documentation site.
@@ -37,7 +46,7 @@ Docs-site primitives
 
 Trademarks
   PropShow Kit is not shadcn, shadcn-vue, Kumo, ReUI, Cloudflare, Nuxt UI,
-  or Medusa.
+  Medusa, or libphonenumber.
   Those names belong to their owners. They appear only as attribution.
   They are not PropShow Kit branding.
 

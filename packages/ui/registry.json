@@ -384,6 +384,50 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "password-input",
+      "type": "registry:component",
+      "title": "Password Input",
+      "description": "A password field with a show/hide toggle and a strength meter.",
+      "dependencies": ["@lucide/vue"],
+      "registryDependencies": ["button", "input", "input-group"],
+      "files": [
+        {
+          "path": "registry/password-input/PasswordInput.vue",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/password-input/strength.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/password-input/index.ts",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "phone-input",
+      "type": "registry:component",
+      "title": "Phone Input",
+      "description": "An international phone field with a country calling code and E.164 value.",
+      "dependencies": ["@lucide/vue", "libphonenumber-js"],
+      "registryDependencies": ["button", "dropdown-menu", "input", "input-group"],
+      "files": [
+        {
+          "path": "registry/phone-input/PhoneInput.vue",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/phone-input/phone.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/phone-input/index.ts",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }

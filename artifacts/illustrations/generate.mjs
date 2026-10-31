@@ -326,6 +326,32 @@ const scenes = {
     ${[0, 1, 2].map((i) => `${line(28, 73 + i * 9, 28)}${icon("check", 75, 71 + i * 9, 8)}${icon("check", 111, 71 + i * 9, 8)}`).join("")}`,
   },
 
+  "password-input": {
+    aria: "An empty password field with a show button and an unset strength meter",
+    back: () => BACK(40, 16, 94, 52),
+    surface: () => PAGE(26, 30, 108, 72),
+    content: () => `
+    ${title(32, 36, 28)}
+    ${rect(32, 48, 96, 20, 8, "cell", { stroke: true })}
+    ${line(38, 56, 28)}
+    <g class="PREFIX-cta">${rect(104, 51, 18, 14, 7, "accent")}${icon("eye", 109.5, 54.5, 7, "on-accent")}</g>
+    ${[0, 1, 2, 3].map((i) => rect(32 + i * 25, 76, 22, 4, 2, "cell")).join("")}
+    ${line(32, 88, 54)}`,
+  },
+
+  "phone-input": {
+    aria: "An empty international phone field with a country calling code",
+    back: () => BACK(40, 16, 94, 52),
+    surface: () => PAGE(26, 30, 108, 72),
+    content: () => `
+    ${title(32, 36, 24)}
+    ${rect(32, 48, 96, 22, 8, "cell", { stroke: true })}
+    <g class="PREFIX-cta">${rect(36, 52, 36, 14, 7, "accent")}${icon("phone", 40, 55, 8, "on-accent")}${line(52, 57, 14, 4, "on-accent")}</g>
+    ${line(78, 57, 40)}
+    ${line(32, 80, 70)}
+    ${line(32, 88, 46)}`,
+  },
+
   "bookmarks-empty": {
     aria: "A browser window showing an empty bookmarks folder",
     back: () => BACK(40, 20, 100, 54),
