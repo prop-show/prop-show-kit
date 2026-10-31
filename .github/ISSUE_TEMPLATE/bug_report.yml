@@ -32,7 +32,7 @@ body:
     id: entry
     attributes:
       label: Registry entry
-      description: For example `copy` or `hero-spotlight`. Leave blank if this is not about one entry.
+      description: For example `copy` or `workspace-settings`. Leave blank if this is not about one entry.
       placeholder: copy
   - type: textarea
     id: command

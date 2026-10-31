@@ -5,8 +5,6 @@ See `LICENSE`. This file records components that came from other projects, the
 copyright lines those projects publish, and the MIT license text that has to
 travel with them. `NOTICE` is the short form of the same attribution.
 
-Migrated source files repeat the SikandarJODD MIT notice in a file header.
-That header is what a `shadcn-vue` install copies into a downstream project.
 Design references below are Vue adaptations. Their files are PropShow Kit code
 and are not stamped with the upstream copyright, because that would claim the
 whole file is the upstream work.
@@ -15,106 +13,11 @@ whole file is the upstream work.
 
 | Work | What is in this repo | Source | Copyright | License |
 | --- | --- | --- | --- | --- |
-| Svelte Efferd | Vue ports of marketing blocks | https://github.com/SikandarJODD/sv-efferd | Copyright (c) 2026 SikandarJODD | MIT |
-| efferd-ui | Upstream credit for those blocks, recorded by the Svelte port | https://github.com/shabanhr/efferd-ui | Copyright (c) 2025 sshahaider | MIT (`LICENCE.md`) |
 | Kumo | Design reference for five components | https://github.com/cloudflare/kumo | Copyright (c) 2026 Cloudflare, Inc. | MIT |
 | ReUI free components | Design reference for frame and filters | https://github.com/keenthemes/reui | Copyright (c) 2025 Keenthemes Inc | MIT |
 | Nuxt UI | Design reference for pricing components | https://github.com/nuxt/ui | Copyright (c) 2023 Nuxt | MIT |
 | Medusa design-system UI | Design reference for inline tip | https://github.com/medusajs/medusa/tree/develop/packages/design-system/ui | Copyright (c) 2023 Medusajs | MIT |
 | shadcn-vue | Docs-site primitive copies | https://github.com/unovue/shadcn-vue | Copyright (c) 2023 unovue | MIT |
-
-## Svelte Efferd ports
-
-Direct source: [SikandarJODD/sv-efferd](https://github.com/SikandarJODD/sv-efferd) (default branch `master`, MIT).
-
-The Svelte repository's README credits the original blocks to [Shaban](https://github.com/shabanhr/efferd-ui) and the Svelte port to SikandarJODD. Both copyright lines are kept here.
-
-| PropShow Kit path | Svelte block |
-| --- | --- |
-| `packages/ui/registry/cta/` | CTA One–Five |
-| `packages/ui/registry/testimonials/` | Testimonial One–Five |
-| `packages/ui/registry/integrations/` | Integration One–Five |
-| `packages/ui/registry/logo-cloud/` | Logo Cloud One–Five |
-| `packages/ui/registry/header/` | Header One–Five, including shared navigation and scroll helpers |
-| `packages/ui/registry/hero/` | Hero One–Three |
-| `packages/ui/registry/features/` | Feature One–Five |
-
-CTA and testimonial sources were missing the notice the other ports already carried. That MIT header is restored on:
-
-- `packages/ui/registry/cta/CtaCentered.vue`
-- `packages/ui/registry/cta/CtaCornerAccent.vue`
-- `packages/ui/registry/cta/CtaNewsletter.vue`
-- `packages/ui/registry/cta/CtaSplit.vue`
-- `packages/ui/registry/cta/CtaTrialCard.vue`
-- `packages/ui/registry/testimonials/TestimonialCentered.vue`
-- `packages/ui/registry/testimonials/TestimonialSplit.vue`
-- `packages/ui/registry/testimonials/TestimonialSplitGrid.vue`
-- `packages/ui/registry/testimonials/TestimonialStaggered.vue`
-- `packages/ui/registry/testimonials/TestimonialWall.vue`
-
-`packages/ui/registry/header/navigation.ts` keeps its existing one-line pointer to the full notice in `HeaderSimple.vue`.
-
-Docs pages under `packages/docs/4.blocks/` link the Svelte source repository. Collection indexes also name the sshahaider copyright.
-
-### MIT license — Copyright (c) 2026 SikandarJODD
-
-From https://github.com/SikandarJODD/sv-efferd/blob/master/LICENSE
-
-```
-MIT License
-
-Copyright (c) 2026 SikandarJODD
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-```
-
-### MIT license — Copyright (c) 2025 sshahaider
-
-From https://github.com/shabanhr/efferd-ui/blob/main/LICENCE.md
-
-The checked-out file begins with the concatenated first line `LICENCEMIT License` and then the standard MIT terms. The copyright line and the terms are:
-
-```
-MIT License
-
-Copyright (c) 2025 sshahaider
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-```
-
-GitHub's license API reports `NOASSERTION` for that repository. The file above is still the MIT license. See Audit before treating the current Efferd website as the same grant.
 
 ## Kumo
 
@@ -304,9 +207,7 @@ SOFTWARE.
 
 ## Trademarks
 
-Efferd, shadcn, shadcn-vue, Kumo, ReUI, Cloudflare, Nuxt UI, Medusa, and the product logos used as demonstration content are trademarks or names of their owners. PropShow Kit does not adopt them as its own branding.
-
-Default marketing blocks still hotlink images and logos from `storage.efferd.com`, and some testimonials use real people's names with GitHub avatars. That sample content is not a PropShow Kit endorsement and is not PropShow Kit branding. The block docs already say to replace it before publishing.
+shadcn, shadcn-vue, Kumo, ReUI, Cloudflare, Nuxt UI, and Medusa are trademarks or names of their owners. PropShow Kit does not adopt them as its own branding.
 
 `packages/docs/.docs/public/icon.svg` uses `#F0DB4F`, the yellow associated with the JavaScript logo, in a pixel glyph. It was not changed here. Favicon and brand-mark work is outside this license change.
 
@@ -316,14 +217,4 @@ Checked on 2026-10-31 against the source tree (no `node_modules` license crawl).
 
 No GPL, AGPL, LGPL, Commons Clause, or non-commercial-only license text was found in this repository. No ReUI Pro or Ultimate license headers were found. Medusa Enterprise Edition materials were not found. Nuxt UI and the Medusa design-system UI package are MIT, and the components that cite them are adaptations rather than verbatim copies. The `patches/undocs-nightly.patch` file only adds a Vue icon mapping to the docs tool; it does not relicense undocs.
 
-Provenance risk, kept and documented rather than deleted:
-
-The marketing blocks in this repo were ported from SikandarJODD/sv-efferd, which is MIT, Copyright (c) 2026 SikandarJODD. That README says the original blocks were created by Shaban. The public repository shabanhr/efferd-ui contains `LICENCE.md`, MIT, Copyright (c) 2025 sshahaider.
-
-The current product terms at https://efferd.com/license (page last updated October 31, 2026) are a different license. They allow commercial use inside products someone ships, and they forbid passing the blocks on as blocks: selling, sharing, or publishing them on their own or as a UI kit, component library, template, theme, starter, or registry. They also say the name "Efferd" may not be used to present another product as Efferd. That license is not GPL or AGPL, and it is not non-commercial-only. It does restrict redistribution as a registry.
-
-These Vue ports are attributed to the MIT Svelte repository, not to a copy taken from the current efferd.com registry during this change. If the Svelte port itself derives from blocks that Efferd LLC now licenses only under the website terms, MIT redistribution through PropShow Kit may not match those terms. The ports were not removed. Review that chain before relying on MIT for the marketing blocks.
-
-Sample content, also kept:
-
-Testimonial defaults attribute fictional quotes to real people and load their GitHub avatars. Integration and logo-cloud defaults load third-party marks from `storage.efferd.com`. The docs already tell readers to replace that content. It was not stripped in this change.
+Marketing blocks ported from SikandarJODD/sv-efferd were removed from this repository on 2026-10-31. That set was call to action, testimonials, integrations, logo cloud, header, hero, and features (33 blocks). They are not in the registry, and this file no longer carries their MIT notices. The reason is in [CHANGELOG.md](CHANGELOG.md) and on the docs blog, [Removing the Efferd marketing blocks](https://kit.prop.show/blog/removing-efferd-marketing-blocks).

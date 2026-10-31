@@ -127,7 +127,18 @@ it.each([undefined, "https://registry.example.test/"])(
         return response.text();
       });
       expect(changelogHtml).toContain("CHANGELOG.md");
+      expect(changelogHtml).toContain("/blog/removing-efferd-marketing-blocks");
       expect(changelogHtml).toContain("/blog/what-ships-today");
+      const removalHtml = await fetch(new URL("blog/removing-efferd-marketing-blocks", url)).then(
+        (response) => {
+          expect(response.status).toBe(200);
+          return response.text();
+        },
+      );
+      expect(removalHtml).toContain("efferd.com/license");
+      expect(removalHtml).toContain("/blog/what-ships-today");
+      expect(removalHtml).toContain("/components/pricing-plan");
+      expect(removalHtml).toContain("/blocks/project-overview");
       expect(changelogHtml).toContain(
         `https://github.com/prop-show/prop-show-kit/edit/master/packages/docs/1.guide/7.changelog.md`,
       );
@@ -138,9 +149,15 @@ it.each([undefined, "https://registry.example.test/"])(
       expect(guideHtml).toContain("Blocks");
       const blocksHtml = await fetch(new URL("blocks", url)).then((response) => response.text());
       expect(blocksHtml).toContain("工作台");
-      expect(blocksHtml).toContain("/blocks/hero");
-      expect(blocksHtml).toContain("/blocks/header");
-      expect(blocksHtml).toContain("/blocks/cta");
+      expect(blocksHtml).toContain("/blocks/project-overview");
+      expect(blocksHtml).toContain("/blocks/workspace");
+      expect(blocksHtml).not.toContain("/blocks/hero");
+      expect(blocksHtml).not.toContain("/blocks/header");
+      expect(blocksHtml).not.toContain("/blocks/cta");
+      expect(blocksHtml).not.toContain("/blocks/features");
+      expect(blocksHtml).not.toContain("/blocks/testimonials");
+      expect(blocksHtml).not.toContain("/blocks/integrations");
+      expect(blocksHtml).not.toContain("/blocks/logo-cloud");
       const workspaceHtml = await fetch(new URL("blocks/workspace", url)).then((response) =>
         response.text(),
       );
@@ -151,7 +168,9 @@ it.each([undefined, "https://registry.example.test/"])(
         response.text(),
       );
       expect(shippedHtml).toContain("13 components");
-      expect(shippedHtml).toContain("36 blocks");
+      expect(shippedHtml).toContain("3 blocks");
+      expect(shippedHtml).not.toContain("36 blocks");
+      expect(shippedHtml).toContain("/blog/removing-efferd-marketing-blocks");
       expect(shippedHtml).not.toContain("four components");
       const introHtml = await fetch(new URL("guide/introduction", url)).then((response) =>
         response.text(),
@@ -173,6 +192,28 @@ it.each([undefined, "https://registry.example.test/"])(
         response.json(),
       );
       expect(index.homepage).toBe(homepage);
+      const names = index.items.map((item) => item.name);
+      for (const kept of [
+        "pricing-plan",
+        "pricing-plans",
+        "pricing-table",
+        "project-overview",
+        "team-members",
+        "workspace-settings",
+      ]) {
+        expect(names, kept).toContain(kept);
+      }
+      for (const removed of [
+        "cta-split",
+        "testimonial-centered",
+        "integrations-strip",
+        "logo-cloud-grid",
+        "header-simple",
+        "hero-spotlight",
+        "feature-strip",
+      ]) {
+        expect(names, removed).not.toContain(removed);
+      }
       const deletion = await fetch(new URL("r/delete-resource.json", url)).then((response) =>
         response.json(),
       );
@@ -189,7 +230,6 @@ it.each([undefined, "https://registry.example.test/"])(
       const css = await cssResponse.text();
       expect(css).not.toMatch(/@(?:theme|source)\b/);
       for (const selector of [
-        ".bg-popover",
         ".bg-secondary",
         ".bg-destructive",
         ".bg-green-500",
