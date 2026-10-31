@@ -112,12 +112,17 @@ it.each([undefined, "https://registry.example.test/"])(
           return response.text();
         },
       );
-      expect(homeHtml).toContain("13 components · 36 blocks");
-      expect(homeHtml).toContain("https://kit.prop.show/r/frame.json");
-      expect(homeHtml).toContain("Browse blocks");
-      expect(homeHtml).toContain('href="/blocks"');
-      expect(homeHtml).toContain('href="/blocks/workspace"');
-      expect(homeHtml).not.toContain("four components");
+      expect(homeHtml).toContain("PropShow Kit");
+      expect(homeHtml).toContain("Add-on registry for shadcn-vue");
+      expect(homeHtml).toContain("Add-ons for shadcn-vue.");
+      expect(homeHtml).toContain("Copied, not installed");
+      expect(homeHtml).not.toContain("13 components · 36 blocks");
+      expect(homeHtml).not.toContain("Fill the gaps in shadcn-vue");
+      expect(homeHtml).not.toContain("Browse blocks");
+      expect(homeHtml).not.toContain("Three entries, running");
+      const guideHtml = await fetch(new URL("guide", url)).then((response) => response.text());
+      expect(guideHtml).toContain('href="/blocks"');
+      expect(guideHtml).toContain("Blocks");
       const blocksHtml = await fetch(new URL("blocks", url)).then((response) => response.text());
       expect(blocksHtml).toContain("工作台");
       expect(blocksHtml).toContain("/blocks/hero");

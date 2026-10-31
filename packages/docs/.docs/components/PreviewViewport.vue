@@ -5,13 +5,7 @@ import { ConfigProvider } from "reka-ui";
 // Attributes belong to the iframe, not the teleported preview content.
 defineOptions({ inheritAttrs: false });
 const props = withDefaults(
-  defineProps<{
-    height?: number;
-    fullscreen?: boolean;
-    autoHeight?: boolean;
-    /** Full-bleed content, without the centered padding used by small component examples. */
-    bare?: boolean;
-  }>(),
+  defineProps<{ height?: number; fullscreen?: boolean; autoHeight?: boolean }>(),
   { height: 240 },
 );
 const contentHeight = shallowRef(0);
@@ -107,11 +101,10 @@ onBeforeUnmount(() => {
   <Teleport v-if="target" :to="target">
     <ConfigProvider :teleport-to="target">
       <div
-        class="registry-preview w-full bg-background text-foreground"
-        :class="bare ? 'block' : 'flex min-h-60 items-center justify-center p-8'"
+        class="registry-preview flex min-h-60 w-full items-center justify-center bg-background p-8 text-foreground"
         :style="{
           minHeight: fullscreen ? '100vh' : `${height}px`,
-          padding: fullscreen || bare ? '0' : undefined,
+          padding: fullscreen ? '0' : undefined,
         }"
       >
         <slot />
