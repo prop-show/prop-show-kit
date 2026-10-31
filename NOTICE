@@ -9,26 +9,6 @@ that applies to them. Those notices are summarized here and reproduced in
 THIRD_PARTY.md. Do not remove them when copying a component into another
 project.
 
-Migrated marketing blocks (Vue ports)
-  Source repository: https://github.com/SikandarJODD/sv-efferd
-  Copyright (c) 2026 SikandarJODD
-  License: MIT
-  Paths: packages/ui/registry/cta/
-         packages/ui/registry/testimonials/
-         packages/ui/registry/integrations/
-         packages/ui/registry/logo-cloud/
-         packages/ui/registry/header/
-         packages/ui/registry/hero/
-         packages/ui/registry/features/
-  Each ported source file carries this copyright and the MIT license text.
-  The registry JSON under packages/docs/.docs/public/r/ embeds the same text
-  so a CLI install keeps the notice.
-
-  Upstream credit recorded by sv-efferd: original blocks by Shaban.
-  Source repository: https://github.com/shabanhr/efferd-ui
-  Copyright (c) 2025 sshahaider
-  License: MIT (LICENCE.md in that repository)
-
 Design references (Vue adaptations, not verbatim copies)
   Kumo by Cloudflare — MIT, Copyright (c) 2026 Cloudflare, Inc.
   https://github.com/cloudflare/kumo
@@ -56,16 +36,13 @@ Docs-site primitives
   https://github.com/unovue/shadcn-vue
 
 Trademarks
-  PropShow Kit is not Efferd, shadcn, shadcn-vue, Kumo, ReUI, Cloudflare,
-  Nuxt UI, or Medusa.
-  Those names, and the demonstration logos loaded from storage.efferd.com or
-  shown in testimonials, belong to their owners. They appear only as
-  attribution or as replaceable sample content. They are not PropShow Kit
-  branding. Replace demonstration names, quotes, avatars, and logos before
-  publishing a product.
+  PropShow Kit is not shadcn, shadcn-vue, Kumo, ReUI, Cloudflare, Nuxt UI,
+  or Medusa.
+  Those names belong to their owners. They appear only as attribution.
+  They are not PropShow Kit branding.
 
 Audit
   No GPL, AGPL, or non-commercial-only license text was found in this
-  repository. A separate provenance risk for the Efferd ports is described
-  in THIRD_PARTY.md under "Audit". The ports were kept and attributed; they
-  were not removed in silence.
+  repository. Marketing blocks previously ported from SikandarJODD/sv-efferd
+  (call to action, testimonials, integrations, logo cloud, header, hero, and
+  features) were removed on 2026-10-31. See THIRD_PARTY.md and CHANGELOG.md.

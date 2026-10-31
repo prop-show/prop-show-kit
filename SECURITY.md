@@ -28,7 +28,7 @@ Out of scope:
 
 - Source after someone has copied it into their own project and changed it. That tree is theirs.
 - Vulnerabilities in shadcn-vue, Vue, Tailwind, Vite, or other upstream projects. Report those upstream.
-- Sample quotes, placeholder links, images loaded from `storage.efferd.com`, and in-memory workspace data. Those are demonstration content. The pitfalls guide tells users to replace them.
+- Placeholder copy and in-memory workspace data. Those are demonstration content. The pitfalls guide tells users to replace them.
 
 This project does not run a hosted app that stores user accounts. The site and the registry are static files.
 

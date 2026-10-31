@@ -42,14 +42,14 @@ Register the registry once if you want short names. In `components.json`:
 npx shadcn-vue@latest add @propshow/copy
 ```
 
-A block uses the same command, for example `https://kit.prop.show/r/hero-spotlight.json` or `@propshow/hero-spotlight`. The full walkthrough is the [quick start](https://kit.prop.show/guide).
+A block uses the same command, for example `https://kit.prop.show/r/project-overview.json` or `@propshow/project-overview`. The full walkthrough is the [quick start](https://kit.prop.show/guide).
 
 ### See it
 
 Live previews on the docs site:
 
 - [Components](https://kit.prop.show/components) — 13 pieces. Open [Copy](https://kit.prop.show/components/copy), [Frame](https://kit.prop.show/components/frame), or [Filters](https://kit.prop.show/components/filters).
-- [Blocks](https://kit.prop.show/blocks) — 36 screens. Open the [spotlight hero](https://kit.prop.show/blocks/hero/hero-spotlight), [team members](https://kit.prop.show/blocks/team-members), or [feature grid](https://kit.prop.show/blocks/features/feature-grid).
+- [Blocks](https://kit.prop.show/blocks) — 3 screens. Open [project overview](https://kit.prop.show/blocks/project-overview), [team members](https://kit.prop.show/blocks/team-members), or [workspace settings](https://kit.prop.show/blocks/workspace-settings).
 - [Workspace](https://kit.prop.show/blocks/workspace) — project overview, team directory, and settings.
 
 ### Features
@@ -140,14 +140,14 @@ import { Copy } from "@/components/copy";
 npx shadcn-vue@latest add @propshow/copy
 ```
 
-Block 用同一条命令，例如 `https://kit.prop.show/r/hero-spotlight.json` 或 `@propshow/hero-spotlight`。完整步骤见[快速开始](https://kit.prop.show/guide)。
+Block 用同一条命令，例如 `https://kit.prop.show/r/project-overview.json` 或 `@propshow/project-overview`。完整步骤见[快速开始](https://kit.prop.show/guide)。
 
 ### 先看效果
 
 文档站上的实时预览：
 
 - [组件](https://kit.prop.show/components) — 13 个。先看 [Copy](https://kit.prop.show/components/copy)、[Frame](https://kit.prop.show/components/frame)、[Filters](https://kit.prop.show/components/filters)。
-- [Blocks](https://kit.prop.show/blocks) — 36 个现成界面。先看[聚光灯 Hero](https://kit.prop.show/blocks/hero/hero-spotlight)、[团队成员](https://kit.prop.show/blocks/team-members)、[特性网格](https://kit.prop.show/blocks/features/feature-grid)。
+- [Blocks](https://kit.prop.show/blocks) — 3 个现成界面。先看[项目概览](https://kit.prop.show/blocks/project-overview)、[团队成员](https://kit.prop.show/blocks/team-members)、[工作区设置](https://kit.prop.show/blocks/workspace-settings)。
 - [工作台](https://kit.prop.show/blocks/workspace) — 项目概览、团队目录和设置。
 
 ### 特性

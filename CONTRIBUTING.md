@@ -36,7 +36,7 @@ vp dev
 
 A new registry item needs a docs page, a `registry.json` entry, a rebuilt `r/*.json`, and an illustration. `node artifacts/illustrations/check.mjs` fails when an item has no scene. Do not edit `artifacts/illustrations/svg/*.svg` by hand. The generator rewrites them.
 
-Blocks ship with sample quotes, logos, links, and in-memory data. Docs should say what a user has to replace. The guide page on pitfalls lists the usual leftovers.
+Workspace blocks ship with in-memory sample data. Docs should say what a user has to replace. The guide page on pitfalls lists the usual leftovers.
 
 The docs landing (hero and feature list in `packages/docs/.config/docs.yaml`) is the public homepage. Leave it unchanged unless the pull request is specifically about that page.
 
