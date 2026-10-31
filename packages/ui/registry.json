@@ -917,6 +917,76 @@
           "target": "components/logo-cloud/LogoCloudWrap.vue"
         }
       ]
+    },
+    {
+      "name": "feature-strip",
+      "type": "registry:block",
+      "title": "Feature Strip",
+      "description": "A compact four-column icon-led feature strip.",
+      "dependencies": ["@lucide/vue"],
+      "files": [
+        {
+          "path": "registry/features/FeatureStrip.vue",
+          "type": "registry:component",
+          "target": "components/features/FeatureStrip.vue"
+        }
+      ]
+    },
+    {
+      "name": "feature-framed",
+      "type": "registry:block",
+      "title": "Feature Framed",
+      "description": "An editorial feature frame with dashed rails and corner accents.",
+      "dependencies": ["@lucide/vue"],
+      "files": [
+        {
+          "path": "registry/features/FeatureFramed.vue",
+          "type": "registry:component",
+          "target": "components/features/FeatureFramed.vue"
+        }
+      ]
+    },
+    {
+      "name": "feature-rails",
+      "type": "registry:block",
+      "title": "Feature Rails",
+      "description": "A bordered feature grid with full-width divider rails.",
+      "dependencies": ["@lucide/vue"],
+      "files": [
+        {
+          "path": "registry/features/FeatureRails.vue",
+          "type": "registry:component",
+          "target": "components/features/FeatureRails.vue"
+        }
+      ]
+    },
+    {
+      "name": "feature-cards",
+      "type": "registry:block",
+      "title": "Feature Cards",
+      "description": "A product-feature showcase with structured cards and editorial chrome.",
+      "dependencies": ["@lucide/vue"],
+      "files": [
+        {
+          "path": "registry/features/FeatureCards.vue",
+          "type": "registry:component",
+          "target": "components/features/FeatureCards.vue"
+        }
+      ]
+    },
+    {
+      "name": "feature-grid",
+      "type": "registry:block",
+      "title": "Feature Grid",
+      "description": "A capability grid with patterned backgrounds.",
+      "dependencies": ["@lucide/vue"],
+      "files": [
+        {
+          "path": "registry/features/FeatureGrid.vue",
+          "type": "registry:component",
+          "target": "components/features/FeatureGrid.vue"
+        }
+      ]
     }
   ]
 }
