@@ -70,12 +70,23 @@ async function reset() {
         /></PreviewCanvas>
       </TabsContent>
       <TabsContent value="code" class="outline-none" :style="{ minHeight: `${panelHeight}px` }">
-        <PreviewSource
-          :source="source"
-          :code="code"
-          :files="files"
-          :style="{ height: `${panelHeight}px`, maxHeight: `${panelHeight}px`, margin: '0' }"
-        />
+        <!-- Local boundary: loading this block's source must not suspend the page. -->
+        <Suspense>
+          <PreviewSource
+            :source="source"
+            :code="code"
+            :files="files"
+            :style="{ height: `${panelHeight}px`, maxHeight: `${panelHeight}px`, margin: '0' }"
+          />
+          <template #fallback>
+            <div
+              class="flex items-center justify-center text-sm text-muted-foreground"
+              :style="{ height: `${panelHeight}px` }"
+            >
+              Loading source…
+            </div>
+          </template>
+        </Suspense>
       </TabsContent>
     </TabsRoot>
     <div class="border-t border-border px-3">

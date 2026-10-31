@@ -31,7 +31,7 @@
   },
   "pnpm": {
     "patchedDependencies": {
-      "undocs-nightly@0.10.1-20260828-133553-e5fe415": "patches/undocs-nightly.patch"
+      "undocs-nightly@0.10.1-20260828-133553-e5fe415": "patches/undocs-nightly@0.10.1-20260828-133553-e5fe415.patch"
     }
   }
 }

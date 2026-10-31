@@ -4,6 +4,51 @@ import { readdir, readFile, writeFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import { expect, it } from "vite-plus/test";
 
+const STATIC_IMPORT =
+  /(?:import|export)\s+(?:type\s+)?(?:[^'"\n]*?\s+from\s+)?["']([^"']+)["']|export\s+\*\s+from\s+["']([^"']+)["']/g;
+
+/** Specifiers the browser loads with the entry, ignoring `import()`. */
+function staticSpecifiers(code) {
+  const specs = [];
+  for (const match of code.matchAll(STATIC_IMPORT)) specs.push(match[1] || match[2]);
+  return specs;
+}
+
+/**
+ * Walk the dev module graph from the homepage document. User component SFCs must
+ * stay behind dynamic `import()` so the first paint does not download them.
+ */
+async function homepageStaticModules(pageUrl) {
+  const html = await fetch(pageUrl, { signal: AbortSignal.timeout(10_000) }).then((response) =>
+    response.text(),
+  );
+  const entrypoints = [
+    ...html.matchAll(/(?:src|href)="([^"]+\.(?:js|mjs|ts|vue)(?:\?[^"]*)?)"/g),
+  ].map((match) => new URL(match[1], pageUrl));
+  const seen = new Set();
+  const queue = entrypoints;
+  const modules = [];
+  while (queue.length && modules.length < 800) {
+    const url = queue.pop();
+    const key = url.pathname + url.search;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    const response = await fetch(url, { signal: AbortSignal.timeout(10_000) });
+    if (!response.ok) continue;
+    const type = response.headers.get("content-type") || "";
+    if (!/javascript|typescript|text\/plain|vue/.test(type) && !url.pathname.includes("."))
+      continue;
+    const code = await response.text();
+    modules.push({ url: key, code });
+    for (const spec of staticSpecifiers(code)) {
+      if (spec.startsWith("data:") || spec.startsWith("http:") || spec.startsWith("https:"))
+        continue;
+      queue.push(new URL(spec, url));
+    }
+  }
+  return modules;
+}
+
 it.each([undefined, "https://registry.example.test/"])(
   "starts the docs CLI with registry URL %s",
   async (registryURL) => {
@@ -122,6 +167,20 @@ it.each([undefined, "https://registry.example.test/"])(
       expect(homeHtml).not.toContain("Browse blocks");
       expect(homeHtml).not.toContain("Three entries, running");
       expect(homeHtml).not.toContain("Install in 30 seconds");
+      const staticModules = await homepageStaticModules(url);
+      const userComponentModules = staticModules.filter((mod) =>
+        /\/\.docs\/components\/.+\.vue/.test(mod.url),
+      );
+      expect(
+        userComponentModules.map((mod) => mod.url),
+        staticModules.map((mod) => mod.url).join("\n"),
+      ).toEqual(
+        userComponentModules
+          .map((mod) => mod.url)
+          .filter((mod) => mod.includes("NotFoundIllustration.vue")),
+      );
+      expect(staticModules.some((mod) => mod.code.includes("defineAsyncComponent"))).toBe(true);
+      expect(homeHtml).not.toContain("user-components-");
       const changelogHtml = await fetch(new URL("guide/changelog", url)).then((response) => {
         expect(response.status).toBe(200);
         return response.text();

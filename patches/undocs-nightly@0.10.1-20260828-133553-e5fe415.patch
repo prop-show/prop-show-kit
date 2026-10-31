@@ -1,0 +1,71 @@
+diff --git a/src/app/app.config.ts b/src/app/app.config.ts
+index c25987343ec7af4f5db1def98ba4d952eecada8a..0b68af079dcbf975ed2a96c03271b5ae18b9d31c 100644
+--- a/src/app/app.config.ts
++++ b/src/app/app.config.ts
+@@ -53,6 +53,7 @@ export default defineAppConfig({
+         jsx: "vscode-icons:file-type-js",
+         md: "vscode-icons:file-type-markdown",
+         py: "vscode-icons:file-type-python",
++        vue: "vscode-icons:file-type-vue",
+         ico: "vscode-icons:file-type-favicon",
+         npm: "vscode-icons:file-type-npm",
+         pnpm: "vscode-icons:file-type-pnpm",
+diff --git a/src/app/builtin-icons.ts b/src/app/builtin-icons.ts
+index 552bcbdf3fd9f00e6fe78a43133ad79fd8357b89..a272119ff126d76204ad58c962df5a984234edda 100644
+--- a/src/app/builtin-icons.ts
++++ b/src/app/builtin-icons.ts
+@@ -84,6 +84,7 @@ export const BUILTIN_ICONS: Record<string, string[]> = {
+     "file-type-tsconfig",
+     "file-type-typescript",
+     "file-type-vscode",
++    "file-type-vue",
+     "file-type-yaml",
+     "file-type-yarn",
+   ],
+diff --git a/vite.plugins.ts b/vite.plugins.ts
+index 2ee9cfe036a2df50490947c13690bd75c012a837..58736a3476330d3d2016f6adc099296fd367d6e5 100644
+--- a/vite.plugins.ts
++++ b/vite.plugins.ts
+@@ -142,10 +142,15 @@ export function undocsAppConfig(docsDir: string): Plugin {
+ //   - `.docs/layouts/**/*.vue`    — named layouts via a page's `meta.layout`.
+ //
+ // These live outside the Vite root, so instead of `import.meta.glob` this
+-// plugin emits ES modules that statically import the `.vue` files by absolute
+-// path (keeping `@vitejs/plugin-vue` transforms) into a name→component map /
+-// route table — generated once per build; dev watches `.docs` and regenerates
+-// + full-reloads only on ADD/UNLINK (plain edits hot-update normally).
++// plugin emits ES modules that import the `.vue` files by absolute path
++// (keeping `@vitejs/plugin-vue` transforms) into a name→component map / route
++// table — generated once per build; dev watches `.docs` and regenerates +
++// full-reloads only on ADD/UNLINK (plain edits hot-update normally).
++//
++// Components are `defineAsyncComponent(() => import(...))`, not static
++// imports. A static map is one chunk on every route (the homepage included).
++// Dynamic imports let a page download only the components it actually renders;
++// pages/layouts were already split this way.
+ //
+ // `enforce: "pre"` so the Tailwind `@source` appended to `css.css` lands before
+ // `tailwindcss()` parses it.
+@@ -182,11 +187,17 @@ export function undocsUserTheme(docsDir: string): Plugin {
+ 
+   const genComponents = async (): Promise<string> => {
+     const files = await listVue(dirs.components);
+-    const imports = files.map(
+-      (rel, i) => `import __c${i} from ${JSON.stringify(resolve(dirs.components, rel))};`,
+-    );
+-    const entries = files.map((rel, i) => `  ${JSON.stringify(compName(rel))}: __c${i},`);
+-    return `${imports.join("\n")}\nexport const components = {\n${entries.join("\n")}\n};\nexport default components;\n`;
++    if (files.length === 0) {
++      return `export const components = {};\nexport default components;\n`;
++    }
++    // One async chunk per file. The map itself stays on the entry; the `.vue`
++    // modules load when that component is rendered (SSR waits, the client
++    // hydrates the existing markup when the chunk arrives).
++    const entries = files.map((rel) => {
++      const abs = JSON.stringify(resolve(dirs.components, rel));
++      return `  ${JSON.stringify(compName(rel))}: defineAsyncComponent(() => import(${abs})),`;
++    });
++    return `import { defineAsyncComponent } from "vue";\nexport const components = {\n${entries.join("\n")}\n};\nexport default components;\n`;
+   };
+ 
+   const genLayouts = async (): Promise<string> => {

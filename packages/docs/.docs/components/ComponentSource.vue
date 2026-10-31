@@ -14,8 +14,8 @@ const props = withDefaults(
   { collapseAfter: 20 },
 );
 
+// Lazy so a component page fetches the files it renders, not every registry source.
 const sources = import.meta.glob<string>("../../../ui/registry/**/*.{ts,vue}", {
-  eager: true,
   import: "default",
   query: "?raw",
 });
@@ -23,11 +23,12 @@ const sources = import.meta.glob<string>("../../../ui/registry/**/*.{ts,vue}", {
 const filename = computed(() =>
   props.filename === undefined ? props.path.split("/").at(-1) : props.filename,
 );
-const source = computed(() => {
-  const value = props.code ?? sources[`../../../ui/registry/${props.path}`];
-  if (!value) throw new Error(`Unknown registry source: ${props.path}`);
-  return value;
-});
+const source = shallowRef(props.code ?? "");
+if (props.code == null) {
+  const load = sources[`../../../ui/registry/${props.path}`];
+  if (!load) throw new Error(`Unknown registry source: ${props.path}`);
+  source.value = await load();
+}
 const language = computed(() => props.path.split(".").at(-1));
 const shouldCollapse = computed(
   () => source.value.trimEnd().split("\n").length > props.collapseAfter,
