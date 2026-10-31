@@ -1,6 +1,6 @@
 name: "PropShow Kit"
-shortDescription: "Add-on registry for shadcn-vue"
-description: "Add-ons for shadcn-vue. Copy what’s missing, own every line."
+shortDescription: "Add-on registry for shadcn-vue: components for the gaps, blocks for ready screens"
+description: "An add-on registry for shadcn-vue, not a replacement UI library. Components fill the gaps the base library leaves out. Blocks install a ready screen — a hero, a call to action, a header, or a workspace. The CLI copies the source into your project, and you own every line."
 github: "prop-show/prop-show-kit"
 url: "https://kit.prop.show/"
 automd: true
@@ -9,19 +9,40 @@ redirects:
   "/guide/installation": "/guide"
 landing:
   contributors: true
+  heroTitle: "Fill the gaps in shadcn-vue"
+  heroSubtitle: "13 components · 36 blocks"
+  heroCode:
+    content: "npx shadcn-vue@latest add https://kit.prop.show/r/frame.json"
+    lang: sh
+    title: Terminal
   heroLinks:
+    primary:
+      label: Get Started
+      icon: i-lucide-rocket
+      to: /guide
+      order: 0
+    blocks:
+      label: Browse blocks
+      icon: i-lucide-layout-dashboard
+      to: /blocks
+      order: 1
     components:
-      icon: "i-lucide-component"
-      to: "/components"
+      label: Components
+      icon: i-lucide-component
+      to: /components
+      order: 2
   features:
     - title: Copied, not installed
-      description: No package to add, no version to track, no upstream API to wait on — the CLI writes the component into your project.
+      description: No package to add, no version to track, no upstream API to wait on — the CLI writes the component or the block into your project.
       icon: i-lucide-file-code
     - title: Shadcn-native
-      description: Built on the same Tailwind tokens and shadcn-vue primitives (`button`, `tooltip`, `badge`, `dropdown-menu`) as the components you already have.
+      description: shadcn-vue stays the base library. These entries use the same Tailwind tokens and primitives (`button`, `tooltip`, `badge`, `dropdown-menu`) and only add what that registry does not ship.
       icon: i-lucide-swatch-book
+    - title: Ready screens
+      description: Blocks install a hero, a header, a call to action, or a workspace (工作台) the same way a component installs. You edit the source in place.
+      icon: i-lucide-layout-dashboard
     - title: Accessible defaults
-      description: ARIA roles and labels, focus states and keyboard navigation ship with the component instead of being bolted on later.
+      description: ARIA roles and labels, focus states and keyboard navigation ship with the entry instead of being bolted on later.
       icon: i-lucide-keyboard
     - title: Typed and themed
       description: Written in TypeScript with semantic color tokens, so props autocomplete and light and dark mode keep working.
