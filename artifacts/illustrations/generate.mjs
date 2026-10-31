@@ -326,6 +326,21 @@ const scenes = {
     ${[0, 1, 2].map((i) => `${line(28, 73 + i * 9, 28)}${icon("check", 75, 71 + i * 9, 8)}${icon("check", 111, 71 + i * 9, 8)}`).join("")}`,
   },
 
+  "sortable-list": {
+    aria: "A list of rows with drag handles and one row lifted for reordering",
+    back: () => BACK(40, 16, 94, 52),
+    surface: () => PAGE(26, 30, 108, 72),
+    content: () => `
+    ${title(32, 36, 28)}
+    ${rect(32, 46, 96, 14, 6, "surface", { stroke: true })}
+    ${icon("more", 36, 48.5, 9)}
+    ${line(50, 51, 40)}
+    <g class="PREFIX-cta">${rect(32, 64, 96, 14, 6, "accent")}${icon("more", 36, 66.5, 9, "on-accent")}${line(50, 69, 48, 4, "on-accent")}</g>
+    ${rect(32, 82, 96, 14, 6, "surface", { stroke: true })}
+    ${icon("more", 36, 84.5, 9)}
+    ${line(50, 87, 32)}`,
+  },
+
   "bookmarks-empty": {
     aria: "A browser window showing an empty bookmarks folder",
     back: () => BACK(40, 20, 100, 54),

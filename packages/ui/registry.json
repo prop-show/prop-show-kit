@@ -384,6 +384,28 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "sortable-list",
+      "type": "registry:component",
+      "title": "Sortable List",
+      "description": "An accessible list you reorder by dragging a handle or with the keyboard.",
+      "dependencies": ["@lucide/vue"],
+      "registryDependencies": ["button"],
+      "files": [
+        {
+          "path": "registry/sortable-list/SortableList.vue",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/sortable-list/order.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/sortable-list/index.ts",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
