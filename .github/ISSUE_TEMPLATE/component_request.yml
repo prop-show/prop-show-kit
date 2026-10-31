@@ -1,0 +1,34 @@
+name: Component or block request
+description: Ask for a component or block the registry does not ship yet.
+title: "request: "
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        PropShow Kit adds what shadcn-vue does not already ship. A request for `button`, `input`, or `dialog` belongs on shadcn-vue, not here.
+
+        中文描述也可以。
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What should this be?
+      options:
+        - A component (one control, with props and slots)
+        - A block (a section or a screen)
+        - Not sure
+    validations:
+      required: true
+  - type: textarea
+    id: job
+    attributes:
+      label: What job should it do?
+      description: The screen or the gap, in a few sentences. Name the closest entry this registry already has, if one exists.
+    validations:
+      required: true
+  - type: textarea
+    id: not-upstream
+    attributes:
+      label: Why is this not a shadcn-vue primitive?
+      description: Optional. Useful when the request is close to `button`, `dialog`, `card`, or another official component.
