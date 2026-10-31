@@ -384,6 +384,36 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "metric-card",
+      "type": "registry:component",
+      "title": "Metric Card",
+      "description": "A KPI card with a value, a label, and an optional delta or trend.",
+      "dependencies": ["@lucide/vue"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/metric-card/MetricCard.vue",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/metric-card/MetricCards.vue",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/metric-card/MetricDelta.vue",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/metric-card/metric.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/metric-card/index.ts",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
