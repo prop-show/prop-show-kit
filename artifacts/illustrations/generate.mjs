@@ -326,6 +326,24 @@ const scenes = {
     ${[0, 1, 2].map((i) => `${line(28, 73 + i * 9, 28)}${icon("check", 75, 71 + i * 9, 8)}${icon("check", 111, 71 + i * 9, 8)}`).join("")}`,
   },
 
+  "notification-center": {
+    aria: "A notification inbox with one unread item and a read row beneath it",
+    back: () => BACK(40, 16, 94, 52),
+    surface: () => PAGE(26, 30, 108, 72),
+    content: () => `
+    ${icon("notif", 32, 36, 10)}
+    ${title(46, 38.5, 32)}
+    ${rect(32, 50, 96, 0.8, 0, "surface-border")}
+    ${rect(32, 56, 96, 20, 6, "surface", { stroke: true })}
+    <g class="PREFIX-pulse"><circle cx="40" cy="66" r="2.4" style="fill: var(--accent)" /></g>
+    <circle cx="40" cy="66" r="2.2" style="fill: var(--accent)" />
+    ${line(48, 60, 34)}
+    ${line(48, 68, 48)}
+    ${rect(32, 80, 96, 16, 6, "surface", { stroke: true })}
+    <circle cx="40" cy="88" r="2.2" style="fill: var(--icon)" />
+    ${line(48, 84, 28)}`,
+  },
+
   "bookmarks-empty": {
     aria: "A browser window showing an empty bookmarks folder",
     back: () => BACK(40, 20, 100, 54),

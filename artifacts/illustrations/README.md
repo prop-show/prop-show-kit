@@ -22,25 +22,26 @@ a static server, e.g. `python3 -m http.server`.
 
 ## Component summaries and the scene each one gets
 
-| Component            | What it is                                                                                                   | Scene                                                                       |
-| :------------------- | :----------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------- |
-| `frame`              | Composable framed container: header, stacked panels, footer. Used for panels, notifications, framed dialogs. | Header panel with a `+` action above two stacked empty panels.              |
-| `layer-card`         | Card with a primary surface and a secondary visual layer behind it, for navigation and grouped content.      | Card over a receding layer, layers icon, title bars, trailing chevron.      |
-| `layer-dialog`       | Responsive dialog with a persistent title, scrollable body and fixed action footer.                          | Dialog sheet over a dimmed panel: title, two body bars, Cancel + confirm.   |
-| `inline-tip`         | Compact inline callout with semantic variants (`default`, `info`, `destructive`).                            | Page with an info tip panel (accent rail + info icon) and no content below. |
-| `status-badge`       | Badge with an animated status dot, for row-level state.                                                      | Resource rows, first dot pulsing in accent, the rest idle grey.             |
-| `copy`               | Accessible copy button with clipboard feedback and a tooltip.                                                | Value field with an accent copy button plus the slate confirmation chip.    |
-| `inline-copy-text`   | Borderless inline copy control for IDs and short values.                                                     | Three key/value rows, first copy affordance in accent, dividers between.    |
-| `filters`            | Controlled, typed filter list with keyboard navigation, validation and async options.                        | Filter bar, two applied chips, and an empty search result area.             |
-| `slider`             | Slider with value badges, range selection and formatted min/max values.                                      | Two value badges above a single-thumb track with an accent fill.            |
-| `delete-resource`    | Deletion dialog requiring the resource name, with async error feedback.                                      | Dialog with trash icon, warning bars, typed-confirmation field, confirm.    |
-| `project-overview`   | Block: reporting-period switcher, metric cards, deployment status.                                           | Period picker, three empty metric cards, one deployment row with status.    |
-| `team-members`       | Block: searchable team directory plus an invite dialog.                                                      | Search + accent invite button above three empty member rows.                |
-| `workspace-settings` | Block: settings form with toggles, save feedback, discard action.                                            | Two toggle rows (one on, one off) and a slate save bar.                     |
-| `pricing-plan`       | A pricing card with price, billing details, features and an action.                                          | Single card with price bars, feature checks and an accent CTA.              |
-| `pricing-plans`      | Responsive collection of pricing cards.                                                                      | Two side-by-side cards with one accent plan action.                         |
-| `pricing-table`      | Tiered pricing with grouped feature comparisons.                                                             | Two plan columns above feature rows with checkmarks.                        |
-| `bookmarks-empty`    | Not a component — the browser-extension bookmark empty state this set started from.                          | Browser window with a tab strip, empty folder and an accent add button.     |
+| Component             | What it is                                                                                                   | Scene                                                                       |
+| :-------------------- | :----------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------- |
+| `frame`               | Composable framed container: header, stacked panels, footer. Used for panels, notifications, framed dialogs. | Header panel with a `+` action above two stacked empty panels.              |
+| `layer-card`          | Card with a primary surface and a secondary visual layer behind it, for navigation and grouped content.      | Card over a receding layer, layers icon, title bars, trailing chevron.      |
+| `layer-dialog`        | Responsive dialog with a persistent title, scrollable body and fixed action footer.                          | Dialog sheet over a dimmed panel: title, two body bars, Cancel + confirm.   |
+| `inline-tip`          | Compact inline callout with semantic variants (`default`, `info`, `destructive`).                            | Page with an info tip panel (accent rail + info icon) and no content below. |
+| `status-badge`        | Badge with an animated status dot, for row-level state.                                                      | Resource rows, first dot pulsing in accent, the rest idle grey.             |
+| `copy`                | Accessible copy button with clipboard feedback and a tooltip.                                                | Value field with an accent copy button plus the slate confirmation chip.    |
+| `inline-copy-text`    | Borderless inline copy control for IDs and short values.                                                     | Three key/value rows, first copy affordance in accent, dividers between.    |
+| `filters`             | Controlled, typed filter list with keyboard navigation, validation and async options.                        | Filter bar, two applied chips, and an empty search result area.             |
+| `slider`              | Slider with value badges, range selection and formatted min/max values.                                      | Two value badges above a single-thumb track with an accent fill.            |
+| `delete-resource`     | Deletion dialog requiring the resource name, with async error feedback.                                      | Dialog with trash icon, warning bars, typed-confirmation field, confirm.    |
+| `project-overview`    | Block: reporting-period switcher, metric cards, deployment status.                                           | Period picker, three empty metric cards, one deployment row with status.    |
+| `team-members`        | Block: searchable team directory plus an invite dialog.                                                      | Search + accent invite button above three empty member rows.                |
+| `workspace-settings`  | Block: settings form with toggles, save feedback, discard action.                                            | Two toggle rows (one on, one off) and a slate save bar.                     |
+| `pricing-plan`        | A pricing card with price, billing details, features and an action.                                          | Single card with price bars, feature checks and an accent CTA.              |
+| `pricing-plans`       | Responsive collection of pricing cards.                                                                      | Two side-by-side cards with one accent plan action.                         |
+| `pricing-table`       | Tiered pricing with grouped feature comparisons.                                                             | Two plan columns above feature rows with checkmarks.                        |
+| `notification-center` | Inbox panel with unread state, mark read, dismiss, and an empty state.                                       | Bell header, one accent unread row, and a quieter read row below.           |
+| `bookmarks-empty`     | Not a component — the browser-extension bookmark empty state this set started from.                          | Browser window with a tab strip, empty folder and an accent add button.     |
 
 ## Shared rules the generator enforces
 

@@ -384,6 +384,28 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "notification-center",
+      "type": "registry:component",
+      "title": "Notification Center",
+      "description": "An inbox panel with unread state, mark read, dismiss, and an empty state.",
+      "dependencies": ["@lucide/vue"],
+      "registryDependencies": ["button", "scroll-area"],
+      "files": [
+        {
+          "path": "registry/notification-center/NotificationCenter.vue",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/notification-center/inbox.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/notification-center/index.ts",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
