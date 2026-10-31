@@ -326,6 +326,18 @@ const scenes = {
     ${[0, 1, 2].map((i) => `${line(28, 73 + i * 9, 28)}${icon("check", 75, 71 + i * 9, 8)}${icon("check", 111, 71 + i * 9, 8)}`).join("")}`,
   },
 
+  "avatar-crop": {
+    aria: "An empty avatar crop with a circular frame and an add-photo action",
+    back: () => BACK(44, 18, 78, 48),
+    surface: () => PAGE(28, 26, 104, 78),
+    content: () => `
+    ${rect(54, 32, 52, 52, 26, "cell", { stroke: true })}
+    ${rect(74, 44, 12, 12, 6, "icon")}
+    ${rect(68, 58, 24, 12, 6, "icon")}
+    ${rect(36, 90, 40, 3, 1.5, "bar")}
+    <g class="PREFIX-cta">${rect(82, 86, 40, 12, 6, "accent")}${icon("add", 88, 89, 6, "on-accent")}${line(98, 90, 16, 4, "on-accent")}</g>`,
+  },
+
   "bookmarks-empty": {
     aria: "A browser window showing an empty bookmarks folder",
     back: () => BACK(40, 20, 100, 54),
