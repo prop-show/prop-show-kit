@@ -6,10 +6,11 @@ Longer write-ups are on the [blog](https://kit.prop.show/blog). The docs site li
 
 ## 2026-10-31
 
+- Cookie consent. A banner and a preference dialog for accepting cookies by category. The behavior is original PropShow Kit code. No third-party cookie library is included.
 - Removed 33 marketing blocks ported from [SikandarJODD/sv-efferd](https://github.com/SikandarJODD/sv-efferd): call to action (5), testimonials (5), integrations (5), logo cloud (5), header (5), hero (3), and features (5). Pricing components, the three workspace blocks, and Kumo, ReUI, and Medusa adaptations stay. [Removing the Efferd marketing blocks](https://kit.prop.show/blog/removing-efferd-marketing-blocks) explains why. `NOTICE` and `THIRD_PARTY.md` no longer carry those entries.
 - Collaboration docs on the repository: install-first README, contributing guide, issue and pull request templates, security policy, and this changelog.
 - The registry is MIT licensed. Attribution for adapted components is in `NOTICE` and `THIRD_PARTY.md`.
-- The guide covers the `@propshow` registry, components versus blocks, boundaries with shadcn-vue, and common pitfalls. The blocks index lists 3 blocks. [What PropShow Kit ships today](https://kit.prop.show/blog/what-ships-today) is the tour.
+- The guide covers the `@propshow` registry, components versus blocks, boundaries with shadcn-vue, and common pitfalls. The blocks index lists the workspace screens and cookie consent. [What PropShow Kit ships today](https://kit.prop.show/blog/what-ships-today) is the tour.
 - Docs "Edit this page" links point at this repository on `master`. `/guide/installation` redirects to `/guide`. `/guide/components/**` redirects to `/components/**`.
 
 ## 2026-10-30

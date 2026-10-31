@@ -41,6 +41,7 @@ a static server, e.g. `python3 -m http.server`.
 | `pricing-plans`      | Responsive collection of pricing cards.                                                                      | Two side-by-side cards with one accent plan action.                         |
 | `pricing-table`      | Tiered pricing with grouped feature comparisons.                                                             | Two plan columns above feature rows with checkmarks.                        |
 | `bookmarks-empty`    | Not a component — the browser-extension bookmark empty state this set started from.                          | Browser window with a tab strip, empty folder and an accent add button.     |
+| `cookie-consent`     | Block: cookie banner with accept and category preferences.                                                   | Empty page with a bottom banner and one accent accept action.               |
 
 ## Shared rules the generator enforces
 
