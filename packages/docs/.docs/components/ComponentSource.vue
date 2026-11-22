@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, shallowRef } from "vue";
+import { computed, shallowRef, watch } from "vue";
 import ProsePre from "undocs/src/app/content/ProsePre.vue";
 import { highlightCode } from "undocs/src/server/content/highlight.ts";
 
@@ -23,23 +23,46 @@ const sources = import.meta.glob<string>("../../../ui/registry/**/*.{ts,vue}", {
 const filename = computed(() =>
   props.filename === undefined ? props.path.split("/").at(-1) : props.filename,
 );
-const source = shallowRef(props.code ?? "");
-if (props.code == null) {
-  const load = sources[`../../../ui/registry/${props.path}`];
-  if (!load) throw new Error(`Unknown registry source: ${props.path}`);
-  source.value = await load();
-}
+const source = shallowRef<string>();
+const expanded = shallowRef(false);
+let pending: Promise<void> | undefined;
+watch(
+  [() => props.path, () => props.code],
+  ([path, code], _, onCleanup) => {
+    expanded.value = false;
+    source.value = code;
+    if (code !== undefined) return;
+
+    const load = sources[`../../../ui/registry/${path}`];
+    if (!load) throw new Error(`Unknown registry source: ${path}`);
+
+    let current = true;
+    onCleanup(() => {
+      current = false;
+    });
+    pending = load().then((text) => {
+      if (current) source.value = text;
+    });
+    return pending;
+  },
+  // A synchronous watcher stays active through SSR's initial source load.
+  { immediate: true, flush: "sync" },
+);
+await pending;
+
 const language = computed(() => props.path.split(".").at(-1));
 const shouldCollapse = computed(
-  () => source.value.trimEnd().split("\n").length > props.collapseAfter,
+  () => (source.value?.trimEnd().split("\n").length ?? 0) > props.collapseAfter,
 );
-const expanded = shallowRef(false);
-const highlighted = computed(() => highlightCode(source.value, language.value));
+const highlighted = computed(() => highlightCode(source.value ?? "", language.value));
 </script>
 
 <template>
   <div>
-    <div :class="{ 'max-h-96 overflow-hidden': shouldCollapse && !expanded }">
+    <div
+      v-if="source !== undefined"
+      :class="{ 'max-h-96 overflow-hidden': shouldCollapse && !expanded }"
+    >
       <ProsePre
         :highlighted="highlighted"
         :code="source"
@@ -47,6 +70,7 @@ const highlighted = computed(() => highlightCode(source.value, language.value));
         :language="language"
       />
     </div>
+    <p v-else role="status" class="px-4 py-3 text-sm text-muted-foreground">Loading source…</p>
     <button
       v-if="shouldCollapse"
       type="button"
