@@ -119,6 +119,62 @@ it.each([undefined, "https://registry.example.test/"])(
         expect(registry.status).toBe(200);
         expect((await registry.json()).name).toBe(component);
       }
+      const navigation = await fetch(new URL("api/docs/navigation.json", url)).then((response) =>
+        response.json(),
+      );
+      expect(navigation).toContainEqual(
+        expect.objectContaining({ path: "/ui-sdk", title: "UI SDK" }),
+      );
+      const uiSdkIndex = await fetch(new URL("ui-sdk", url), {
+        signal: AbortSignal.timeout(10_000),
+      });
+      expect(uiSdkIndex.status).toBe(200);
+      const uiSdkHtml = await uiSdkIndex.text();
+      const cards = new Map(
+        [
+          ...uiSdkHtml.matchAll(
+            /<a\b(?=[^>]*\bdata-slot="component-preview-card")[^>]*\bhref="([^"]+)"[^>]*>([\s\S]*?)<\/a>/g,
+          ),
+        ].map((match) => [match[1], match[2]]),
+      );
+      for (const component of [
+        "select",
+        "switch",
+        "collapsible",
+        "button",
+        "input",
+        "checkbox",
+        "tabs",
+      ]) {
+        const name = `ui-sdk-${component}`;
+        const path = `/ui-sdk/${component}`;
+        const card = cards.get(path) ?? "";
+        expect(card).toMatch(/<svg\b[^>]*\bdata-theme="(?:light|dark)"/);
+        expect(card).not.toMatch(/<img\b/);
+        const response = await fetch(new URL(path, url), { signal: AbortSignal.timeout(10_000) });
+        expect(response.status, output).toBe(200);
+        const html = await response.text();
+        expect(html).toContain("Component Source");
+        expect(html).toContain(`https://kit.prop.show/r/${name}.json`);
+        const registry = await fetch(new URL(`r/${name}.json`, url)).then((response) => {
+          expect(response.status).toBe(200);
+          return response.json();
+        });
+        expect(registry.name).toBe(name);
+        expect(registry.type).toBe("registry:ui");
+        expect(registry.dependencies).toEqual(
+          expect.arrayContaining([
+            expect.stringMatching(/^@ui-sdk\/core@/),
+            expect.stringMatching(/^@ui-sdk\/vue@/),
+          ]),
+        );
+        expect(registry.files.every((file) => file.type === "registry:ui")).toBe(true);
+        const entry =
+          component === "collapsible"
+            ? `registry/ui-sdk/${component}.ts`
+            : `registry/ui-sdk/${name}/index.ts`;
+        expect(registry.files.some((file) => file.path === entry)).toBe(true);
+      }
       const homepage = registryURL || url;
       for (const block of ["project-overview", "team-members", "workspace-settings"]) {
         const response = await fetch(new URL(`blocks/${block}`, url), {

@@ -15,5 +15,12 @@
   "pricing-plan",
   "pricing-plans",
   "pricing-table",
-  "bookmarks-empty"
+  "bookmarks-empty",
+  "ui-sdk-select",
+  "ui-sdk-switch",
+  "ui-sdk-collapsible",
+  "ui-sdk-button",
+  "ui-sdk-input",
+  "ui-sdk-checkbox",
+  "ui-sdk-tabs"
 ]

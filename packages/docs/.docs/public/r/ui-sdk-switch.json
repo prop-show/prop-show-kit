@@ -1,0 +1,21 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "ui-sdk-switch",
+  "title": "UI SDK Switch",
+  "description": "A form-aware switch with controlled and uncontrolled checked states.",
+  "dependencies": ["@ui-sdk/core@0.1.0-beta.13", "@ui-sdk/vue@0.1.0-beta.13"],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/ui-sdk/ui-sdk-switch/index.ts",
+      "content": "export { default as Switch } from \"./Switch.vue\";\n",
+      "type": "registry:ui"
+    },
+    {
+      "path": "registry/ui-sdk/ui-sdk-switch/Switch.vue",
+      "content": "<script setup lang=\"ts\">\nimport { Switch as SwitchPrimitive, SwitchThumb } from \"@ui-sdk/vue/switch\";\nimport type { HTMLAttributes } from \"vue\";\nimport { cn } from \"@/lib/utils\";\n\nconst props = withDefaults(\n  defineProps<{\n    modelValue?: boolean;\n    defaultValue?: boolean;\n    defaultChecked?: boolean;\n    disabled?: boolean;\n    name?: string;\n    value?: string;\n    class?: HTMLAttributes[\"class\"];\n  }>(),\n  { modelValue: undefined, defaultValue: undefined, defaultChecked: undefined },\n);\nconst emit = defineEmits<{ \"update:modelValue\": [checked: boolean] }>();\n</script>\n\n<template>\n  <SwitchPrimitive\n    v-slot=\"slotProps\"\n    :model-value=\"props.modelValue\"\n    :default-checked=\"props.defaultChecked ?? props.defaultValue\"\n    :disabled=\"props.disabled\"\n    :name=\"props.name\"\n    :value=\"props.value\"\n    :class=\"\n      cn(\n        'peer inline-flex h-[1.15rem] w-8 shrink-0 items-center rounded-full border border-transparent shadow-xs outline-none motion-safe:transition-all focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-50 data-checked:bg-primary data-unchecked:bg-input dark:data-unchecked:bg-input/80',\n        props.class,\n      )\n    \"\n    @update:model-value=\"emit('update:modelValue', $event)\"\n  >\n    <SwitchThumb\n      class=\"pointer-events-none block size-4 rounded-full bg-background ring-0 motion-safe:transition-transform data-checked:translate-x-[calc(100%-2px)] dark:data-checked:bg-primary-foreground dark:data-unchecked:bg-foreground rtl:data-checked:-translate-x-[calc(100%-2px)]\"\n    >\n      <slot name=\"thumb\" v-bind=\"slotProps\" />\n    </SwitchThumb>\n  </SwitchPrimitive>\n</template>\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

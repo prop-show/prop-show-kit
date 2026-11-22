@@ -1,0 +1,26 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "ui-sdk-tabs",
+  "title": "UI SDK Tabs",
+  "description": "A tab list with styled triggers, keyboard navigation and composable panels.",
+  "dependencies": ["@ui-sdk/core@0.1.0-beta.13", "@ui-sdk/vue@0.1.0-beta.13"],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/ui-sdk/ui-sdk-tabs/index.ts",
+      "content": "export { Tabs, TabsPanel as TabsContent } from \"@ui-sdk/vue/tabs\";\nexport { default as TabsList } from \"./TabsList.vue\";\nexport { default as TabsTrigger } from \"./TabsTrigger.vue\";\n",
+      "type": "registry:ui"
+    },
+    {
+      "path": "registry/ui-sdk/ui-sdk-tabs/TabsList.vue",
+      "content": "<script setup lang=\"ts\">\nimport { TabsList } from \"@ui-sdk/vue/tabs\";\nimport type { HTMLAttributes } from \"vue\";\nimport { cn } from \"@/lib/utils\";\n\nconst props = defineProps<{ class?: HTMLAttributes[\"class\"] }>();\n</script>\n\n<template>\n  <TabsList\n    :class=\"\n      cn(\n        'inline-flex h-9 w-fit items-center justify-center rounded-lg bg-muted p-[3px] text-muted-foreground data-[orientation=vertical]:h-auto data-[orientation=vertical]:flex-col data-[orientation=vertical]:items-stretch',\n        props.class,\n      )\n    \"\n  >\n    <slot />\n  </TabsList>\n</template>\n",
+      "type": "registry:ui"
+    },
+    {
+      "path": "registry/ui-sdk/ui-sdk-tabs/TabsTrigger.vue",
+      "content": "<script setup lang=\"ts\">\nimport { TabsTab } from \"@ui-sdk/vue/tabs\";\nimport type { HTMLAttributes } from \"vue\";\nimport { cn } from \"@/lib/utils\";\n\nconst props = defineProps<{ value: string; disabled?: boolean; class?: HTMLAttributes[\"class\"] }>();\n</script>\n\n<template>\n  <TabsTab\n    :value=\"props.value\"\n    :disabled=\"props.disabled\"\n    :class=\"\n      cn(\n        'inline-flex h-full flex-1 items-center justify-center gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm font-medium whitespace-nowrap text-foreground outline-none motion-safe:transition-[color,box-shadow] focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 data-disabled:opacity-50 data-selected:bg-background data-selected:shadow-sm dark:text-muted-foreground dark:data-selected:border-input dark:data-selected:bg-input/30 dark:data-selected:text-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*=size-])]:size-4',\n        props.class,\n      )\n    \"\n  >\n    <slot />\n  </TabsTab>\n</template>\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

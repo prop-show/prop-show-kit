@@ -41,6 +41,13 @@ a static server, e.g. `python3 -m http.server`.
 | `pricing-plans`      | Responsive collection of pricing cards.                                                                      | Two side-by-side cards with one accent plan action.                         |
 | `pricing-table`      | Tiered pricing with grouped feature comparisons.                                                             | Two plan columns above feature rows with checkmarks.                        |
 | `bookmarks-empty`    | Not a component — the browser-extension bookmark empty state this set started from.                          | Browser window with a tab strip, empty folder and an accent add button.     |
+| `ui-sdk-select`      | Select with keyboard navigation and typeahead.                                                               | Open option list with a highlighted selection.                              |
+| `ui-sdk-switch`      | Switch with controlled or uncontrolled state.                                                                | Settings rows with one switch on and one off.                               |
+| `ui-sdk-collapsible` | Accessible disclosure with a styled trigger.                                                                 | Trigger above its expanded panel.                                           |
+| `ui-sdk-button`      | Button with configurable variants and sizes.                                                                 | Primary, outlined, and muted actions.                                       |
+| `ui-sdk-input`       | Text field with native form constraints.                                                                     | Label, focused empty input, and a helper line.                              |
+| `ui-sdk-checkbox`    | Individual and grouped checkboxes with a mixed state.                                                        | Parent checkbox above checked and unchecked options.                        |
+| `ui-sdk-tabs`        | Keyboard-navigable tab list with composable panels.                                                          | Selected tab and its visible content panel.                                 |
 
 ## Shared rules the generator enforces
 

@@ -384,6 +384,152 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "ui-sdk-select",
+      "type": "registry:ui",
+      "title": "UI SDK Select",
+      "description": "A styled select with typeahead, keyboard navigation and an anchored options list.",
+      "dependencies": ["@lucide/vue", "@ui-sdk/core@0.1.0-beta.13", "@ui-sdk/vue@0.1.0-beta.13"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/ui-sdk/ui-sdk-select/index.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/ui-sdk/ui-sdk-select/SelectContent.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/ui-sdk/ui-sdk-select/SelectGroupLabel.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/ui-sdk/ui-sdk-select/SelectItem.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/ui-sdk/ui-sdk-select/SelectSeparator.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/ui-sdk/ui-sdk-select/SelectTrigger.vue",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "ui-sdk-switch",
+      "type": "registry:ui",
+      "title": "UI SDK Switch",
+      "description": "A form-aware switch with controlled and uncontrolled checked states.",
+      "dependencies": ["@ui-sdk/core@0.1.0-beta.13", "@ui-sdk/vue@0.1.0-beta.13"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/ui-sdk/ui-sdk-switch/index.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/ui-sdk/ui-sdk-switch/Switch.vue",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "ui-sdk-collapsible",
+      "type": "registry:ui",
+      "title": "UI SDK Collapsible",
+      "description": "A composable disclosure with a trigger, content and controlled open state.",
+      "dependencies": ["@ui-sdk/core@0.1.0-beta.13", "@ui-sdk/vue@0.1.0-beta.13"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/ui-sdk/collapsible.ts",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "ui-sdk-button",
+      "type": "registry:ui",
+      "title": "UI SDK Button",
+      "description": "A styled button with variants, sizes and pending state for async actions.",
+      "dependencies": [
+        "@ui-sdk/core@0.1.0-beta.13",
+        "@ui-sdk/vue@0.1.0-beta.13",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/ui-sdk/ui-sdk-button/index.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/ui-sdk/ui-sdk-button/Button.vue",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "ui-sdk-input",
+      "type": "registry:ui",
+      "title": "UI SDK Input",
+      "description": "A styled text input with Vue model binding and native form validation.",
+      "dependencies": ["@ui-sdk/core@0.1.0-beta.13", "@ui-sdk/vue@0.1.0-beta.13"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/ui-sdk/ui-sdk-input/index.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/ui-sdk/ui-sdk-input/Input.vue",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "ui-sdk-checkbox",
+      "type": "registry:ui",
+      "title": "UI SDK Checkbox",
+      "description": "A form-aware checkbox with checked and indeterminate indicators and option groups.",
+      "dependencies": ["@lucide/vue", "@ui-sdk/core@0.1.0-beta.13", "@ui-sdk/vue@0.1.0-beta.13"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/ui-sdk/ui-sdk-checkbox/index.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/ui-sdk/ui-sdk-checkbox/Checkbox.vue",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "ui-sdk-tabs",
+      "type": "registry:ui",
+      "title": "UI SDK Tabs",
+      "description": "A tab list with styled triggers, keyboard navigation and composable panels.",
+      "dependencies": ["@ui-sdk/core@0.1.0-beta.13", "@ui-sdk/vue@0.1.0-beta.13"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/ui-sdk/ui-sdk-tabs/index.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/ui-sdk/ui-sdk-tabs/TabsList.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/ui-sdk/ui-sdk-tabs/TabsTrigger.vue",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }

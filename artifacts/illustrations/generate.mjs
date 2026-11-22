@@ -337,6 +337,82 @@ const scenes = {
     ${title(63, 81, 34)}
     ${line(54, 89, 52)}`,
   },
+
+  "ui-sdk-select": {
+    aria: "A select trigger with an open list and a selected option",
+    back: () => BACK(44, 15, 87, 59),
+    surface: () => PAGE(26, 24, 108, 78),
+    content: () => `
+    ${rect(35, 32, 90, 13, 5, "cell", { stroke: true })}
+    ${title(41, 36, 30)}${icon("down", 113, 34, 8)}
+    ${rect(35, 50, 90, 44, 6, "surface", { stroke: true })}
+    <g class="PREFIX-cta">${rect(39, 54, 82, 11, 4, "accent")}${line(45, 57, 36, 4, "on-accent")}${icon("check", 108, 56, 7, "on-accent")}</g>
+    ${line(45, 72, 44)}${line(45, 84, 31)}`,
+  },
+
+  "ui-sdk-switch": {
+    aria: "Two settings rows, one with the switch on and one off",
+    back: () => BACK(42, 22, 91, 55),
+    surface: () => PAGE(25, 32, 110, 63),
+    content: () => `
+    ${title(33, 42, 51)}
+    ${line(33, 60, 37)}<g class="PREFIX-cta">${rect(103, 57, 22, 10, 5, "accent")}${rect(116, 59, 6, 6, 3, "on-accent")}</g>
+    ${line(33, 77, 42)}${toggle(104, 74, false)}`,
+  },
+
+  "ui-sdk-collapsible": {
+    aria: "An expanded disclosure with a trigger and two lines of content",
+    back: () => BACK(39, 18, 99, 52),
+    surface: () => PAGE(25, 29, 110, 68),
+    content: () => `
+    ${rect(33, 38, 94, 16, 5, "cell", { stroke: true })}
+    ${title(39, 43, 38)}<g class="PREFIX-cta">${rect(111, 41, 11, 10, 4, "accent")}${icon("down", 113, 43, 7, "on-accent")}</g>
+    ${rect(33, 60, 94, 28, 6, "cell", { stroke: true })}
+    ${line(39, 67, 66)}${line(39, 77, 49)}`,
+  },
+
+  "ui-sdk-button": {
+    aria: "A primary button beside outlined and muted buttons",
+    back: () => BACK(42, 20, 92, 56),
+    surface: () => PAGE(23, 30, 114, 67),
+    content: () => `
+    ${title(33, 42, 50)}${line(33, 53, 67)}
+    <g class="PREFIX-cta">${rect(33, 69, 38, 14, 5, "accent")}${line(43, 74, 18, 4, "on-accent")}</g>
+    ${rect(77, 69, 27, 14, 5, "surface", { stroke: true })}${line(83, 74, 15)}
+    ${rect(110, 69, 17, 14, 5, "cell")}${icon("check", 114, 72, 9)}`,
+  },
+
+  "ui-sdk-input": {
+    aria: "An email form with a labelled empty text field",
+    back: () => BACK(45, 17, 88, 57),
+    surface: () => PAGE(26, 27, 108, 75),
+    content: () => `
+    ${title(35, 38, 42)}
+    <g class="PREFIX-cta">${rect(35, 49, 90, 19, 6, "accent")}${rect(36, 50, 88, 17, 5, "surface")}${line(43, 57, 38)}</g>
+    ${line(35, 74, 58)}
+    ${rect(35, 84, 30, 10, 4, "cell")}${line(42, 87, 16)}`,
+  },
+
+  "ui-sdk-checkbox": {
+    aria: "A partially selected group of checkboxes",
+    back: () => BACK(42, 19, 94, 53),
+    surface: () => PAGE(24, 28, 112, 72),
+    content: () => `
+    <g class="PREFIX-cta">${rect(35, 39, 12, 12, 3, "accent")}${line(38, 44, 6, 2, "on-accent")}</g>${title(54, 43, 53)}
+    ${rect(43, 58, 11, 11, 3, "cell", { stroke: true })}${icon("check", 44, 59, 9)}${line(62, 61.5, 35)}
+    ${rect(43, 77, 11, 11, 3, "surface", { stroke: true })}${line(62, 80.5, 46)}`,
+  },
+
+  "ui-sdk-tabs": {
+    aria: "A selected tab above its content panel",
+    back: () => BACK(40, 16, 96, 58),
+    surface: () => PAGE(24, 27, 112, 75),
+    content: () => `
+    ${rect(33, 35, 94, 16, 6, "cell")}
+    <g class="PREFIX-cta">${rect(36, 38, 40, 10, 4, "accent")}${line(46, 41, 20, 4, "on-accent")}</g>${line(87, 41, 24)}
+    ${rect(33, 57, 94, 35, 6, "surface", { stroke: true })}
+    ${title(41, 64, 40)}${line(41, 75, 65)}${line(41, 83, 44)}`,
+  },
 };
 
 const theme = (
@@ -497,7 +573,7 @@ const theme = (
   ${back()}
   <g filter="url(#${prefix}-shadow)">
     ${surface()}
-    ${content().replaceAll("PREFIX", prefix)}
+    ${content().trimStart().replaceAll("PREFIX", prefix)}
   </g>
 </svg>
 `;
