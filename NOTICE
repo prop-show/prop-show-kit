@@ -35,6 +35,13 @@ Docs-site primitives
   shadcn-vue is MIT, Copyright (c) 2023 unovue.
   https://github.com/unovue/shadcn-vue
 
+UI SDK component styles
+  packages/ui/registry/ui-sdk adapts shadcn-vue New York v4 styles for Button,
+  Checkbox, Input, Select, Switch, and Tabs to Vercel UI SDK. shadcn-vue is MIT,
+  Copyright (c) 2023 unovue.
+  See THIRD_PARTY.md for the license text.
+  https://github.com/unovue/shadcn-vue
+
 Trademarks
   PropShow Kit is not shadcn, shadcn-vue, Kumo, ReUI, Cloudflare, Nuxt UI,
   or Medusa.

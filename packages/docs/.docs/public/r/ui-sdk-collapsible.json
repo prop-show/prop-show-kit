@@ -1,0 +1,16 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "ui-sdk-collapsible",
+  "title": "UI SDK Collapsible",
+  "description": "A composable disclosure with a trigger, content and controlled open state.",
+  "dependencies": ["@ui-sdk/core@0.1.0-beta.13", "@ui-sdk/vue@0.1.0-beta.13"],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/ui-sdk/collapsible.ts",
+      "content": "export {\n  Collapsible,\n  CollapsiblePanel as CollapsibleContent,\n  CollapsibleTrigger,\n} from \"@ui-sdk/vue/collapsible\";\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

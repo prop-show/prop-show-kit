@@ -1,0 +1,21 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "ui-sdk-checkbox",
+  "title": "UI SDK Checkbox",
+  "description": "A form-aware checkbox with checked and indeterminate indicators and option groups.",
+  "dependencies": ["@lucide/vue", "@ui-sdk/core@0.1.0-beta.13", "@ui-sdk/vue@0.1.0-beta.13"],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/ui-sdk/ui-sdk-checkbox/index.ts",
+      "content": "export { CheckboxGroup, type CheckedState } from \"@ui-sdk/vue/checkbox\";\nexport { default as Checkbox } from \"./Checkbox.vue\";\n",
+      "type": "registry:ui"
+    },
+    {
+      "path": "registry/ui-sdk/ui-sdk-checkbox/Checkbox.vue",
+      "content": "<script setup lang=\"ts\">\nimport { CheckIcon, MinusIcon } from \"@lucide/vue\";\nimport {\n  Checkbox as CheckboxPrimitive,\n  CheckboxIndicator,\n  type CheckedState,\n} from \"@ui-sdk/vue/checkbox\";\nimport type { HTMLAttributes } from \"vue\";\nimport { cn } from \"@/lib/utils\";\n\nconst props = withDefaults(\n  defineProps<{\n    modelValue?: CheckedState;\n    defaultChecked?: CheckedState;\n    class?: HTMLAttributes[\"class\"];\n  }>(),\n  { modelValue: undefined, defaultChecked: undefined },\n);\n\nconst emit = defineEmits<{ \"update:modelValue\": [checked: CheckedState] }>();\n</script>\n\n<template>\n  <CheckboxPrimitive\n    :model-value=\"props.modelValue\"\n    :default-checked=\"props.defaultChecked\"\n    :class=\"\n      cn(\n        'peer size-4 shrink-0 rounded-[4px] border border-input shadow-xs outline-none motion-safe:transition-shadow focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 data-disabled:cursor-not-allowed data-disabled:opacity-50 data-checked:border-primary data-checked:bg-primary data-checked:text-primary-foreground data-indeterminate:border-primary data-indeterminate:bg-primary data-indeterminate:text-primary-foreground aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:bg-input/30 dark:data-checked:bg-primary dark:data-indeterminate:bg-primary dark:aria-invalid:ring-destructive/40',\n        props.class,\n      )\n    \"\n    @update:model-value=\"emit('update:modelValue', $event)\"\n  >\n    <CheckboxIndicator v-slot=\"{ state }\" class=\"grid place-content-center\">\n      <slot :checked=\"state.indeterminate ? 'indeterminate' : state.checked\">\n        <MinusIcon v-if=\"state.indeterminate\" aria-hidden=\"true\" class=\"size-3.5\" />\n        <CheckIcon v-else aria-hidden=\"true\" class=\"size-3.5\" />\n      </slot>\n    </CheckboxIndicator>\n  </CheckboxPrimitive>\n</template>\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

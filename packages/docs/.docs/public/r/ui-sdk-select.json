@@ -1,0 +1,41 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "ui-sdk-select",
+  "title": "UI SDK Select",
+  "description": "A styled select with typeahead, keyboard navigation and an anchored options list.",
+  "dependencies": ["@lucide/vue", "@ui-sdk/core@0.1.0-beta.13", "@ui-sdk/vue@0.1.0-beta.13"],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/ui-sdk/ui-sdk-select/index.ts",
+      "content": "export { Select, SelectGroup, SelectItemText, SelectLabel, SelectValue } from \"@ui-sdk/vue/select\";\nexport { default as SelectContent } from \"./SelectContent.vue\";\nexport { default as SelectGroupLabel } from \"./SelectGroupLabel.vue\";\nexport { default as SelectItem } from \"./SelectItem.vue\";\nexport { default as SelectSeparator } from \"./SelectSeparator.vue\";\nexport { default as SelectTrigger } from \"./SelectTrigger.vue\";\n",
+      "type": "registry:ui"
+    },
+    {
+      "path": "registry/ui-sdk/ui-sdk-select/SelectContent.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { Side } from \"@ui-sdk/core\";\nimport { SelectContent as SelectContentPrimitive } from \"@ui-sdk/vue/select\";\nimport type { HTMLAttributes } from \"vue\";\nimport { cn } from \"@/lib/utils\";\n\nconst props = withDefaults(\n  defineProps<{\n    align?: \"start\" | \"center\" | \"end\";\n    side?: Side;\n    sideOffset?: number;\n    alignItemWithTrigger?: boolean;\n    class?: HTMLAttributes[\"class\"];\n  }>(),\n  { sideOffset: 4 },\n);\n</script>\n\n<template>\n  <SelectContentPrimitive\n    :align=\"props.align\"\n    :side=\"props.side\"\n    :side-offset=\"props.sideOffset\"\n    :align-item-with-trigger=\"props.alignItemWithTrigger\"\n    :class=\"\n      cn(\n        'z-50 max-h-(--available-height) overflow-x-hidden overflow-y-auto rounded-md border bg-popover p-1 text-popover-foreground shadow-md motion-safe:data-open:animate-in motion-safe:data-open:fade-in-0 motion-safe:data-open:zoom-in-95 motion-safe:data-closed:animate-out motion-safe:data-closed:fade-out-0 motion-safe:data-closed:zoom-out-95',\n        props.alignItemWithTrigger ? 'min-w-32' : 'min-w-[max(8rem,var(--anchor-width,0px))]',\n        props.class,\n      )\n    \"\n  >\n    <slot />\n  </SelectContentPrimitive>\n</template>\n",
+      "type": "registry:ui"
+    },
+    {
+      "path": "registry/ui-sdk/ui-sdk-select/SelectGroupLabel.vue",
+      "content": "<script setup lang=\"ts\">\nimport { SelectGroupLabel } from \"@ui-sdk/vue/select\";\nimport type { HTMLAttributes } from \"vue\";\nimport { cn } from \"@/lib/utils\";\n\nconst props = defineProps<{ class?: HTMLAttributes[\"class\"] }>();\n</script>\n\n<template>\n  <SelectGroupLabel :class=\"cn('px-2 py-1.5 text-xs text-muted-foreground', props.class)\">\n    <slot />\n  </SelectGroupLabel>\n</template>\n",
+      "type": "registry:ui"
+    },
+    {
+      "path": "registry/ui-sdk/ui-sdk-select/SelectItem.vue",
+      "content": "<script setup lang=\"ts\" generic=\"T\">\nimport { CheckIcon } from \"@lucide/vue\";\nimport {\n  SelectItem as SelectItemPrimitive,\n  SelectItemIndicator,\n  SelectItemText,\n} from \"@ui-sdk/vue/select\";\nimport type { HTMLAttributes } from \"vue\";\nimport { cn } from \"@/lib/utils\";\n\nconst props = defineProps<{\n  value: T;\n  disabled?: boolean;\n  textValue?: string;\n  class?: HTMLAttributes[\"class\"];\n}>();\n</script>\n\n<template>\n  <SelectItemPrimitive\n    :value=\"props.value\"\n    :disabled=\"props.disabled\"\n    :label=\"props.textValue\"\n    :class=\"\n      cn(\n        'relative flex w-full cursor-default items-center gap-2 rounded-sm py-1.5 ps-2 pe-8 text-sm select-none outline-hidden focus:bg-accent focus:text-accent-foreground data-disabled:pointer-events-none data-disabled:opacity-50 data-highlighted:bg-accent data-highlighted:text-accent-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 *:data-[slot=select-item-text]:flex *:data-[slot=select-item-text]:items-center *:data-[slot=select-item-text]:gap-2 [&_svg:not([class*=text-])]:text-muted-foreground [&_svg:not([class*=size-])]:size-4',\n        props.class,\n      )\n    \"\n  >\n    <span class=\"pointer-events-none absolute end-2 flex size-3.5 items-center justify-center\">\n      <SelectItemIndicator>\n        <slot name=\"indicator-icon\">\n          <CheckIcon aria-hidden=\"true\" class=\"size-4\" />\n        </slot>\n      </SelectItemIndicator>\n    </span>\n    <SelectItemText><slot /></SelectItemText>\n  </SelectItemPrimitive>\n</template>\n",
+      "type": "registry:ui"
+    },
+    {
+      "path": "registry/ui-sdk/ui-sdk-select/SelectSeparator.vue",
+      "content": "<script setup lang=\"ts\">\nimport { SelectSeparator } from \"@ui-sdk/vue/select\";\nimport type { HTMLAttributes } from \"vue\";\nimport { cn } from \"@/lib/utils\";\n\nconst props = defineProps<{ class?: HTMLAttributes[\"class\"] }>();\n</script>\n\n<template>\n  <SelectSeparator :class=\"cn('pointer-events-none -mx-1 my-1 h-px bg-border', props.class)\" />\n</template>\n",
+      "type": "registry:ui"
+    },
+    {
+      "path": "registry/ui-sdk/ui-sdk-select/SelectTrigger.vue",
+      "content": "<script setup lang=\"ts\">\nimport { ChevronDownIcon } from \"@lucide/vue\";\nimport { SelectTrigger as SelectTriggerPrimitive } from \"@ui-sdk/vue/select\";\nimport type { HTMLAttributes } from \"vue\";\nimport { cn } from \"@/lib/utils\";\n\nconst sizes = { default: \"h-9\", sm: \"h-8\" };\n\nconst props = withDefaults(\n  defineProps<{\n    class?: HTMLAttributes[\"class\"];\n    disabled?: boolean;\n    size?: keyof typeof sizes;\n  }>(),\n  { size: \"default\" },\n);\n</script>\n\n<template>\n  <SelectTriggerPrimitive\n    :data-size=\"props.size\"\n    :disabled=\"props.disabled\"\n    :class=\"\n      cn(\n        'flex w-fit items-center justify-between gap-2 rounded-md border border-input bg-transparent px-3 py-2 text-sm whitespace-nowrap shadow-xs outline-none motion-safe:transition-[color,box-shadow] focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 data-placeholder:text-muted-foreground dark:bg-input/30 dark:hover:bg-input/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 *:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-2 [&_svg:not([class*=text-])]:text-muted-foreground [&_svg:not([class*=size-])]:size-4',\n        sizes[props.size],\n        props.class,\n      )\n    \"\n  >\n    <slot />\n    <ChevronDownIcon aria-hidden=\"true\" class=\"size-4 opacity-50\" />\n  </SelectTriggerPrimitive>\n</template>\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

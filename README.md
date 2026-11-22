@@ -51,6 +51,7 @@ Live previews on the docs site:
 - [Components](https://kit.prop.show/components) — 13 pieces. Open [Copy](https://kit.prop.show/components/copy), [Frame](https://kit.prop.show/components/frame), or [Filters](https://kit.prop.show/components/filters).
 - [Blocks](https://kit.prop.show/blocks) — 3 screens. Open [project overview](https://kit.prop.show/blocks/project-overview), [team members](https://kit.prop.show/blocks/team-members), or [workspace settings](https://kit.prop.show/blocks/workspace-settings).
 - [Workspace](https://kit.prop.show/blocks/workspace) — project overview, team directory, and settings.
+- [UI SDK](https://kit.prop.show/ui-sdk) — individually installable Vue components powered by Vercel UI SDK.
 
 ### Features
 
@@ -149,6 +150,7 @@ Block 用同一条命令，例如 `https://kit.prop.show/r/project-overview.json
 - [组件](https://kit.prop.show/components) — 13 个。先看 [Copy](https://kit.prop.show/components/copy)、[Frame](https://kit.prop.show/components/frame)、[Filters](https://kit.prop.show/components/filters)。
 - [Blocks](https://kit.prop.show/blocks) — 3 个现成界面。先看[项目概览](https://kit.prop.show/blocks/project-overview)、[团队成员](https://kit.prop.show/blocks/team-members)、[工作区设置](https://kit.prop.show/blocks/workspace-settings)。
 - [工作台](https://kit.prop.show/blocks/workspace) — 项目概览、团队目录和设置。
+- [UI SDK](https://kit.prop.show/ui-sdk) — 基于 Vercel UI SDK 的 Vue 组件，可单独安装。
 
 ### 特性
 
